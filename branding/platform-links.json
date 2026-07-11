@@ -1,0 +1,40 @@
+{
+  "description": "Platform URLs for marketing site CTAs — do not embed auth forms on marketing domain",
+  "environments": {
+    "local": {
+      "baseUrl": "http://127.0.0.1:8000",
+      "login": "http://127.0.0.1:8000/auth/login/",
+      "registerIndividual": "http://127.0.0.1:8000/auth/register/individual/",
+      "registerOrganization": "http://127.0.0.1:8000/auth/register/organization/",
+      "dashboard": "http://127.0.0.1:8000/agent-builder/dashboard/"
+    },
+    "production": {
+      "baseUrl": "https://app.nymphicus.ai",
+      "login": "https://app.nymphicus.ai/auth/login/",
+      "registerIndividual": "https://app.nymphicus.ai/auth/register/individual/",
+      "registerOrganization": "https://app.nymphicus.ai/auth/register/organization/",
+      "dashboard": "https://app.nymphicus.ai/agent-builder/dashboard/"
+    }
+  },
+  "marketing": {
+    "recommendedDomain": "https://www.nymphicus.ai",
+    "platformSubdomain": "app.nymphicus.ai",
+    "bookDemo": "mailto:hello@nymphicus.ai?subject=Book%20a%20demo%20-%20Nymphicus",
+    "contactEmail": "hello@nymphicus.ai",
+    "enterpriseContact": "mailto:hello@nymphicus.ai?subject=Enterprise%20%2F%20Self-hosting%20inquiry%20-%20Nymphicus",
+    "demoVideo": "",
+    "docs": "https://docs.nymphicus.ai",
+    "changelog": "https://www.nymphicus.ai/changelog",
+    "mcpGuide": "https://docs.nymphicus.ai/integrations/mcp"
+  },
+  "ctaLabels": {
+    "login": "Log in",
+    "signIn": "Sign in",
+    "getStarted": "Get started",
+    "startFree": "Start building",
+    "register": "Create account",
+    "bookDemo": "Book a demo",
+    "contactUs": "Contact us",
+    "startFromTemplate": "Start from template"
+  }
+}

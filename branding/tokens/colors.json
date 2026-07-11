@@ -1,0 +1,70 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "meta": {
+    "name": "Nymphicus",
+    "source": "Platform/static/assets/scss/_variables.scss",
+    "extracted": "2026-07-11"
+  },
+  "color": {
+    "primary": {
+      "value": "#985FFD",
+      "rgb": "152, 95, 253",
+      "description": "Primary brand purple"
+    },
+    "secondary": {
+      "value": "#FF49CD",
+      "rgb": "255, 73, 205",
+      "description": "Accent pink/magenta"
+    },
+    "gradient": {
+      "primary": {
+        "value": "linear-gradient(to bottom right, #985FFD 0%, #FF49CD 100%)",
+        "description": "Brand hero gradient"
+      }
+    },
+    "background": {
+      "body": { "value": "#F8F9FD", "rgb": "248, 249, 253" },
+      "surface": { "value": "#FFFFFF" },
+      "muted": { "value": "#F9F7FC" }
+    },
+    "text": {
+      "primary": { "value": "#011A42" },
+      "muted": { "value": "#5D6576" },
+      "nav": { "value": "#302D36" },
+      "icon": { "value": "#6C7E96" }
+    },
+    "border": {
+      "default": { "value": "#E2E8EE" },
+      "input": { "value": "#E2E8EE" }
+    },
+    "semantic": {
+      "success": { "value": "#32D484", "rgb": "50, 212, 132" },
+      "warning": { "value": "#FDAF22", "rgb": "253, 175, 34" },
+      "danger": { "value": "#FF6757", "rgb": "255, 103, 87" },
+      "info": { "value": "#00C9FF", "rgb": "0, 201, 255" }
+    },
+    "gray": {
+      "50": { "value": "#F9FAFB" },
+      "100": { "value": "#F2F4F5" },
+      "200": { "value": "#E6EAEB" },
+      "300": { "value": "#DBDFE1" },
+      "400": { "value": "#949EB7" },
+      "500": { "value": "#7987A1" },
+      "600": { "value": "#4D5875" },
+      "700": { "value": "#383853" },
+      "800": { "value": "#323251" }
+    },
+    "dark": {
+      "background": { "value": "#161623", "rgb": "22, 22, 35" },
+      "surface": { "value": "#262634", "rgb": "38, 38, 52" },
+      "text": { "value": "rgba(255, 255, 255, 0.8)" },
+      "border": { "value": "rgba(255, 255, 255, 0.1)" }
+    },
+    "primaryAlpha": {
+      "5": { "value": "rgba(152, 95, 253, 0.05)" },
+      "10": { "value": "rgba(152, 95, 253, 0.1)" },
+      "20": { "value": "rgba(152, 95, 253, 0.2)" },
+      "50": { "value": "rgba(152, 95, 253, 0.5)" }
+    }
+  }
+}

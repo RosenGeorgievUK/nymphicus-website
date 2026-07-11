@@ -1,0 +1,149 @@
+/**
+ * Nymphicus design tokens
+ * Extracted from Platform/static/assets/scss/_variables.scss
+ * Use: @import or <link> in marketing site; mirrors product UI theme
+ */
+
+:root {
+  /* Brand */
+  --nym-primary-rgb: 152, 95, 253;
+  --nym-secondary-rgb: 255, 73, 205;
+  --nym-primary: rgb(var(--nym-primary-rgb));
+  --nym-secondary: rgb(var(--nym-secondary-rgb));
+  --nym-gradient-primary: linear-gradient(
+    to bottom right,
+    var(--nym-primary) 0%,
+    var(--nym-secondary) 100%
+  );
+
+  /* Primary alpha scale */
+  --nym-primary-005: rgba(var(--nym-primary-rgb), 0.05);
+  --nym-primary-01: rgba(var(--nym-primary-rgb), 0.1);
+  --nym-primary-02: rgba(var(--nym-primary-rgb), 0.2);
+  --nym-primary-05: rgba(var(--nym-primary-rgb), 0.5);
+
+  /* Backgrounds */
+  --nym-body-bg: #f8f9fd;
+  --nym-surface: #ffffff;
+  --nym-surface-muted: #f9f7fc;
+
+  /* Text */
+  --nym-text: #011a42;
+  --nym-text-muted: #5d6576;
+  --nym-text-nav: #302d36;
+  --nym-icon-muted: #6c7e96;
+
+  /* Borders */
+  --nym-border: #e2e8ee;
+
+  /* Semantic */
+  --nym-success: #32d484;
+  --nym-warning: #fdaf22;
+  --nym-danger: #ff6757;
+  --nym-info: #00c9ff;
+
+  /* Typography */
+  --nym-font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --nym-font-weight-normal: 400;
+  --nym-font-weight-medium: 500;
+  --nym-font-weight-semibold: 600;
+
+  /* Shape */
+  --nym-radius: 0.3rem;
+  --nym-radius-lg: 0.5rem;
+  --nym-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+  --nym-shadow-primary: 0 4px 12px rgba(var(--nym-primary-rgb), 0.3);
+
+  /* Layout */
+  --nym-max-width: 1440px;
+}
+
+/* Base document styles (optional — include if not using Tailwind) */
+.nym-body {
+  font-family: var(--nym-font-sans);
+  font-weight: var(--nym-font-weight-normal);
+  color: var(--nym-text);
+  background-color: var(--nym-body-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.nym-heading {
+  color: var(--nym-text);
+  font-weight: var(--nym-font-weight-semibold);
+  line-height: 1.2;
+}
+
+.nym-text-muted {
+  color: var(--nym-text-muted);
+}
+
+.nym-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--nym-font-sans);
+  font-weight: var(--nym-font-weight-medium);
+  font-size: 0.875rem;
+  color: #fff;
+  background-color: var(--nym-primary);
+  border: 1px solid var(--nym-primary);
+  border-radius: var(--nym-radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.nym-btn-primary:hover {
+  box-shadow: var(--nym-shadow-primary);
+  color: #fff;
+}
+
+.nym-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  font-family: var(--nym-font-sans);
+  font-weight: var(--nym-font-weight-medium);
+  font-size: 0.875rem;
+  color: var(--nym-text);
+  background-color: var(--nym-surface);
+  border: 1px solid var(--nym-border);
+  border-radius: var(--nym-radius);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nym-link {
+  color: var(--nym-primary);
+  text-decoration: none;
+  font-weight: var(--nym-font-weight-medium);
+}
+
+.nym-link:hover {
+  text-decoration: underline;
+}
+
+.nym-gradient-text {
+  background: var(--nym-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nym-card {
+  background: var(--nym-surface);
+  border: 1px solid var(--nym-border);
+  border-radius: var(--nym-radius-lg);
+  box-shadow: var(--nym-shadow-sm);
+}
+
+[data-theme="dark"] {
+  --nym-body-bg: #161623;
+  --nym-surface: #262634;
+  --nym-surface-muted: #262634;
+  --nym-text: rgba(255, 255, 255, 0.8);
+  --nym-text-muted: rgba(255, 255, 255, 0.5);
+  --nym-border: rgba(255, 255, 255, 0.1);
+}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "name": "Nymphicus",
+    "source": "Platform/static/assets/scss/_variables.scss"
+  },
+  "fontFamily": {
+    "sans": {
+      "value": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
+      "googleFonts": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+    }
+  },
+  "fontWeight": {
+    "normal": { "value": "400" },
+    "medium": { "value": "500" },
+    "semibold": { "value": "600" },
+    "bold": { "value": "700" }
+  },
+  "fontSize": {
+    "appBase": { "value": "0.875rem", "px": "14px" },
+    "caption": { "value": "0.8125rem", "px": "13px" },
+    "body": { "value": "1rem", "px": "16px" },
+    "bodyLg": { "value": "1.125rem", "px": "18px" },
+    "h6": { "value": "1rem", "px": "16px" },
+    "h5": { "value": "1.25rem", "px": "20px" },
+    "h4": { "value": "1.5rem", "px": "24px" },
+    "h3": { "value": "1.75rem", "px": "28px" },
+    "h2": { "value": "2rem", "px": "32px" },
+    "h1": { "value": "2.5rem", "px": "40px" },
+    "hero": { "value": "3.5rem", "px": "56px", "note": "Recommended for marketing only" }
+  },
+  "lineHeight": {
+    "tight": { "value": "1.2" },
+    "snug": { "value": "1.35" },
+    "normal": { "value": "1.5" },
+    "relaxed": { "value": "1.625" }
+  }
+}
