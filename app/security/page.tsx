@@ -2,7 +2,7 @@ import { SecurityView } from "@/views/security";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createPageMetadata } from "@/lib/metadata";
 
-const dict = getDictionary("en");
+const dict = getDictionary();
 
 export const metadata = createPageMetadata({
   title: dict.pages.security.title,
@@ -11,5 +11,5 @@ export const metadata = createPageMetadata({
 });
 
 export default function Page() {
-  return <SecurityView locale="en" />;
+  return <SecurityView />;
 }

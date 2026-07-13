@@ -12,6 +12,12 @@ export function bentoScreenshotForItem(href: string, index: number): ScreenshotK
   return BENTO_SCREENSHOTS[index] ?? "supportWorkflow";
 }
 
+export const SPOTLIGHT_SCREENSHOTS: ScreenshotKey[] = [
+  "supportWorkflow",
+  "mcpRegistry",
+  "executionLogs",
+];
+
 export const FEATURE_SCREENSHOTS: ScreenshotKey[] = [
   "dashboard",
   "supportWorkflow",
@@ -45,15 +51,15 @@ export const CASE_STUDY_ASSETS: Record<
   { integrations: string[]; screenshots: ScreenshotKey[] }
 > = {
   "support-triage": {
-    integrations: ["Intercom", "Knowledge Base", "Human Approval"],
+    integrations: ["Intercom", "File Search", "User Approval"],
     screenshots: ["supportWorkflow", "supportChat"],
   },
   "crm-copilot": {
-    integrations: ["HubSpot MCP", "LLM", "Output"],
+    integrations: ["HubSpot MCP", "Agent"],
     screenshots: ["crmWorkflow", "mcpRegistry"],
   },
   "governed-agents": {
-    integrations: ["OpenAI", "Knowledge Base", "MCP", "Self-hosted"],
+    integrations: ["File Search", "MCP", "User Approval", "Self-hosted"],
     screenshots: ["dashboard", "executionLogs", "agentsList"],
   },
 };

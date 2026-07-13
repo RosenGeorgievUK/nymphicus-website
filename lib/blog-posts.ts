@@ -55,7 +55,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "paragraph",
         content:
-          "On Nymphicus, MCP is first-class. Browse the registry, attach tools to your canvas, and ship — whether you're building support triage, a CRM copilot, or internal ops automation.",
+          "On Nymphi, MCP is first-class. Browse the registry, attach tools to your canvas, and ship — whether you're building support triage, a CRM copilot, or internal ops automation.",
       },
     ],
   },
@@ -71,7 +71,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "paragraph",
         content:
-          "Support teams don't need another black-box copilot. They need a workflow they can inspect, test, and approve. The Support Triage template on Nymphicus gives you that starting point — and most teams customize it in a single afternoon.",
+          "Support teams don't need another black-box copilot. They need a workflow they can inspect, test, and approve. The Support Triage template on Nymphi gives you that starting point — and most teams customize it in a single afternoon.",
       },
       {
         type: "heading",
@@ -145,7 +145,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "paragraph",
         content:
-          "Nymphicus bakes these controls into the platform rather than bolting them on. RBAC, audit trail, and approval nodes are table stakes — not enterprise upsells.",
+          "Nymphi bakes these controls into the platform rather than bolting them on. RBAC, audit trail, and approval nodes are table stakes — not enterprise upsells.",
       },
     ],
   },

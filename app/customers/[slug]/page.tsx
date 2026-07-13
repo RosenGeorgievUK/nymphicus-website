@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const study = getDictionary("en").data.caseStudies.find((item) => item.slug === slug);
+  const study = getDictionary().data.caseStudies.find((item) => item.slug === slug);
   if (!study) return {};
 
   return createPageMetadata({
@@ -25,5 +25,5 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  return <CustomersSlugView locale="en" slug={slug} />;
+  return <CustomersSlugView slug={slug} />;
 }

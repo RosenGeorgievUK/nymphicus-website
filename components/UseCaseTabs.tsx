@@ -15,7 +15,7 @@ const useCases: UseCase[] = [
     label: "Support",
     description:
       "Resolve tickets faster with agents that search your knowledge base, draft replies, and escalate when needed.",
-    flow: ["Ticket", "RAG", "LLM", "Reply"],
+    flow: ["Classify", "File Search", "Agent", "User Approval"],
   },
   {
     id: "sales",
@@ -36,7 +36,7 @@ const useCases: UseCase[] = [
     label: "Internal tools",
     description:
       "Build custom internal copilots connected to your stack via MCP — no per-task credit markup on API calls.",
-    flow: ["Query", "MCP", "Tool", "Result"],
+    flow: ["Start", "Agent", "MCP", "End"],
   },
 ];
 

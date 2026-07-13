@@ -1,4 +1,4 @@
-import { ProductScreenshot } from "@/components/ProductScreenshot";
+import { ProductPreviewFrame } from "@/components/ProductPreviewFrame";
 import { GradientButton } from "@/components/GradientButton";
 import type { ScreenshotKey } from "@/lib/screenshots";
 import { platformUrls } from "@/lib/site";
@@ -30,10 +30,10 @@ export function TemplateCard({
     >
       <div className={screenshots.length > 1 ? "grid gap-px sm:grid-cols-2" : ""}>
         {screenshots.map((shot) => (
-          <ProductScreenshot
+          <ProductPreviewFrame
             key={shot}
             screenshot={shot}
-            alt={`${title} — Nymphicus`}
+            alt={`${title} — Nymphi`}
             glow={false}
             chrome={false}
           />

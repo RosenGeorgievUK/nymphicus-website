@@ -1,53 +1,53 @@
+/** Node palette — matches Platform/templates/agent_builder/builder.html */
 export type NodeType = {
   name: string;
-  category: string;
   description: string;
 };
 
 export const nodeTypeCategories = [
   {
-    category: "Triggers",
-    description: "Start workflows from events, schedules, or manual runs.",
+    category: "Core",
+    description: "Start flows, run agents, classify intent, and end runs.",
     nodes: [
-      { name: "Webhook", description: "HTTP trigger from external systems" },
-      { name: "Schedule", description: "Cron-based recurring runs" },
-      { name: "Manual", description: "On-demand execution from dashboard" },
+      { name: "Start", description: "Entry point for every workflow" },
+      { name: "Agent", description: "LLM agent with tools and instructions" },
+      { name: "Classify", description: "Route by category or intent" },
+      { name: "End", description: "Terminate the workflow run" },
     ],
   },
   {
-    category: "AI & knowledge",
-    description: "LLM calls, retrieval, and grounded answers.",
+    category: "Tools",
+    description: "Search files, call MCP servers, and hit external APIs.",
     nodes: [
-      { name: "LLM", description: "Call OpenAI, Anthropic, or your provider" },
-      { name: "RAG Query", description: "Retrieve and cite knowledge chunks" },
-      { name: "Knowledge Base", description: "Attach company docs to workflows" },
+      { name: "File Search", description: "RAG over vector DBs and documents" },
+      { name: "MCP", description: "Model Context Protocol integrations" },
+      { name: "API Call", description: "HTTP requests to any REST endpoint" },
     ],
   },
   {
-    category: "Logic & control",
-    description: "Branch, loop, and gate sensitive actions.",
+    category: "Logic",
+    description: "Branch, loop, and pause for human approval.",
     nodes: [
-      { name: "Condition", description: "Branch on rules or LLM output" },
-      { name: "Loop", description: "Iterate over lists and collections" },
-      { name: "Human Approval", description: "Pause for review before continuing" },
-    ],
-  },
-  {
-    category: "Integrations",
-    description: "Connect tools without writing glue code.",
-    nodes: [
-      { name: "MCP Tool", description: "Call any MCP-compatible integration" },
-      { name: "HTTP Request", description: "REST APIs and webhooks" },
-      { name: "Output", description: "Return structured results" },
+      { name: "If/Else", description: "Conditional branching on rules or state" },
+      { name: "While", description: "Repeat until a condition is met" },
+      { name: "User Approval", description: "Gate sensitive actions before continuing" },
     ],
   },
   {
     category: "Data",
-    description: "Transform and pass state between nodes.",
+    description: "Transform payloads and persist workflow state.",
     nodes: [
-      { name: "Transform", description: "Map and reshape JSON payloads" },
-      { name: "Variable", description: "Store and reference workflow state" },
-      { name: "Classifier", description: "Route by intent or category" },
+      { name: "Transform", description: "Map and reshape JSON between nodes" },
+      { name: "Set State", description: "Store variables for downstream nodes" },
+    ],
+  },
+  {
+    category: "Media",
+    description: "Speech, image, and video generation nodes.",
+    nodes: [
+      { name: "Speech", description: "Text-to-speech and audio output" },
+      { name: "Image", description: "Generate or process images" },
+      { name: "Video", description: "Generate or process video" },
     ],
   },
 ] as const;

@@ -2,8 +2,8 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "nymphicus.ai" }],
-      "destination": "https://www.nymphicus.ai/:path*",
+      "has": [{ "type": "host", "value": "nymphi.ai" }],
+      "destination": "https://www.nymphi.ai/:path*",
       "permanent": true
     }
   ]

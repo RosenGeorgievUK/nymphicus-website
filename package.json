@@ -2,8 +2,10 @@
   "name": "nymphicus-website",
   "version": "0.1.0",
   "private": true,
+  "description": "Static marketing site for Nymphi — visual AI agent builder platform",
   "scripts": {
-    "dev": "next dev",
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev.ps1",
+    "sync:mcp-icons": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/sync-mcp-icons.ps1",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

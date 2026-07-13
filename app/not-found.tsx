@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { NotFoundView } from "@/views/not-found";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 
-const dict = getDictionary("en");
+const dict = getDictionary();
 
 export const metadata: Metadata = {
   title: dict.pages.notFound.title,
@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
-  return <NotFoundView locale="en" />;
+  return <NotFoundView />;
 }

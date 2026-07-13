@@ -1,49 +1,40 @@
 "use client";
 
 import { createContext, useContext, useMemo } from "react";
-import { usePathname } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Navbar } from "@/components/Navbar";
-import { SetHtmlLang } from "@/components/SetHtmlLang";
 import type { Dictionary } from "@/lib/dictionaries/types";
-import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import { getLocaleFromPathname, localizePath } from "@/lib/i18n/paths";
 
-type LocaleContextValue = {
-  locale: Locale;
+type SiteContextValue = {
   dict: Dictionary;
   path: (href: string) => string;
 };
 
-const LocaleContext = createContext<LocaleContextValue | null>(null);
+const SiteContext = createContext<SiteContextValue | null>(null);
 
 export function useLocale() {
-  const context = useContext(LocaleContext);
+  const context = useContext(SiteContext);
   if (!context) {
-    throw new Error("useLocale must be used within LocaleProvider");
+    throw new Error("useLocale must be used within SiteShell");
   }
   return context;
 }
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname);
-  const dict = getDictionary(locale);
+  const dict = getDictionary();
 
   const value = useMemo(
     () => ({
-      locale,
       dict,
-      path: (href: string) => localizePath(locale, href),
+      path: (href: string) => (href.startsWith("/") ? href : `/${href}`),
     }),
-    [locale, dict],
+    [dict],
   );
 
   return (
-    <LocaleContext.Provider value={value}>
-      <SetHtmlLang locale={locale} />
+    <SiteContext.Provider value={value}>
       <JsonLd />
       <a href="#main-content" className="skip-link">
         {dict.common.skipToContent}
@@ -53,6 +44,6 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <Footer />
-    </LocaleContext.Provider>
+    </SiteContext.Provider>
   );
 }

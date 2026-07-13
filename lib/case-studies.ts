@@ -26,7 +26,7 @@ export const caseStudies: CaseStudy[] = [
     company: "B2B software company",
     industry: "Customer Support",
     template: "Support Triage Agent",
-    integrations: ["Intercom", "Knowledge Base", "Human Approval"],
+    integrations: ["Intercom", "File Search", "User Approval"],
     challenge:
       "Support volume was climbing but every AI pilot got blocked — black-box copilots with credit meters didn't pass security review, and a custom LangChain build was quoted at two engineering weeks.",
     solution:
@@ -54,7 +54,7 @@ export const caseStudies: CaseStudy[] = [
     company: "Growth-stage startup",
     industry: "Sales & RevOps",
     template: "CRM Copilot",
-    integrations: ["HubSpot MCP", "LLM", "Output"],
+    integrations: ["HubSpot MCP", "Agent"],
     challenge:
       "RevOps needed CRM Q&A and deal updates in Slack, but internal tools wanted a maintained Python service. Previous copilot trials added unpredictable per-seat AI credits on top of HubSpot.",
     solution:
@@ -82,18 +82,18 @@ export const caseStudies: CaseStudy[] = [
     company: "Series B SaaS",
     industry: "Platform Engineering",
     template: "Custom multi-agent workflows",
-    integrations: ["OpenAI", "Knowledge Base", "MCP", "Self-hosted"],
+    integrations: ["File Search", "MCP", "User Approval", "Self-hosted"],
     challenge:
       "Platform engineering needed internal agents for onboarding and policy Q&A, but security rejected every SaaS copilot — opaque data handling, no audit trail, and keys held by the vendor.",
     solution:
-      "The team self-hosted Nymphicus on their infrastructure, connected BYO API keys, and enforced RBAC so only approved builders could publish agents. Execution logs became the default incident review surface.",
+      "The team self-hosted Nymphi on their infrastructure, connected BYO API keys, and enforced RBAC so only approved builders could publish agents. Execution logs became the default incident review surface.",
     results: [
       { value: "Full", label: "Run audit trace" },
       { value: "SSO", label: "Enterprise option" },
       { value: "Self-host", label: "Deployment option" },
     ],
     quote: {
-      text: "We needed agents our security team would sign off on — not another black-box copilot with a credit meter. Nymphicus was the first platform that let us keep our keys and still move fast.",
+      text: "We needed agents our security team would sign off on — not another black-box copilot with a credit meter. Nymphi was the first platform that let us keep our keys and still move fast.",
       name: "Alex M.",
       role: "Head of Platform Engineering",
     },

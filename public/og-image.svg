@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Nymphicus - Visual AI Agent Builder">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Nymphi - Visual AI Agent Builder">
   <defs>
     <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#161623"/>
@@ -14,10 +14,10 @@
   <circle cx="200" cy="500" r="160" fill="rgba(255,73,205,0.1)"/>
   <rect x="80" y="200" width="48" height="48" rx="12" fill="url(#accent-grad)"/>
   <path fill="#fff" d="M95 218h5l8 12.6V218h4v15h-5l-8-12.6V233h-4v-15z"/>
-  <text x="150" y="240" font-family="Space Grotesk, system-ui, sans-serif" font-size="56" font-weight="600" fill="rgba(255,255,255,0.95)">Nymphicus</text>
+  <text x="150" y="240" font-family="Space Grotesk, system-ui, sans-serif" font-size="56" font-weight="600" fill="rgba(255,255,255,0.95)">Nymphi</text>
   <text x="80" y="320" font-family="Space Grotesk, system-ui, sans-serif" font-size="42" font-weight="600" fill="url(#accent-grad)">Build AI agents</text>
   <text x="80" y="380" font-family="Space Grotesk, system-ui, sans-serif" font-size="42" font-weight="600" fill="rgba(255,255,255,0.9)">your team can trust</text>
   <text x="80" y="450" font-family="Space Grotesk, system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.55)">Visual canvas · BYO keys · MCP · Enterprise governance</text>
   <rect x="80" y="490" width="280" height="52" rx="8" fill="url(#accent-grad)"/>
-  <text x="220" y="523" text-anchor="middle" font-family="Space Grotesk, system-ui, sans-serif" font-size="20" font-weight="500" fill="#fff">www.nymphicus.ai</text>
+  <text x="220" y="523" text-anchor="middle" font-family="Space Grotesk, system-ui, sans-serif" font-size="20" font-weight="500" fill="#fff">www.nymphi.ai</text>
 </svg>

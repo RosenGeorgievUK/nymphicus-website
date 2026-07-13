@@ -158,6 +158,17 @@ export type Dictionary = {
     caseStudySubtitle: string;
     faqEyebrow: string;
     faqTitle: string;
+    integrationsSection: {
+      title: string;
+      subtitle: string;
+      cta: string;
+    };
+    spotlights: {
+      title: string;
+      bullets: string[];
+      href: string;
+      label: string;
+    }[];
   };
   pages: Record<
     | "pricing"
@@ -224,7 +235,7 @@ export type Dictionary = {
     nodeTypesEyebrow: string;
     nodeTypesTitle: string;
     nodeTypesSubtitle: string;
-    comparisonColumns: { feature: string; nymphicus: string; copilots: string; diy: string };
+    comparisonColumns: { feature: string; nymphi: string; copilots: string; diy: string };
     comparisonLink: string;
     customersShareStory: string;
     customersShareStoryLink: string;

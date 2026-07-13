@@ -21,12 +21,6 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
-
-    .hero-beam,
-    .hero-beam-glow,
-    .hero-beam-fog {
-      display: none;
-    }
   }
 
   body {
@@ -34,10 +28,6 @@
     background-color: var(--nym-body-bg);
     color: var(--nym-text);
     font-family: var(--font-space-grotesk), system-ui, sans-serif;
-  }
-
-  html.locale-bg body {
-    font-family: var(--font-noto-sans), var(--font-space-grotesk), system-ui, sans-serif;
   }
 
   a:not([class*="nym-btn"]):not([class*="inline-flex"]) {
@@ -142,47 +132,25 @@
 
   .hero-mesh {
     background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(var(--nym-primary-rgb), 0.25), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(var(--nym-secondary-rgb), 0.12), transparent);
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(var(--nym-primary-rgb), 0.2), transparent),
+      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(var(--nym-secondary-rgb), 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(var(--nym-primary-rgb), 0.06), transparent);
+  }
+
+  .spotlight-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 8rem;
+    border-radius: 0 0 2px 0;
+    background: var(--nym-gradient-primary);
+    box-shadow: 0 0 24px rgba(var(--nym-secondary-rgb), 0.5);
   }
 
   .hero-grain {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  }
-
-  .hero-beam {
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(var(--nym-primary-rgb), 0.15) 20%,
-      rgba(var(--nym-secondary-rgb), 0.9) 45%,
-      rgba(var(--nym-primary-rgb), 0.15) 70%,
-      transparent 100%
-    );
-    box-shadow:
-      0 0 20px rgba(var(--nym-secondary-rgb), 0.8),
-      0 0 60px rgba(var(--nym-primary-rgb), 0.4);
-  }
-
-  .hero-beam-glow {
-    background: linear-gradient(
-      180deg,
-      transparent,
-      rgba(var(--nym-secondary-rgb), 0.12) 30%,
-      rgba(var(--nym-primary-rgb), 0.08) 60%,
-      transparent
-    );
-    filter: blur(24px);
-  }
-
-  .hero-beam-fog {
-    background: radial-gradient(
-      ellipse at center,
-      rgba(var(--nym-secondary-rgb), 0.18) 0%,
-      rgba(var(--nym-primary-rgb), 0.06) 40%,
-      transparent 70%
-    );
-    filter: blur(40px);
   }
 
   .btn-glow {
@@ -242,10 +210,194 @@
   }
 
   .section-y {
-    @apply py-12 md:py-16;
+    @apply py-16 md:py-20;
   }
 
   .section-y-lg {
-    @apply py-14 md:py-20;
+    @apply py-16 md:py-24;
+  }
+
+  .surface-card {
+    border-radius: var(--nym-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(var(--nym-primary-rgb), 0.04);
+    backdrop-filter: blur(8px);
+  }
+
+  .product-recording {
+    background: #0d0f18;
+  }
+
+  .recording-rec-dot {
+    animation: recBlink 1.2s ease-in-out infinite;
+  }
+
+  .recording-cursor {
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+  }
+
+  .recording-click-ring {
+    animation: clickRing 1.8s ease-out infinite;
+    opacity: 0;
+  }
+
+  .recording-bar {
+    transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .recording-node-active {
+    filter: drop-shadow(0 0 8px rgba(var(--nym-primary-rgb), 0.6));
+    animation: nodePulse 1.4s ease-in-out infinite;
+  }
+
+  .recording-edge-draw {
+    stroke-dasharray: 120;
+    transition: stroke-dashoffset 0.6s ease, opacity 0.4s ease;
+  }
+
+  .recording-typing-dot {
+    animation: typingBounce 0.9s ease-in-out infinite;
+  }
+
+  .recording-mcp-pop {
+    animation: mcpPop 0.5s ease-out;
+  }
+
+  .recording-progress-fill {
+    transition: width 0.15s linear;
+  }
+
+  @keyframes recBlink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes clickRing {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.6);
+      opacity: 0;
+    }
+  }
+
+  @keyframes nodePulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.75;
+    }
+  }
+
+  @keyframes typingBounce {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.4;
+    }
+    50% {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes mcpPop {
+    0% {
+      transform: scale(0.92);
+    }
+    60% {
+      transform: scale(1.04);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes demoPan {
+    0% {
+      transform: scale(1) translate3d(0, 0, 0);
+    }
+    100% {
+      transform: scale(1.05) translate3d(-1.2%, -0.6%, 0);
+    }
+  }
+
+  @keyframes demoSpotRing {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.85);
+    }
+    20%,
+    80% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.65;
+      transform: translate(-50%, -50%) scale(1.12);
+    }
+  }
+
+  @keyframes demoLogSweep {
+    0%,
+    100% {
+      top: 26%;
+      opacity: 0.45;
+    }
+    50% {
+      top: 64%;
+      opacity: 0.95;
+    }
+  }
+
+  .demo-pan-active {
+    animation: demoPan 14s ease-in-out infinite alternate;
+  }
+
+  .demo-spot-ring {
+    transform: translate(-50%, -50%);
+    animation: demoSpotRing 2.4s ease-in-out infinite;
+  }
+
+  .demo-log-sweep {
+    animation: demoLogSweep 4s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .recording-rec-dot,
+    .recording-click-ring,
+    .recording-node-active,
+    .recording-typing-dot,
+    .recording-mcp-pop {
+      animation: none;
+    }
+
+    .recording-cursor {
+      transition: none;
+    }
+
+    .demo-pan-active,
+    .demo-spot-ring,
+    .demo-log-sweep {
+      animation: none;
+    }
+  }
+
+  .prose-nym h2 {
+    @apply mt-12 text-xl font-semibold text-marketing-text first:mt-0;
+  }
+
+  .prose-nym h2 + p {
+    @apply mt-4;
   }
 }

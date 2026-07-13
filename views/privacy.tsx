@@ -1,17 +1,12 @@
 import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
 import { PageHero } from "@/components/PageHero";
+import { PageSection } from "@/components/PageSection";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import type { Locale } from "@/lib/i18n/config";
-import { localizePath } from "@/lib/i18n/paths";
 import { platformUrls } from "@/lib/site";
 
-type PrivacyViewProps = {
-  locale: Locale;
-};
-
-export function PrivacyView({ locale }: PrivacyViewProps) {
-  const dict = getDictionary(locale);
+export function PrivacyView() {
+  const dict = getDictionary();
   const page = dict.pages.privacy;
 
   return (
@@ -22,20 +17,20 @@ export function PrivacyView({ locale }: PrivacyViewProps) {
         subtitle={page.heroSubtitle}
       />
 
-      <section className="section-y">
-        <div className="prose-nym mx-auto max-w-2xl px-4 text-base leading-relaxed text-marketing-text-muted sm:px-6 lg:px-8">
+      <PageSection size="lg">
+        <div className="prose-nym mx-auto max-w-2xl text-base leading-relaxed text-marketing-text-muted md:text-lg">
           {dict.data.privacySections.map((section) => (
             <div key={section.heading}>
-              <h2 className="mt-10 text-xl font-semibold text-marketing-text">{section.heading}</h2>
+              <h2>{section.heading}</h2>
               {section.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)} className="mt-4">
-                  {paragraph.includes("app.nymphicus.ai") ? (
+                <p key={paragraph.slice(0, 48)}>
+                  {paragraph.includes("app.nymphi.ai") ? (
                     <>
-                      {paragraph.split("app.nymphicus.ai")[0]}
+                      {paragraph.split("app.nymphi.ai")[0]}
                       <a href={platformUrls.baseUrl} className="text-nym-primary hover:underline">
-                        app.nymphicus.ai
+                        app.nymphi.ai
                       </a>
-                      {paragraph.split("app.nymphicus.ai")[1]}
+                      {paragraph.split("app.nymphi.ai")[1]}
                     </>
                   ) : paragraph.includes(platformUrls.contactEmail) ? (
                     <>
@@ -56,15 +51,15 @@ export function PrivacyView({ locale }: PrivacyViewProps) {
             </div>
           ))}
 
-          <p className="mt-6 text-sm">
+          <p className="mt-8 text-sm">
             {page.seeAlsoTerms?.split("Terms of Service")[0]}
-            <Link href={localizePath(locale, "/terms")} className="text-nym-primary hover:underline">
+            <Link href="/terms" className="text-nym-primary hover:underline">
               Terms of Service
             </Link>
             {page.seeAlsoTerms?.includes(".") ? "." : ""}
           </p>
         </div>
-      </section>
+      </PageSection>
 
       <CTABand
         title={page.ctaBandTitle!}

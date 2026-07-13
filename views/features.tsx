@@ -2,22 +2,18 @@ import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
 import { NodeTypesGrid } from "@/components/NodeTypesGrid";
 import { PageHero } from "@/components/PageHero";
-import { ProductScreenshot } from "@/components/ProductScreenshot";
+import { PageSection } from "@/components/PageSection";
+import { ProductInteractivePreview } from "@/components/ProductInteractivePreview";
+import { ProductScreenshotImage } from "@/components/ProductScreenshotImage";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { SectionDivider } from "@/components/SectionDivider";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import type { Locale } from "@/lib/i18n/config";
 import { slugify } from "@/lib/slugify";
 import { platformUrls } from "@/lib/site";
 import { FEATURE_REVERSE, FEATURE_SCREENSHOTS } from "@/lib/view-helpers";
 
-type FeaturesViewProps = {
-  locale: Locale;
-};
-
-export function FeaturesView({ locale }: FeaturesViewProps) {
-  const dict = getDictionary(locale);
+export function FeaturesView() {
+  const dict = getDictionary();
   const page = dict.pages.features;
 
   return (
@@ -33,60 +29,57 @@ export function FeaturesView({ locale }: FeaturesViewProps) {
         subtitle={page.heroSubtitle}
       />
 
-      <SectionDivider />
-
       {dict.data.featureSections.map((section, index) => {
         const sectionId = `feature-${slugify(section.eyebrow)}`;
         const reverse = FEATURE_REVERSE[index] ?? false;
         const screenshot = FEATURE_SCREENSHOTS[index] ?? "dashboard";
 
         return (
-          <div key={section.eyebrow}>
-            <section className="section-y" aria-labelledby={sectionId}>
-              <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-                <ScrollReveal>
-                  <div
-                    className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
-                      reverse ? "lg:[&>*:first-child]:order-2" : ""
-                    }`}
+          <PageSection key={section.eyebrow} ariaLabelledBy={sectionId}>
+            <ScrollReveal>
+              <article className="spotlight-card surface-card p-6 md:p-8 lg:p-10">
+                <div
+                  className={`grid items-center gap-8 lg:grid-cols-2 lg:gap-12 ${
+                    reverse ? "lg:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  <ProductInteractivePreview
+                    screenshot={screenshot}
+                    alt={`${section.eyebrow} — Nymphi`}
                   >
-                    <ProductScreenshot
-                      screenshot={screenshot}
-                      alt={`${section.eyebrow} — Nymphicus`}
+                    <ProductScreenshotImage screenshot={screenshot} alt={`${section.eyebrow} — Nymphi`} />
+                  </ProductInteractivePreview>
+                  <div>
+                    <SectionHeading
+                      as="h2"
+                      id={sectionId}
+                      eyebrow={section.eyebrow}
+                      title={
+                        section.titleHighlight ? (
+                          <>
+                            {section.title}{" "}
+                            <span className="text-gradient">{section.titleHighlight}</span>
+                          </>
+                        ) : (
+                          section.title
+                        )
+                      }
+                      subtitle={section.subtitle}
+                      align="left"
                     />
-                    <div>
-                      <SectionHeading
-                        as="h2"
-                        id={sectionId}
-                        eyebrow={section.eyebrow}
-                        title={
-                          section.titleHighlight ? (
-                            <>
-                              {section.title}{" "}
-                              <span className="text-gradient">{section.titleHighlight}</span>
-                            </>
-                          ) : (
-                            section.title
-                          )
-                        }
-                        subtitle={section.subtitle}
-                        align="left"
-                      />
-                      <p className="mt-8">
-                        <Link
-                          href={platformUrls.register}
-                          className="nym-focus rounded-nym text-sm font-medium text-nym-primary hover:underline"
-                        >
-                          {page.getStartedLink}
-                        </Link>
-                      </p>
-                    </div>
+                    <p className="mt-8">
+                      <Link
+                        href={platformUrls.register}
+                        className="nym-focus rounded-nym text-sm font-medium text-nym-primary hover:underline"
+                      >
+                        {page.getStartedLink} →
+                      </Link>
+                    </p>
                   </div>
-                </ScrollReveal>
-              </div>
-            </section>
-            {index < dict.data.featureSections.length - 1 && <SectionDivider />}
-          </div>
+                </div>
+              </article>
+            </ScrollReveal>
+          </PageSection>
         );
       })}
 

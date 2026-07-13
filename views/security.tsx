@@ -1,17 +1,14 @@
 import { CTABand } from "@/components/CTABand";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { PageHero } from "@/components/PageHero";
-import { ProductScreenshot } from "@/components/ProductScreenshot";
+import { PageSection } from "@/components/PageSection";
+import { ProductInteractivePreview } from "@/components/ProductInteractivePreview";
+import { ProductScreenshotImage } from "@/components/ProductScreenshotImage";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { SectionDivider } from "@/components/SectionDivider";
+import { SectionHeading } from "@/components/SectionHeading";
 import { TrustBadges } from "@/components/TrustBadges";
 import { ValuePillar } from "@/components/ValuePillar";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import type { Locale } from "@/lib/i18n/config";
-
-type SecurityViewProps = {
-  locale: Locale;
-};
 
 function ShieldIcon() {
   return (
@@ -40,8 +37,8 @@ function LogIcon() {
 
 const securityIcons = [ShieldIcon, LogIcon, KeyIcon];
 
-export function SecurityView({ locale }: SecurityViewProps) {
-  const dict = getDictionary(locale);
+export function SecurityView() {
+  const dict = getDictionary();
   const page = dict.pages.security;
 
   return (
@@ -57,70 +54,61 @@ export function SecurityView({ locale }: SecurityViewProps) {
         subtitle={page.heroSubtitle}
       />
 
-      <section className="pb-12 md:pb-16">
-        <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <TrustBadges
-            badges={dict.common.trustBadges}
-            ariaLabel={dict.common.trustBadgesAria}
-            className="mb-12 justify-center"
-          />
-          <div className="grid gap-6 md:grid-cols-3">
-            {dict.data.securityPillars.map((pillar, index) => {
-              const Icon = securityIcons[index] ?? ShieldIcon;
-              return (
-                <ScrollReveal key={pillar.title}>
-                  <ValuePillar
-                    icon={<Icon />}
-                    highlight={pillar.highlight}
-                    title={pillar.title}
-                    description={pillar.description}
-                  />
-                </ScrollReveal>
-              );
-            })}
-          </div>
+      <PageSection size="compact" className="!border-t-0">
+        <TrustBadges
+          badges={dict.common.trustBadges}
+          ariaLabel={dict.common.trustBadgesAria}
+          className="mb-12 justify-center"
+        />
+        <div className="grid gap-5 md:grid-cols-3 md:gap-6">
+          {dict.data.securityPillars.map((pillar, index) => {
+            const Icon = securityIcons[index] ?? ShieldIcon;
+            return (
+              <ScrollReveal key={pillar.title}>
+                <ValuePillar
+                  icon={<Icon />}
+                  highlight={pillar.highlight}
+                  title={pillar.title}
+                  description={pillar.description}
+                />
+              </ScrollReveal>
+            );
+          })}
         </div>
-      </section>
+      </PageSection>
 
-      <SectionDivider />
-
-      <section className="section-y">
-        <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-            <ScrollReveal>
-              <ProductScreenshot screenshot="executionLogs" alt={page.screenshotAlt!} />
-            </ScrollReveal>
-            <ScrollReveal>
-              <h2 className="text-2xl font-semibold text-marketing-text">
-                {dict.data.securitySectionTitle}
-              </h2>
-              <p className="mt-4 text-marketing-text-muted">{dict.data.securitySectionBody}</p>
-              <ul className="mt-6 space-y-3 text-sm text-marketing-text">
-                {dict.data.securityBullets.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-nym-primary" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
-          </div>
+      <PageSection>
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <ScrollReveal>
+            <ProductInteractivePreview screenshot="executionLogs" alt={page.screenshotAlt!} glow>
+              <ProductScreenshotImage screenshot="executionLogs" alt={page.screenshotAlt!} />
+            </ProductInteractivePreview>
+          </ScrollReveal>
+          <ScrollReveal>
+            <SectionHeading
+              as="h2"
+              title={dict.data.securitySectionTitle}
+              subtitle={dict.data.securitySectionBody}
+              align="left"
+            />
+            <ul className="mt-8 space-y-3 text-base text-marketing-text">
+              {dict.data.securityBullets.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-br from-nym-primary to-nym-secondary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
         </div>
-      </section>
+      </PageSection>
 
-      <SectionDivider />
-
-      <section className="pb-12 md:pb-16" aria-labelledby="security-faq-heading">
-        <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <h2
-            id="security-faq-heading"
-            className="mb-8 text-center text-2xl font-semibold text-marketing-text"
-          >
-            {page.faqTitle}
-          </h2>
-          <FAQAccordion items={dict.data.securityFaq} className="mx-auto max-w-2xl" />
-        </div>
-      </section>
+      <PageSection ariaLabelledBy="security-faq-heading">
+        <ScrollReveal>
+          <SectionHeading id="security-faq-heading" title={page.faqTitle!} align="center" />
+        </ScrollReveal>
+        <FAQAccordion items={dict.data.securityFaq} className="mx-auto mt-10 max-w-2xl" />
+      </PageSection>
 
       <CTABand
         title={page.ctaBandTitle!}

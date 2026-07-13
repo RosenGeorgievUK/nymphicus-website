@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Noto_Sans } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { SiteShell } from "@/components/SiteShell";
 import { defaultOgImage } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -8,12 +8,6 @@ import "./globals.css";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
-  display: "swap",
-});
-
-const notoSans = Noto_Sans({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-noto-sans",
   display: "swap",
 });
 
@@ -58,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark" className={`${spaceGrotesk.variable} ${notoSans.variable}`}>
+    <html lang="en" data-theme="dark" className={spaceGrotesk.variable}>
       <body className="flex min-h-screen flex-col font-sans">
         <SiteShell>{children}</SiteShell>
       </body>

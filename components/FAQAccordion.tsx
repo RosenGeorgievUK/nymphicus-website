@@ -25,7 +25,7 @@ export function FAQAccordion({ items, className = "" }: FAQAccordionProps) {
         return (
           <div
             key={item.question}
-            className="overflow-hidden rounded-nym-lg border border-marketing-border bg-marketing-surface"
+            className="overflow-hidden rounded-nym-lg border border-marketing-border/80 bg-marketing-surface/40 backdrop-blur-sm"
           >
             <h3>
               <button
@@ -59,7 +59,7 @@ export function FAQAccordion({ items, className = "" }: FAQAccordionProps) {
               role="region"
               aria-labelledby={buttonId}
               hidden={!isOpen}
-              className="px-5 pb-4 text-sm leading-relaxed text-marketing-text-muted"
+              className="px-5 pb-5 text-base leading-relaxed text-marketing-text-muted"
             >
               {item.answer}
             </div>

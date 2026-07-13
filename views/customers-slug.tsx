@@ -1,22 +1,17 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTABand } from "@/components/CTABand";
-import { ProductScreenshot } from "@/components/ProductScreenshot";
+import { ProductPreviewFrame } from "@/components/ProductPreviewFrame";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { SectionDivider } from "@/components/SectionDivider";
 import { TestimonialCard } from "@/components/TestimonialCard";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import type { Locale } from "@/lib/i18n/config";
-import { localizePath } from "@/lib/i18n/paths";
 import { CASE_STUDY_ASSETS } from "@/lib/view-helpers";
 
-type CustomersSlugViewProps = {
-  locale: Locale;
-  slug: string;
-};
+type BlogSlugViewProps = { slug: string };
 
-export function CustomersSlugView({ locale, slug }: CustomersSlugViewProps) {
-  const dict = getDictionary(locale);
+export function CustomersSlugView({ slug }: { slug: string }) {
+  const dict = getDictionary();
   const study = dict.data.caseStudies.find((item) => item.slug === slug);
 
   if (!study) notFound();
@@ -82,10 +77,9 @@ export function CustomersSlugView({ locale, slug }: CustomersSlugViewProps) {
               </div>
             </ScrollReveal>
             <ScrollReveal>
-              <ProductScreenshot
+              <ProductPreviewFrame
                 screenshot={assets.screenshots[0]}
                 alt={`${study.title} workflow`}
-                priority
               />
             </ScrollReveal>
           </div>
@@ -113,7 +107,7 @@ export function CustomersSlugView({ locale, slug }: CustomersSlugViewProps) {
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {assets.screenshots.slice(1).map((shot) => (
                 <ScrollReveal key={shot}>
-                  <ProductScreenshot screenshot={shot} alt={`${study.title} — ${shot}`} />
+                  <ProductPreviewFrame screenshot={shot} alt={`${study.title} — ${shot}`} />
                 </ScrollReveal>
               ))}
             </div>
@@ -121,7 +115,7 @@ export function CustomersSlugView({ locale, slug }: CustomersSlugViewProps) {
 
           <p className="mt-8 text-sm text-marketing-text-muted">
             {dict.common.startedFromTemplate}{" "}
-            <Link href={localizePath(locale, "/templates")} className="font-medium text-nym-primary hover:underline">
+            <Link href="/templates" className="font-medium text-nym-primary hover:underline">
               {study.template}
             </Link>
           </p>
@@ -149,7 +143,7 @@ export function CustomersSlugView({ locale, slug }: CustomersSlugViewProps) {
               {otherStudies.map((other) => (
                 <Link
                   key={other.slug}
-                  href={localizePath(locale, `/customers/${other.slug}`)}
+                  href={`/customers/${other.slug}`}
                   className="nym-focus rounded-nym-lg border border-marketing-border bg-marketing-surface p-6 transition-colors hover:border-nym-primary/30"
                 >
                   <p className="text-xs font-medium uppercase tracking-wider text-nym-primary">

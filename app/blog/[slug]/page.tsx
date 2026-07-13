@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const post = getDictionary("en").data.blogPosts.find((item) => item.slug === slug);
+  const post = getDictionary().data.blogPosts.find((item) => item.slug === slug);
   if (!post) return {};
 
   return createPageMetadata({
@@ -25,5 +25,5 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  return <BlogSlugView locale="en" slug={slug} />;
+  return <BlogSlugView slug={slug} />;
 }

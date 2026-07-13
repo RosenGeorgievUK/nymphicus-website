@@ -30,7 +30,7 @@ export const ctaLabels = {
 };
 
 export const siteConfig = {
-  name: "Nymphicus",
+  name: "Nymphi",
   tagline: "Build AI agents your team can trust.",
   heroTitle: "Build AI agents your team can trust",
   heroGradientPhrase: "AI agents",

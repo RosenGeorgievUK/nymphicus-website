@@ -1,16 +1,13 @@
 import Link from "next/link";
 import type { CaseStudyCopy } from "@/lib/dictionaries/types";
-import type { Locale } from "@/lib/i18n/config";
-import { localizePath } from "@/lib/i18n/paths";
 
 type CaseStudyCardProps = {
   study: CaseStudyCopy;
-  locale: Locale;
   readLabel: string;
   featured?: boolean;
 };
 
-export function CaseStudyCard({ study, locale, readLabel, featured = false }: CaseStudyCardProps) {
+export function CaseStudyCard({ study, readLabel, featured = false }: CaseStudyCardProps) {
   return (
     <article
       className={`flex h-full flex-col rounded-nym-lg border bg-marketing-surface transition-all hover:-translate-y-0.5 hover:border-nym-primary/35 hover:shadow-xl hover:shadow-nym-primary/10 ${
@@ -38,7 +35,7 @@ export function CaseStudyCard({ study, locale, readLabel, featured = false }: Ca
       </div>
 
       <Link
-        href={localizePath(locale, `/customers/${study.slug}`)}
+        href={`/customers/${study.slug}`}
         className="nym-focus mt-6 inline-flex text-sm font-medium text-nym-primary hover:underline"
       >
         {readLabel}

@@ -1,7 +1,4 @@
 import type { MetadataRoute } from "next";
-import type { Locale } from "@/lib/i18n/config";
-import { locales } from "@/lib/i18n/config";
-import { localizePath } from "@/lib/i18n/paths";
 import { getAllBlogSlugs } from "@/lib/blog-posts";
 import { getAllCaseStudySlugs } from "@/lib/case-studies";
 import { siteConfig } from "@/lib/site";
@@ -26,40 +23,29 @@ const pages = [
   { path: "/changelog", priority: 0.65, changeFrequency: "weekly" as const },
 ];
 
-function localizedUrls(path: string, priority: number, changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]) {
-  const baseUrl = siteConfig.url;
-  return locales.map((locale: Locale) => ({
-    url: `${baseUrl}${localizePath(locale, path)}`,
-    lastModified: new Date(),
-    changeFrequency,
-    priority: locale === "bg" ? priority * 0.95 : priority,
-  }));
-}
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
 
-  const caseStudyPages = getAllCaseStudySlugs().flatMap((slug) =>
-    locales.map((locale: Locale) => ({
-      url: `${baseUrl}${localizePath(locale, `/customers/${slug}`)}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-  );
+  const staticPages = pages.map((page) => ({
+    url: `${baseUrl}${page.path}`,
+    lastModified: new Date(),
+    changeFrequency: page.changeFrequency,
+    priority: page.priority,
+  }));
 
-  const blogPages = getAllBlogSlugs().flatMap((slug) =>
-    locales.map((locale: Locale) => ({
-      url: `${baseUrl}${localizePath(locale, `/blog/${slug}`)}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.65,
-    })),
-  );
+  const caseStudyPages = getAllCaseStudySlugs().map((slug) => ({
+    url: `${baseUrl}/customers/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
 
-  return [
-    ...pages.flatMap((page) => localizedUrls(page.path, page.priority, page.changeFrequency)),
-    ...caseStudyPages,
-    ...blogPages,
-  ];
+  const blogPages = getAllBlogSlugs().map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [...staticPages, ...caseStudyPages, ...blogPages];
 }

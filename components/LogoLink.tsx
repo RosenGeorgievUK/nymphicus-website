@@ -22,7 +22,7 @@ export function LogoLink({ onClick, size = "md" }: LogoLinkProps) {
     >
       <Image
         src="/branding/assets/logo-wordmark-dark.svg"
-        alt="Nymphicus"
+        alt="Nymphi"
         width={160}
         height={36}
         className={`${height} w-auto transition-opacity group-hover:opacity-90`}

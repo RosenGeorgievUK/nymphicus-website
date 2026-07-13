@@ -6,10 +6,10 @@ const en: Dictionary = {
     siteTitle: "Visual AI Agent Builder",
     siteDescription:
       "Design workflows, connect tools via MCP, and run agents at scale — on infrastructure you control.",
-    ogAlt: "Nymphicus — Visual AI Agent Builder",
+    ogAlt: "Nymphi — Visual AI Agent Builder",
   },
   site: {
-    name: "Nymphicus",
+    name: "Nymphi",
     tagline: "Build AI agents your team can trust.",
     heroBadge: "Visual agent platform",
     heroTitlePrefix: "Build",
@@ -18,7 +18,7 @@ const en: Dictionary = {
     heroSubhead:
       "Design workflows, connect tools via MCP, and run agents at scale — on infrastructure you control.",
     heroFootnote: "No credit card · BYO API keys · Self-host or cloud",
-    heroScreenshotAlt: "Nymphicus agent builder dashboard",
+    heroScreenshotAlt: "Nymphi agent builder dashboard",
     getStartedFree: "Get started — it's free",
   },
   cta: {
@@ -34,7 +34,7 @@ const en: Dictionary = {
   },
   nav: {
     ariaMain: "Main navigation",
-    ariaHome: "Nymphicus home",
+    ariaHome: "Nymphi home",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     menu: "Menu",
@@ -64,10 +64,10 @@ const en: Dictionary = {
     resources: {
       title: "Resources",
       links: [
-        { href: "https://docs.nymphicus.ai", label: "Documentation", external: true },
+        { href: "https://docs.nymphi.ai", label: "Documentation", external: true },
         { href: "/blog", label: "Blog" },
         { href: "/changelog", label: "Changelog" },
-        { href: "https://docs.nymphicus.ai/integrations/mcp", label: "MCP guide", external: true },
+        { href: "https://docs.nymphi.ai/integrations/mcp", label: "MCP guide", external: true },
       ],
     },
     company: {
@@ -81,7 +81,7 @@ const en: Dictionary = {
     },
     privacy: "Privacy",
     terms: "Terms",
-    copyright: "© Nymphicus",
+    copyright: "© Nymphi",
   },
   common: {
     skipToContent: "Skip to content",
@@ -98,7 +98,7 @@ const en: Dictionary = {
     moreStories: "More stories",
     getStartedArrow: "Get started free →",
     llmCostsNote:
-      "LLM costs are billed separately by your provider — Nymphicus does not add a per-task credit markup.",
+      "LLM costs are billed separately by your provider — Nymphi does not add a per-task credit markup.",
     faqTitle: "Frequently asked questions",
     pricingFaqLink: "Pricing FAQ →",
     trustBadgesAria: "Trust and compliance badges",
@@ -182,7 +182,7 @@ const en: Dictionary = {
       features: "Features",
       useCases: "Use cases",
     },
-    diffEyebrow: "Why Nymphicus",
+    diffEyebrow: "Why Nymphi",
     diffTitle: "Visual builder. Your keys. Production governance.",
     diffPoints: [
       {
@@ -212,12 +212,50 @@ const en: Dictionary = {
       "An illustrative support triage workflow — ship governed agents without a multi-week sprint.",
     faqEyebrow: "FAQ",
     faqTitle: "Common questions",
+    integrationsSection: {
+      title: "Plug agents into your data & MCP integrations",
+      subtitle:
+        "Pre-built connectors for common apps. Custom API connections for everything else.",
+      cta: "Browse all integrations",
+    },
+    spotlights: [
+      {
+        title: "Flexible, visual AI workflow automation",
+        bullets: [
+          "Drag-and-drop canvas with 15 node types — no glue code between steps",
+          "Test runs in the builder before you ship to production",
+          "Templates for support, sales, and knowledge workflows out of the box",
+        ],
+        href: "/features",
+        label: "Explore features",
+      },
+      {
+        title: "Connect your stack via MCP",
+        bullets: [
+          "Browse HubSpot, Intercom, Stripe, and more from the integrations registry",
+          "Standard MCP interface — no per-tool custom adapters",
+          "Wire tools visually from the canvas, not from a config file",
+        ],
+        href: "/integrations",
+        label: "View integrations",
+      },
+      {
+        title: "Run with governance built in",
+        bullets: [
+          "RBAC and workspace isolation from day one",
+          "Human approval gates before sensitive actions execute",
+          "Full execution logs and audit trail for every node run",
+        ],
+        href: "/security",
+        label: "Security & governance",
+      },
+    ],
   },
   pages: {
     pricing: {
       title: "Pricing",
       description:
-        "Transparent pricing for Nymphicus — start free with your own API keys. Pro from $49/seat/mo. Enterprise with self-hosting and SSO.",
+        "Transparent pricing for Nymphi — start free with your own API keys. Pro from $49/seat/mo. Enterprise with self-hosting and SSO.",
       eyebrow: "Pricing",
       heroTitle: "Transparent pricing,",
       heroTitleHighlight: "no credit anxiety",
@@ -227,7 +265,7 @@ const en: Dictionary = {
     features: {
       title: "Features",
       description:
-        "Nymphicus features: visual agent builder, MCP integrations, knowledge bases with RAG, and enterprise governance.",
+        "Nymphi features: visual agent builder, MCP integrations, knowledge bases with RAG, and enterprise governance.",
       eyebrow: "Features",
       heroTitle: "Build, connect, and govern —",
       heroTitleHighlight: "without trade-offs",
@@ -237,7 +275,7 @@ const en: Dictionary = {
     templates: {
       title: "Templates",
       description:
-        "Start from Nymphicus agent templates: Support Triage, CRM Copilot, and Knowledge Base Chatbot.",
+        "Start from Nymphi agent templates: Support Triage, CRM Copilot, and Knowledge Base Chatbot.",
       eyebrow: "Templates",
       heroTitle: "Start from a workflow that",
       heroTitleHighlight: "already works",
@@ -247,13 +285,13 @@ const en: Dictionary = {
     integrations: {
       title: "Integrations",
       description:
-        "Connect Nymphicus agents to your stack via MCP, APIs, webhooks, and knowledge bases.",
+        "Connect Nymphi agents to your stack via MCP, APIs, webhooks, and knowledge bases.",
       eyebrow: "Integrations",
       heroTitle: "Connect any tool via",
       heroTitleHighlight: "MCP",
       heroSubtitle:
         "Browse the registry, wire tools to your canvas, and extend workflows without custom glue code.",
-      screenshotAlt: "MCP integrations registry in Nymphicus",
+      screenshotAlt: "MCP integrations registry in Nymphi",
       ctaBandTitle: "Your stack. Connected in minutes.",
     },
     useCases: {
@@ -271,18 +309,18 @@ const en: Dictionary = {
     compare: {
       title: "Compare",
       description:
-        "Compare Nymphicus to credit-based copilots and DIY agent frameworks — visual builder, BYO keys, MCP, and governance.",
+        "Compare Nymphi to credit-based copilots and DIY agent frameworks — visual builder, BYO keys, MCP, and governance.",
       eyebrow: "Compare",
       heroTitle: "The platform security approves",
       heroTitleHighlight: "and builders use",
       heroSubtitle:
-        "Nymphicus sits between opaque credit copilots and months-long DIY framework projects — visual, governed, and MCP-native.",
+        "Nymphi sits between opaque credit copilots and months-long DIY framework projects — visual, governed, and MCP-native.",
       startBuilding: "Start building free",
     },
     security: {
       title: "Security",
       description:
-        "Nymphicus security: RBAC, audit trails, BYO API keys, self-hosted deployment, and compliance-ready governance for production AI agents.",
+        "Nymphi security: RBAC, audit trails, BYO API keys, self-hosted deployment, and compliance-ready governance for production AI agents.",
       eyebrow: "Security",
       heroTitle: "Production agents need",
       heroTitleHighlight: "production governance",
@@ -295,7 +333,7 @@ const en: Dictionary = {
     about: {
       title: "About",
       description:
-        "Nymphicus is building the visual AI agent platform for teams who need speed, control, and governance.",
+        "Nymphi is building the visual AI agent platform for teams who need speed, control, and governance.",
       eyebrow: "About",
       heroTitle: "Building the future of",
       heroTitleHighlight: "governed AI agents",
@@ -304,7 +342,7 @@ const en: Dictionary = {
     contact: {
       title: "Contact",
       description:
-        "Get in touch with Nymphicus — book a demo, ask about Enterprise self-hosting, or start building for free.",
+        "Get in touch with Nymphi — book a demo, ask about Enterprise self-hosting, or start building for free.",
       eyebrow: "Contact",
       heroTitle: "Let's talk about your agents",
       heroSubtitle:
@@ -314,7 +352,7 @@ const en: Dictionary = {
     customers: {
       title: "Example Workflows",
       description:
-        "Illustrative Nymphicus workflows — support triage, CRM copilots, and governed self-hosted deployments.",
+        "Illustrative Nymphi workflows — support triage, CRM copilots, and governed self-hosted deployments.",
       eyebrow: "Example workflows",
       heroTitle: "How teams ship agents",
       heroTitleHighlight: "without the trade-offs",
@@ -336,7 +374,7 @@ const en: Dictionary = {
     },
     changelog: {
       title: "Changelog",
-      description: "Product updates for Nymphicus — new features, improvements, and fixes.",
+      description: "Product updates for Nymphi — new features, improvements, and fixes.",
       eyebrow: "Changelog",
       heroTitle: "Shipping fast,",
       heroTitleHighlight: "governed by default",
@@ -348,7 +386,7 @@ const en: Dictionary = {
     privacy: {
       title: "Privacy Policy",
       description:
-        "How Nymphicus handles data on the marketing website and links to the application at app.nymphicus.ai.",
+        "How Nymphi handles data on the marketing website and links to the application at app.nymphi.ai.",
       eyebrow: "Legal",
       heroTitle: "Privacy Policy",
       heroSubtitle: "Last updated: July 2026",
@@ -358,7 +396,7 @@ const en: Dictionary = {
     },
     terms: {
       title: "Terms of Service",
-      description: "Terms governing use of the Nymphicus marketing website at www.nymphicus.ai.",
+      description: "Terms governing use of the Nymphi marketing website at www.nymphi.ai.",
       eyebrow: "Legal",
       heroTitle: "Terms of Service",
       heroSubtitle: "Last updated: July 2026",
@@ -379,9 +417,9 @@ const en: Dictionary = {
   data: {
     homepageFaq: [
       {
-        question: "How is Nymphicus different from Zapier or n8n?",
+        question: "How is Nymphi different from Zapier or n8n?",
         answer:
-          "Zapier and n8n excel at deterministic automation. Nymphicus is built for AI agents — LLM nodes, RAG, human approval gates, and MCP-native tool calls — with governance (RBAC, audit trail) designed for production agent workloads.",
+          "Zapier and n8n excel at deterministic automation. Nymphi is built for AI agents — LLM nodes, RAG, human approval gates, and MCP-native tool calls — with governance (RBAC, audit trail) designed for production agent workloads.",
       },
       {
         question: "Do I need to be a developer?",
@@ -391,7 +429,7 @@ const en: Dictionary = {
       {
         question: "What happens to my API keys?",
         answer:
-          "You bring your own keys. Nymphicus orchestrates calls through your provider accounts — we don't resell tokens or add a per-task credit markup. Enterprise and self-hosted options keep keys entirely on your infrastructure.",
+          "You bring your own keys. Nymphi orchestrates calls through your provider accounts — we don't resell tokens or add a per-task credit markup. Enterprise and self-hosted options keep keys entirely on your infrastructure.",
       },
       {
         question: "Can my security team review every agent action?",
@@ -413,10 +451,10 @@ const en: Dictionary = {
       {
         question: "How do bring-your-own API keys work?",
         answer:
-          "You connect your own provider accounts (OpenAI, Anthropic, etc.) directly. Nymphicus orchestrates calls through your keys — no per-task credit markup from us. You pay providers at their standard rates.",
+          "You connect your own provider accounts (OpenAI, Anthropic, etc.) directly. Nymphi orchestrates calls through your keys — no per-task credit markup from us. You pay providers at their standard rates.",
       },
       {
-        question: "Can I self-host Nymphicus?",
+        question: "Can I self-host Nymphi?",
         answer:
           "Yes. Enterprise includes a self-hosted deployment option so you can run agents on your own infrastructure with full data residency control. Contact us for deployment details.",
       },
@@ -426,7 +464,7 @@ const en: Dictionary = {
           "Cloud deployments use encrypted storage in your chosen region. Self-hosted deployments keep all data on your infrastructure. Knowledge-base permissions and RBAC apply in both modes.",
       },
       {
-        question: "Does Nymphicus support MCP integrations?",
+        question: "Does Nymphi support MCP integrations?",
         answer:
           "Yes. MCP is a first-class integration path — connect any MCP-compatible tool to your agent workflows without custom glue code.",
       },
@@ -590,14 +628,14 @@ const en: Dictionary = {
         challenge:
           "Platform engineering needed internal agents for onboarding and policy Q&A, but security rejected every SaaS copilot — opaque data handling, no audit trail, and keys held by the vendor.",
         solution:
-          "The team self-hosted Nymphicus on their infrastructure, connected BYO API keys, and enforced RBAC so only approved builders could publish agents. Execution logs became the default incident review surface.",
+          "The team self-hosted Nymphi on their infrastructure, connected BYO API keys, and enforced RBAC so only approved builders could publish agents. Execution logs became the default incident review surface.",
         results: [
           { value: "Full", label: "Run audit trace" },
           { value: "SSO", label: "Enterprise option" },
           { value: "Self-host", label: "Deployment option" },
         ],
         quote: {
-          text: "We needed agents our security team would sign off on — not another black-box copilot with a credit meter. Nymphicus was the first platform that let us keep our keys and still move fast.",
+          text: "We needed agents our security team would sign off on — not another black-box copilot with a credit meter. Nymphi was the first platform that let us keep our keys and still move fast.",
           name: "Alex M.",
           role: "Head of Platform Engineering",
         },
@@ -649,7 +687,7 @@ const en: Dictionary = {
           {
             type: "paragraph",
             content:
-              "On Nymphicus, MCP is first-class. Browse the registry, attach tools to your canvas, and ship — whether you're building support triage, a CRM copilot, or internal ops automation.",
+              "On Nymphi, MCP is first-class. Browse the registry, attach tools to your canvas, and ship — whether you're building support triage, a CRM copilot, or internal ops automation.",
           },
         ],
       },
@@ -665,7 +703,7 @@ const en: Dictionary = {
           {
             type: "paragraph",
             content:
-              "Support teams don't need another black-box copilot. They need a workflow they can inspect, test, and approve. The Support Triage template on Nymphicus gives you that starting point — and most teams customize it in a single afternoon.",
+              "Support teams don't need another black-box copilot. They need a workflow they can inspect, test, and approve. The Support Triage template on Nymphi gives you that starting point — and most teams customize it in a single afternoon.",
           },
           {
             type: "heading",
@@ -739,7 +777,7 @@ const en: Dictionary = {
           {
             type: "paragraph",
             content:
-              "Nymphicus bakes these controls into the platform rather than bolting them on. RBAC, audit trail, and approval nodes are table stakes — not enterprise upsells.",
+              "Nymphi bakes these controls into the platform rather than bolting them on. RBAC, audit trail, and approval nodes are table stakes — not enterprise upsells.",
           },
         ],
       },
@@ -869,13 +907,14 @@ const en: Dictionary = {
         description:
           "Classify incoming tickets, search your knowledge base, draft a reply, update Intercom, and route for human approval before sending.",
         flow: [
-          "Classify ticket intent",
-          "Search knowledge base (RAG)",
-          "Draft customer reply",
-          "Update Intercom",
-          "Human approval gate",
+          "Start → Classify Ticket",
+          "File Search (Technical branch)",
+          "Draft Reply (Agent)",
+          "Update Intercom (MCP)",
+          "Human Review (User Approval)",
+          "End",
         ],
-        integrations: ["Intercom", "File Search (RAG)", "Human Approval"],
+        integrations: ["Intercom", "File Search", "User Approval"],
       },
       {
         title: "CRM Copilot",
@@ -883,12 +922,12 @@ const en: Dictionary = {
         description:
           "Answer CRM questions, draft outreach emails, and update deal records through HubSpot MCP — owned by your rev ops team.",
         flow: [
-          "Parse sales question",
-          "Query HubSpot via MCP",
-          "Draft email or update",
-          "Log activity to CRM",
+          "Start",
+          "CRM Assistant (Agent)",
+          "HubSpot Actions (MCP)",
+          "End",
         ],
-        integrations: ["HubSpot MCP", "LLM", "Output"],
+        integrations: ["HubSpot MCP", "Agent"],
       },
       {
         title: "Knowledge Base Chatbot",
@@ -896,12 +935,12 @@ const en: Dictionary = {
         description:
           "RAG over company docs with cited answers — for internal copilots, policy Q&A, and onboarding assistants.",
         flow: [
-          "Receive user query",
-          "Retrieve relevant chunks",
-          "Generate cited answer",
-          "Return with sources",
+          "Start",
+          "Company Docs (File Search)",
+          "Answer with Citations (Agent)",
+          "End",
         ],
-        integrations: ["Knowledge Base", "RAG Query", "File Search"],
+        integrations: ["File Search", "Agent"],
       },
     ],
     contactOptions: [
@@ -945,7 +984,7 @@ const en: Dictionary = {
     aboutMission:
       "Give every team the power to build production-ready agents — without surrendering control of their models, data, or infrastructure.",
     aboutParagraphs: [
-      "Nymphicus is a visual AI agent builder for teams who need to ship fast without giving up control. We believe the next wave of AI adoption won't come from black-box copilots — it'll come from composable agents your team designs, deploys, and governs on their own terms.",
+      "Nymphi is a visual AI agent builder for teams who need to ship fast without giving up control. We believe the next wave of AI adoption won't come from black-box copilots — it'll come from composable agents your team designs, deploys, and governs on their own terms.",
       "Our platform combines a drag-and-drop canvas with 15 node types, knowledge bases with RAG, MCP integrations, and enterprise-grade RBAC and audit trails. Whether you run in our cloud or self-host on your infrastructure, you bring your own API keys and pay providers directly — no per-task credit markup.",
       "We're an early-stage team focused on giving builders, operators, and security teams a shared surface to ship agents that actually do the work.",
     ],
@@ -1002,7 +1041,7 @@ const en: Dictionary = {
       "Every step in your agent workflow is visible, testable, and auditable — from trigger to output.",
     comparisonColumns: {
       feature: "Capability",
-      nymphicus: "Nymphicus",
+      nymphi: "Nymphi",
       copilots: "Credit copilots",
       diy: "DIY frameworks",
     },
@@ -1015,13 +1054,13 @@ const en: Dictionary = {
       {
         heading: "Introduction",
         paragraphs: [
-          'This Privacy Policy describes how Nymphicus ("we", "us") collects and uses information when you visit www.nymphicus.ai (the "Marketing Site") or contact us.',
+          'This Privacy Policy describes how Nymphi ("we", "us") collects and uses information when you visit www.nymphi.ai (the "Marketing Site") or contact us.',
         ],
       },
       {
         heading: "What this policy covers",
         paragraphs: [
-          "This policy applies to the marketing website only. When you create an account or use the Nymphicus application at app.nymphicus.ai, your use is governed by the application terms and privacy practices described at signup and in your workspace settings.",
+          "This policy applies to the marketing website only. When you create an account or use the Nymphi application at app.nymphi.ai, your use is governed by the application terms and privacy practices described at signup and in your workspace settings.",
         ],
       },
       {
@@ -1052,7 +1091,7 @@ const en: Dictionary = {
       {
         heading: "Your rights",
         paragraphs: [
-          "Depending on your location, you may have rights to access, correct, delete, or restrict processing of your personal data. Contact us at hello@nymphicus.ai to exercise these rights.",
+          "Depending on your location, you may have rights to access, correct, delete, or restrict processing of your personal data. Contact us at hello@nymphi.ai to exercise these rights.",
         ],
       },
       {
@@ -1063,32 +1102,32 @@ const en: Dictionary = {
       },
       {
         heading: "Contact",
-        paragraphs: ["Questions about this policy: hello@nymphicus.ai"],
+        paragraphs: ["Questions about this policy: hello@nymphi.ai"],
       },
     ],
     termsSections: [
       {
         heading: "Introduction",
         paragraphs: [
-          'These Terms of Service ("Terms") govern your access to and use of the Nymphicus marketing website at www.nymphicus.ai (the "Site"). By using the Site, you agree to these Terms.',
+          'These Terms of Service ("Terms") govern your access to and use of the Nymphi marketing website at www.nymphi.ai (the "Site"). By using the Site, you agree to these Terms.',
         ],
       },
       {
         heading: "The Site vs. the application",
         paragraphs: [
-          "The Site provides information about Nymphicus products and services. Use of the Nymphicus application at app.nymphicus.ai is subject to separate application terms presented at registration. If there is a conflict between these Terms and application terms, the application terms govern your use of the app.",
+          "The Site provides information about Nymphi products and services. Use of the Nymphi application at app.nymphi.ai is subject to separate application terms presented at registration. If there is a conflict between these Terms and application terms, the application terms govern your use of the app.",
         ],
       },
       {
         heading: "Permitted use",
         paragraphs: [
-          "You may use the Site for lawful purposes to learn about Nymphicus and contact us. You may not attempt to gain unauthorized access to our systems, scrape or automate access in a way that burdens our infrastructure, misrepresent your affiliation with Nymphicus, or use the Site in violation of applicable law.",
+          "You may use the Site for lawful purposes to learn about Nymphi and contact us. You may not attempt to gain unauthorized access to our systems, scrape or automate access in a way that burdens our infrastructure, misrepresent your affiliation with Nymphi, or use the Site in violation of applicable law.",
         ],
       },
       {
         heading: "Intellectual property",
         paragraphs: [
-          "The Site, including text, graphics, logos, and design, is owned by Nymphicus or its licensors and protected by intellectual property laws. You may not copy, modify, or distribute Site content without our written permission, except for personal, non-commercial reference.",
+          "The Site, including text, graphics, logos, and design, is owned by Nymphi or its licensors and protected by intellectual property laws. You may not copy, modify, or distribute Site content without our written permission, except for personal, non-commercial reference.",
         ],
       },
       {
@@ -1101,7 +1140,7 @@ const en: Dictionary = {
       {
         heading: "Limitation of liability",
         paragraphs: [
-          "To the maximum extent permitted by law, Nymphicus shall not be liable for indirect, incidental, special, or consequential damages arising from your use of the Site.",
+          "To the maximum extent permitted by law, Nymphi shall not be liable for indirect, incidental, special, or consequential damages arising from your use of the Site.",
         ],
       },
       {
@@ -1118,7 +1157,7 @@ const en: Dictionary = {
       },
       {
         heading: "Contact",
-        paragraphs: ["Questions about these Terms: hello@nymphicus.ai"],
+        paragraphs: ["Questions about these Terms: hello@nymphi.ai"],
       },
     ],
   },

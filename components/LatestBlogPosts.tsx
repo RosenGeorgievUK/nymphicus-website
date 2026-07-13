@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { useLocale } from "@/components/SiteShell";
 
 export function LatestBlogPosts() {
-  const { dict, locale, path } = useLocale();
+  const { dict, path } = useLocale();
   const posts = dict.data.blogPosts.slice(0, 3);
 
   return (
@@ -26,7 +26,7 @@ export function LatestBlogPosts() {
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {posts.map((post) => (
             <ScrollReveal key={post.slug}>
-              <BlogCard post={post} locale={locale} />
+              <BlogCard post={post} />
             </ScrollReveal>
           ))}
         </div>

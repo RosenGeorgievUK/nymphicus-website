@@ -18,7 +18,7 @@ export function ComparisonTable({ compact = false, className = "" }: ComparisonT
               Capability
             </th>
             <th scope="col" className="py-4 px-4 font-semibold text-nym-primary">
-              Nymphicus
+              Nymphi
             </th>
             <th scope="col" className="py-4 px-4 font-medium text-marketing-text-muted">
               Credit copilots
@@ -34,7 +34,7 @@ export function ComparisonTable({ compact = false, className = "" }: ComparisonT
               <th scope="row" className="py-4 pr-4 font-medium text-marketing-text">
                 {row.feature}
               </th>
-              <td className="py-4 px-4 text-marketing-text">{row.nymphicus}</td>
+              <td className="py-4 px-4 text-marketing-text">{row.nymphi}</td>
               <td className="py-4 px-4 text-marketing-text-muted">{row.creditCopilots}</td>
               <td className="py-4 pl-4 text-marketing-text-muted">{row.diyFrameworks}</td>
             </tr>

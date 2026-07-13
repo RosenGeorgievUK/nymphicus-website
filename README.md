@@ -1,11 +1,11 @@
-# Nymphicus Marketing Website
+# Nymphi Marketing Website
 
-Static marketing site for [Nymphicus](https://www.nymphicus.ai) — visual AI agent builder platform.
+Static marketing site for [Nymphi](https://www.nymphi.ai) — visual AI agent builder platform.
 
 ## Stack
 
 - Next.js 15 (App Router)
-- Tailwind CSS + Nymphicus brand tokens (`branding/`)
+- Tailwind CSS + Nymphi brand tokens (`branding/`)
 - Static export (`output: "export"`) — deploy-ready for Vercel
 
 ## Development
@@ -27,7 +27,7 @@ Outputs static files to `out/` for Vercel or any static host.
 
 ## Platform URLs
 
-CTAs read from `branding/platform-links.json`. Production URLs point to **app.nymphicus.ai**.
+CTAs read from `branding/platform-links.json`. Production URLs point to **app.nymphi.ai**.
 
 To change URLs, edit `branding/platform-links.json` under `environments.production`.
 
@@ -39,7 +39,7 @@ Place JPEG captures in `public/branding/screenshots/` (see `branding/screenshots
 
 1. Run `npm run build`
 2. Deploy the `out/` directory (Vercel auto-detects Next.js static export)
-3. Point `www.nymphicus.ai` to the deployment (`vercel.json` redirects apex → www)
+3. Point `www.nymphi.ai` to the deployment (`vercel.json` redirects apex → www)
 
 ## Pages
 

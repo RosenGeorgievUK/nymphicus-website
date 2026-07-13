@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ProductScreenshot } from "@/components/ProductScreenshot";
+import { ProductPreviewFrame } from "@/components/ProductPreviewFrame";
 import type { ScreenshotKey } from "@/lib/screenshots";
 
 export type BentoShowcaseItem = {
@@ -25,7 +25,7 @@ export function BentoShowcase({ items }: BentoShowcaseProps) {
             item.span === "large" ? "lg:col-span-2 lg:row-span-2" : ""
           }`}
         >
-          <ProductScreenshot
+          <ProductPreviewFrame
             screenshot={item.screenshot}
             alt={item.title}
             glow={false}

@@ -1,3 +1,9 @@
+import {
+  SUPPORT_TRIAGE_HERO_NODES,
+  TEMPLATE_WORKFLOWS,
+  nodeIconColor,
+} from "@/lib/platform-ui";
+
 type NodeDef = {
   id: string;
   label: string;
@@ -6,26 +12,18 @@ type NodeDef = {
   delay: string;
 };
 
-const nodes: NodeDef[] = [
-  { id: "trigger", label: "Trigger", x: 60, y: 140, delay: "0s" },
-  { id: "kb", label: "Knowledge Base", x: 200, y: 60, delay: "0.15s" },
-  { id: "llm", label: "LLM", x: 340, y: 140, delay: "0.3s" },
-  { id: "mcp", label: "MCP Tool", x: 480, y: 60, delay: "0.45s" },
-  { id: "cond", label: "Condition", x: 620, y: 140, delay: "0.6s" },
-  { id: "out", label: "Output", x: 760, y: 80, delay: "0.75s" },
-];
+const nodes: NodeDef[] = SUPPORT_TRIAGE_HERO_NODES.map((label, i) => ({
+  id: `n-${i}`,
+  label,
+  x: 24 + i * 118,
+  y: i % 2 === 0 ? 88 : 128,
+  delay: `${i * 0.12}s`,
+}));
 
-const edges: [string, string][] = [
-  ["trigger", "kb"],
-  ["kb", "llm"],
-  ["llm", "mcp"],
-  ["mcp", "cond"],
-  ["cond", "out"],
-  ["trigger", "llm"],
-];
+const edges: [number, number][] = nodes.slice(0, -1).map((_, i) => [i, i + 1]);
 
-function getNode(id: string) {
-  return nodes.find((n) => n.id === id)!;
+function getNode(index: number) {
+  return nodes[index]!;
 }
 
 type NodeCanvasHeroProps = {
@@ -33,93 +31,92 @@ type NodeCanvasHeroProps = {
 };
 
 export function NodeCanvasHero({ className = "" }: NodeCanvasHeroProps) {
+  const classifyOutputs = TEMPLATE_WORKFLOWS.supportWorkflow.classifyOutputs ?? [];
+
   return (
     <div
-      className={`relative overflow-hidden rounded-nym-lg border border-marketing-border bg-marketing-surface shadow-2xl ${className}`}
+      className={`relative overflow-hidden rounded-nym-lg border border-marketing-border bg-[#F8F9FD] shadow-2xl ${className}`}
       role="img"
-      aria-label="Stylized agent builder canvas with connected nodes: Trigger, Knowledge Base, LLM, MCP Tool, Condition, and Output"
+      aria-label="Support Triage Agent workflow: Start, Classify Ticket, Search Knowledge Base, Draft Reply, Update Intercom, Human Review, End"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-nym-primary-50 to-transparent opacity-60" aria-hidden />
-
-      <svg
-        viewBox="0 0 860 240"
-        className="relative w-full"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg viewBox="0 0 900 220" className="relative w-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="edge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="var(--nym-primary)" />
-            <stop offset="100%" stopColor="var(--nym-secondary)" />
-          </linearGradient>
-          <linearGradient id="node-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="var(--nym-primary)" />
-            <stop offset="100%" stopColor="var(--nym-secondary)" />
-          </linearGradient>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+          <pattern id="hero-canvas-dots" width="16" height="16" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.8" fill="#e2e8f0" />
+          </pattern>
         </defs>
+        <rect width="100%" height="100%" fill="url(#hero-canvas-dots)" />
 
-        {/* Grid dots */}
-        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-          <circle cx="1" cy="1" r="0.8" fill="rgba(255,255,255,0.06)" />
-        </pattern>
-        <rect width="100%" height="100%" fill="url(#grid)" />
-
-        {/* Edges */}
         {edges.map(([from, to], i) => {
           const a = getNode(from);
           const b = getNode(to);
-          const mx = (a.x + 70 + b.x) / 2;
-          const my = (a.y + 20 + b.y + 20) / 2;
           return (
             <path
               key={`${from}-${to}`}
-              d={`M ${a.x + 70} ${a.y + 20} Q ${mx} ${my - 30} ${b.x} ${b.y + 20}`}
+              d={`M ${a.x + 100} ${a.y + 18} C ${(a.x + b.x) / 2 + 50} ${a.y - 10}, ${(a.x + b.x) / 2 + 50} ${b.y + 40}, ${b.x} ${b.y + 18}`}
               fill="none"
-              stroke="url(#edge-grad)"
+              stroke="#8b5cf6"
               strokeWidth="2"
               strokeLinecap="round"
               className="motion-safe:animate-pulse-edge"
-              style={{ animationDelay: `${i * 0.3}s` }}
-              opacity="0.7"
+              style={{ animationDelay: `${i * 0.25}s` }}
+              opacity="0.65"
             />
           );
         })}
 
-        {/* Nodes */}
-        {nodes.map((node) => (
+        {nodes.map((node, index) => (
           <g
             key={node.id}
             className="motion-safe:animate-node-in"
-            style={{ animationDelay: node.delay, transformOrigin: `${node.x + 35}px ${node.y + 20}px` }}
+            style={{
+              animationDelay: node.delay,
+              transformOrigin: `${node.x + 50}px ${node.y + 18}px`,
+            }}
           >
             <rect
               x={node.x}
               y={node.y}
-              width="140"
-              height="40"
+              width="100"
+              height="36"
               rx="8"
-              fill="var(--nym-surface-muted)"
-              stroke="url(#node-grad)"
+              fill="#ffffff"
+              stroke="#e2e8f0"
               strokeWidth="1.5"
-              filter="url(#glow)"
+            />
+            <rect
+              x={node.x + 8}
+              y={node.y + 11}
+              width="14"
+              height="14"
+              rx="3"
+              fill={nodeIconColor(node.label)}
             />
             <text
-              x={node.x + 70}
-              y={node.y + 25}
-              textAnchor="middle"
-              fill="var(--nym-text)"
+              x={node.x + 28}
+              y={node.y + 22}
+              fill="#334155"
               fontFamily="Space Grotesk, sans-serif"
-              fontSize="12"
+              fontSize="11"
               fontWeight="500"
             >
-              {node.label}
+              {node.label.length > 12 ? `${node.label.slice(0, 11)}…` : node.label}
             </text>
+            {node.label === "Classify Ticket" &&
+              classifyOutputs.map((out, oi) => (
+                <text
+                  key={out}
+                  x={node.x + 50}
+                  y={node.y + 52 + oi * 11}
+                  textAnchor="middle"
+                  fill="#94a3b8"
+                  fontSize="8"
+                  fontFamily="Space Grotesk, sans-serif"
+                  fontWeight="600"
+                >
+                  {out}
+                </text>
+              ))}
           </g>
         ))}
       </svg>

@@ -7,10 +7,10 @@ export const pricingFaq: FaqItem[] = [
   {
     question: "How do bring-your-own API keys work?",
     answer:
-      "You connect your own provider accounts (OpenAI, Anthropic, etc.) directly. Nymphicus orchestrates calls through your keys — no per-task credit markup from us. You pay providers at their standard rates.",
+      "You connect your own provider accounts (OpenAI, Anthropic, etc.) directly. Nymphi orchestrates calls through your keys — no per-task credit markup from us. You pay providers at their standard rates.",
   },
   {
-    question: "Can I self-host Nymphicus?",
+    question: "Can I self-host Nymphi?",
     answer:
       "Yes. Enterprise includes a self-hosted deployment option so you can run agents on your own infrastructure with full data residency control. Contact us for deployment details.",
   },
@@ -20,7 +20,7 @@ export const pricingFaq: FaqItem[] = [
       "Cloud deployments use encrypted storage in your chosen region. Self-hosted deployments keep all data on your infrastructure. Knowledge-base permissions and RBAC apply in both modes.",
   },
   {
-    question: "Does Nymphicus support MCP integrations?",
+    question: "Does Nymphi support MCP integrations?",
     answer:
       "Yes. MCP is a first-class integration path — connect any MCP-compatible tool to your agent workflows without custom glue code.",
   },
@@ -38,9 +38,9 @@ export const pricingFaq: FaqItem[] = [
 
 export const homepageFaq: FaqItem[] = [
   {
-    question: "How is Nymphicus different from Zapier or n8n?",
+    question: "How is Nymphi different from Zapier or n8n?",
     answer:
-      "Zapier and n8n excel at deterministic automation. Nymphicus is built for AI agents — LLM nodes, RAG, human approval gates, and MCP-native tool calls — with governance (RBAC, audit trail) designed for production agent workloads.",
+      "Zapier and n8n excel at deterministic automation. Nymphi is built for AI agents — LLM nodes, RAG, human approval gates, and MCP-native tool calls — with governance (RBAC, audit trail) designed for production agent workloads.",
   },
   {
     question: "Do I need to be a developer?",
@@ -50,7 +50,7 @@ export const homepageFaq: FaqItem[] = [
   {
     question: "What happens to my API keys?",
     answer:
-      "You bring your own keys. Nymphicus orchestrates calls through your provider accounts — we don't resell tokens or add a per-task credit markup. Enterprise and self-hosted options keep keys entirely on your infrastructure.",
+      "You bring your own keys. Nymphi orchestrates calls through your provider accounts — we don't resell tokens or add a per-task credit markup. Enterprise and self-hosted options keep keys entirely on your infrastructure.",
   },
   {
     question: "Can my security team review every agent action?",

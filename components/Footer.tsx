@@ -16,7 +16,7 @@ export function Footer() {
         <TrustBadges
           badges={dict.common.trustBadges}
           ariaLabel={dict.common.trustBadgesAria}
-          className="mb-10 justify-center"
+          className="mb-8 justify-center opacity-90"
         />
 
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
@@ -57,7 +57,7 @@ export function Footer() {
         </div>
 
         <p className="mt-10 text-center text-xs text-marketing-text-muted md:text-left">
-          © Nymphicus {year}
+          © Nymphi {year}
           {" · "}
           <Link href={path("/privacy")} className="hover:text-marketing-text">
             {dict.footer.privacy}

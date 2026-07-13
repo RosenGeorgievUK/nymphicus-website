@@ -5,17 +5,12 @@ import { CTABand } from "@/components/CTABand";
 import { GradientButton } from "@/components/GradientButton";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import type { Locale } from "@/lib/i18n/config";
-import { localizePath } from "@/lib/i18n/paths";
 import { platformUrls } from "@/lib/site";
 
-type BlogSlugViewProps = {
-  locale: Locale;
-  slug: string;
-};
+type BlogSlugViewProps = { slug: string };
 
-export function BlogSlugView({ locale, slug }: BlogSlugViewProps) {
-  const dict = getDictionary(locale);
+export function BlogSlugView({ slug }: { slug: string }) {
+  const dict = getDictionary();
   const post = dict.data.blogPosts.find((item) => item.slug === slug);
 
   if (!post) notFound();
@@ -24,13 +19,15 @@ export function BlogSlugView({ locale, slug }: BlogSlugViewProps) {
 
   return (
     <>
-      <article className="section-y-lg">
+      <article className="section-y-lg border-t border-marketing-border">
         <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <p className="text-sm font-medium uppercase tracking-wider text-nym-primary">
-              {post.category}
+            <p className="mb-4">
+              <span className="inline-flex items-center rounded-full border border-nym-primary/25 bg-nym-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-nym-primary">
+                {post.category}
+              </span>
             </p>
-            <h1 className="mt-4 max-w-3xl text-[clamp(2rem,5vw,3rem)] font-semibold leading-tight text-marketing-text">
+            <h1 className="max-w-3xl text-section-title font-semibold text-marketing-text">
               {post.title}
             </h1>
             <p className="mt-4 text-sm text-marketing-text-muted">
@@ -56,7 +53,7 @@ export function BlogSlugView({ locale, slug }: BlogSlugViewProps) {
               {otherPosts.map((other) => (
                 <li key={other.slug}>
                   <Link
-                    href={localizePath(locale, `/blog/${other.slug}`)}
+                    href={`/blog/${other.slug}`}
                     className="nym-focus text-sm font-medium text-nym-primary hover:underline"
                   >
                     {other.title}
@@ -66,7 +63,7 @@ export function BlogSlugView({ locale, slug }: BlogSlugViewProps) {
             </ul>
             <p className="mt-6">
               <Link
-                href={localizePath(locale, "/blog")}
+                href="/blog"
                 className="nym-focus text-sm text-marketing-text-muted hover:text-marketing-text"
               >
                 ← {dict.common.backToBlog}

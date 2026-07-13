@@ -4,41 +4,40 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { GhostButton } from "@/components/GhostButton";
 import { GradientButton } from "@/components/GradientButton";
 import { HeroBackground } from "@/components/HeroBackground";
-import { HeroBeam } from "@/components/HeroBeam";
-import { ProductScreenshot } from "@/components/ProductScreenshot";
+import { HomeFeatureGrid } from "@/components/HomeFeatureGrid";
+import { HomeFeatureSpotlight } from "@/components/HomeFeatureSpotlight";
+import { IntegrationMarquee } from "@/components/IntegrationMarquee";
+import { PageSection } from "@/components/PageSection";
+import { ProductPreviewFrame } from "@/components/ProductPreviewFrame";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import type { Locale } from "@/lib/i18n/config";
-import { localizePath } from "@/lib/i18n/paths";
 import { platformUrls } from "@/lib/site";
+import { SPOTLIGHT_SCREENSHOTS } from "@/lib/view-helpers";
 
-type HomeViewProps = {
-  locale: Locale;
-};
-
-export function HomeView({ locale }: HomeViewProps) {
-  const dict = getDictionary(locale);
-  const p = (href: string) => localizePath(locale, href);
+export function HomeView() {
+  const dict = getDictionary();
+  const p = (href: string) => href;
 
   return (
     <>
-      <section className="relative overflow-hidden pb-16 pt-14 md:pb-24 md:pt-20">
-        <HeroBackground className="opacity-80" />
-        <HeroBeam />
+      <section className="relative isolate overflow-hidden pb-20 pt-16 md:pb-28 md:pt-20">
+        <HeroBackground />
 
-        <div className="relative mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="motion-safe:animate-slide-up mb-5 text-sm font-medium uppercase tracking-wider text-nym-primary [animation-delay:0ms]">
-              {dict.site.heroBadge}
+        <div className="relative z-10 mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="motion-safe:animate-slide-up mb-6 [animation-delay:0ms]">
+              <span className="inline-flex items-center rounded-full border border-nym-primary/25 bg-nym-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-nym-primary">
+                {dict.site.heroBadge}
+              </span>
             </p>
-            <h1 className="motion-safe:animate-slide-up text-[clamp(2.75rem,7vw,4.5rem)] font-semibold leading-[1.05] tracking-tight text-marketing-text [animation-delay:80ms]">
+            <h1 className="motion-safe:animate-slide-up text-hero font-semibold text-marketing-text [animation-delay:80ms]">
               {dict.site.heroTitlePrefix}{" "}
               <span className="text-gradient">{dict.site.heroGradientPhrase}</span>
               <br />
               {dict.site.heroTitleSuffix}
             </h1>
-            <p className="motion-safe:animate-slide-up mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-marketing-text-muted md:text-xl [animation-delay:160ms]">
+            <p className="motion-safe:animate-slide-up mx-auto mt-6 max-w-2xl text-hero-sub text-marketing-text-muted [animation-delay:160ms]">
               {dict.site.heroSubhead}
             </p>
 
@@ -51,87 +50,58 @@ export function HomeView({ locale }: HomeViewProps) {
               </GhostButton>
             </div>
 
-            <p className="motion-safe:animate-slide-up mt-5 text-sm text-marketing-text-muted [animation-delay:320ms]">{dict.site.heroFootnote}</p>
+            <p className="motion-safe:animate-slide-up mt-5 text-sm text-marketing-text-muted [animation-delay:320ms]">
+              {dict.site.heroFootnote}
+            </p>
           </div>
 
-          <ScrollReveal className="mx-auto mt-14 max-w-4xl md:mt-16" delay={400}>
-            <ProductScreenshot
+          <ScrollReveal className="mx-auto mt-14 max-w-5xl md:mt-20" delay={400}>
+            <ProductPreviewFrame
               screenshot="dashboard"
               alt={dict.site.heroScreenshotAlt}
-              priority
               glow
             />
           </ScrollReveal>
         </div>
       </section>
 
-      <section className="border-t border-marketing-border py-14 md:py-20" aria-labelledby="pillars-heading">
-        <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <SectionHeading
-              id="pillars-heading"
-              eyebrow={dict.home.pillarsEyebrow}
-              title={
-                <>
-                  {dict.home.pillarsTitle}{" "}
-                  <span className="text-gradient">{dict.home.pillarsTitleHighlight}</span>
-                </>
-              }
-              subtitle={dict.home.pillarsSubtitle}
-              align="center"
-            />
-          </ScrollReveal>
+      <HomeFeatureGrid
+        eyebrow={dict.home.bentoEyebrow}
+        title={dict.home.bentoTitle}
+        subtitle={dict.home.bentoSubtitle}
+        items={dict.home.bentoItems}
+        localizeHref={p}
+      />
 
-          <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-3">
-            {dict.home.pillars.map((pillar, index) => (
-              <ScrollReveal key={pillar.title} delay={index * 100}>
-                <article className="text-center">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-nym-primary">
-                    {pillar.highlight}
-                  </p>
-                  <h3 className="mt-2 text-lg font-semibold text-marketing-text">{pillar.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-marketing-text-muted">
-                    {pillar.description}
-                  </p>
-                </article>
-              </ScrollReveal>
-            ))}
-          </div>
+      <HomeFeatureSpotlight
+        items={dict.home.spotlights}
+        screenshots={SPOTLIGHT_SCREENSHOTS}
+        localizeHref={p}
+      />
 
-          <p className="mx-auto mt-12 max-w-xl text-center text-sm text-marketing-text-muted">
-            <Link href={p("/features")} className="font-medium text-nym-primary hover:underline">
-              {dict.home.bentoLinks.features}
-            </Link>
-            {" · "}
-            <Link href={p("/templates")} className="font-medium text-nym-primary hover:underline">
-              {dict.home.bentoLinks.templates}
-            </Link>
-            {" · "}
-            <Link href={p("/compare")} className="font-medium text-nym-primary hover:underline">
-              {dict.pages.compare.title}
-            </Link>
-          </p>
-        </div>
-      </section>
+      <IntegrationMarquee
+        title={dict.home.integrationsSection.title}
+        subtitle={dict.home.integrationsSection.subtitle}
+        ctaLabel={dict.home.integrationsSection.cta}
+        ctaHref={p("/integrations")}
+      />
 
-      <section className="border-t border-marketing-border py-14 md:py-20" aria-labelledby="faq-heading">
-        <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <SectionHeading
-              id="faq-heading"
-              eyebrow={dict.home.faqEyebrow}
-              title={dict.home.faqTitle}
-              align="center"
-            />
-          </ScrollReveal>
-          <FAQAccordion items={dict.data.homepageFaq.slice(0, 3)} className="mx-auto mt-8 max-w-2xl" />
-          <p className="mt-6 text-center text-sm text-marketing-text-muted">
-            <Link href={p("/pricing")} className="font-medium text-nym-primary hover:underline">
-              {dict.common.pricingFaqLink}
-            </Link>
-          </p>
-        </div>
-      </section>
+      <PageSection size="lg" ariaLabelledBy="faq-heading">
+        <ScrollReveal>
+          <SectionHeading
+            id="faq-heading"
+            eyebrow={dict.home.faqEyebrow}
+            title={dict.home.faqTitle}
+            align="center"
+          />
+        </ScrollReveal>
+        <FAQAccordion items={dict.data.homepageFaq.slice(0, 3)} className="mx-auto mt-10 max-w-2xl" />
+        <p className="mt-8 text-center text-sm text-marketing-text-muted">
+          <Link href={p("/pricing")} className="font-medium text-nym-primary hover:underline">
+            {dict.common.pricingFaqLink}
+          </Link>
+        </p>
+      </PageSection>
 
       <CTABand
         title={dict.common.ctaBand.title}

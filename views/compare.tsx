@@ -2,16 +2,11 @@ import { CTABand } from "@/components/CTABand";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { GradientButton } from "@/components/GradientButton";
 import { PageHero } from "@/components/PageHero";
+import { PageSection } from "@/components/PageSection";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { SectionDivider } from "@/components/SectionDivider";
 import { ValuePillar } from "@/components/ValuePillar";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
-import type { Locale } from "@/lib/i18n/config";
 import { platformUrls } from "@/lib/site";
-
-type CompareViewProps = {
-  locale: Locale;
-};
 
 function CheckIcon() {
   return (
@@ -21,8 +16,8 @@ function CheckIcon() {
   );
 }
 
-export function CompareView({ locale }: CompareViewProps) {
-  const dict = getDictionary(locale);
+export function CompareView() {
+  const dict = getDictionary();
   const page = dict.pages.compare;
 
   return (
@@ -38,37 +33,33 @@ export function CompareView({ locale }: CompareViewProps) {
         subtitle={page.heroSubtitle}
       />
 
-      <section className="pb-12 md:pb-16">
-        <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="rounded-nym-lg border border-marketing-border bg-marketing-surface p-4 md:p-8">
-              <ComparisonTable />
-            </div>
-          </ScrollReveal>
-          <p className="mt-10 text-center">
-            <GradientButton href={platformUrls.register}>{page.startBuilding}</GradientButton>
-          </p>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section className="section-y">
-        <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-3">
-            {dict.data.comparePillars.map((pillar) => (
-              <ScrollReveal key={pillar.title}>
-                <ValuePillar
-                  icon={<CheckIcon />}
-                  highlight={pillar.highlight}
-                  title={pillar.title}
-                  description={pillar.description}
-                />
-              </ScrollReveal>
-            ))}
+      <PageSection size="compact" className="!border-t-0">
+        <ScrollReveal>
+          <div className="surface-card overflow-hidden p-4 md:p-8">
+            <ComparisonTable />
           </div>
+        </ScrollReveal>
+        <p className="mt-10 text-center">
+          <GradientButton href={platformUrls.register} size="lg">
+            {page.startBuilding}
+          </GradientButton>
+        </p>
+      </PageSection>
+
+      <PageSection>
+        <div className="grid gap-5 md:grid-cols-3 md:gap-6">
+          {dict.data.comparePillars.map((pillar) => (
+            <ScrollReveal key={pillar.title}>
+              <ValuePillar
+                icon={<CheckIcon />}
+                highlight={pillar.highlight}
+                title={pillar.title}
+                description={pillar.description}
+              />
+            </ScrollReveal>
+          ))}
         </div>
-      </section>
+      </PageSection>
 
       <CTABand
         title={dict.common.ctaBand.title}

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import { GradientButton } from "@/components/GradientButton";
 import { GhostButton } from "@/components/GhostButton";
-import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { LogoLink } from "@/components/LogoLink";
 import { useLocale } from "@/components/SiteShell";
 import { platformUrls } from "@/lib/site";
@@ -70,7 +69,6 @@ export function Navbar() {
           </ul>
 
           <div className="hidden items-center gap-2 md:flex">
-            <LocaleSwitcher />
             <GhostButton href={platformUrls.login} size="sm">
               {dict.cta.login}
             </GhostButton>
@@ -153,7 +151,6 @@ export function Navbar() {
           </ul>
 
           <div className="flex flex-col gap-3 border-t border-marketing-border p-4">
-            <LocaleSwitcher />
             <GhostButton href={platformUrls.login} className="w-full justify-center">
               {dict.cta.login}
             </GhostButton>

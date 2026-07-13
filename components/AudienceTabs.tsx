@@ -2,7 +2,8 @@
 
 import { useCallback, useState } from "react";
 import { GradientButton } from "@/components/GradientButton";
-import { ProductScreenshot } from "@/components/ProductScreenshot";
+import { ProductInteractivePreview } from "@/components/ProductInteractivePreview";
+import { ProductScreenshotImage } from "@/components/ProductScreenshotImage";
 import type { ScreenshotKey } from "@/lib/screenshots";
 
 type Persona = {
@@ -153,10 +154,13 @@ export function AudienceTabs() {
               <GradientButton href={current.href}>{current.cta}</GradientButton>
             </div>
           </div>
-          <ProductScreenshot
+          <ProductInteractivePreview
             screenshot={current.screenshot}
-            alt={`${current.label} view in Nymphicus`}
-          />
+            alt={`${current.label} view in Nymphi`}
+            resetKey={current.screenshot}
+          >
+            <ProductScreenshotImage screenshot={current.screenshot} alt={`${current.label} view in Nymphi`} />
+          </ProductInteractivePreview>
         </div>
       </div>
     </section>
