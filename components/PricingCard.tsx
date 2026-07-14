@@ -1,14 +1,17 @@
 import { GradientButton } from "@/components/GradientButton";
 import { GhostButton } from "@/components/GhostButton";
+import { PricingSeatStepper } from "@/components/PricingSeatStepper";
 import { priceForTier, type PricingTier } from "@/lib/pricing-page";
 
 type PricingCardProps = {
   tier: PricingTier;
   annual: boolean;
+  seats: number;
+  onSeatsChange?: (seats: number) => void;
 };
 
-export function PricingCard({ tier, annual }: PricingCardProps) {
-  const { price, note } = priceForTier(tier, annual);
+export function PricingCard({ tier, annual, seats, onSeatsChange }: PricingCardProps) {
+  const { price, note } = priceForTier(tier, annual, seats);
   const Cta = tier.variant === "gradient" ? GradientButton : GhostButton;
 
   return (
@@ -29,11 +32,21 @@ export function PricingCard({ tier, annual }: PricingCardProps) {
 
       <p
         className="mt-3 text-3xl font-semibold tabular-nums text-marketing-text transition-opacity duration-300 motion-safe:animate-fade-in"
-        key={`${tier.id}-${annual}`}
+        key={`${tier.id}-${annual}-${seats}`}
       >
         {price}
       </p>
       {note && <p className="mt-1 text-xs text-marketing-text-muted">{note}</p>}
+
+      {tier.seatAdjustable && onSeatsChange && (
+        <PricingSeatStepper
+          seats={seats}
+          min={tier.minSeats}
+          max={tier.maxSeats}
+          included={tier.includedSeats}
+          onChange={onSeatsChange}
+        />
+      )}
 
       <ul className="mt-6 flex-1 space-y-3">
         {tier.features.map((feature) => (

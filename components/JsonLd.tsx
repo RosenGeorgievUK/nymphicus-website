@@ -26,7 +26,7 @@ export function JsonLd() {
     offers: {
       "@type": "Offer",
       price: "0",
-      priceCurrency: "GBP",
+      priceCurrency: "USD",
     },
   };
 

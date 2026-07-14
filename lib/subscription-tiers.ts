@@ -28,7 +28,7 @@ export type EntitlementLimit =
 
 export type TierEntitlements = {
   id: PricingTierId;
-  /** Monthly platform fee in GBP (null = sales-led / custom). */
+  /** Monthly platform fee in USD (null = sales-led / custom). */
   monthlyPriceGbp: number | null;
   annualPriceGbp: number | null;
   includedSeats: number | "unlimited";
@@ -63,11 +63,27 @@ export const subscriptionTierEntitlements: TierEntitlements[] = [
     support: { kind: "text", value: "community" },
   },
   {
+    id: "starter",
+    monthlyPriceGbp: 19,
+    annualPriceGbp: 182,
+    includedSeats: 1,
+    extraSeatPriceGbp: 8,
+    agents: { kind: "count", value: 3 },
+    knowledgeBases: { kind: "count", value: 1 },
+    knowledgeStorage: { kind: "storage_mb", value: 250 },
+    mcpConnections: { kind: "count", value: 3 },
+    rbac: { kind: "text", value: "workspace owner only" },
+    auditRetention: { kind: "retention_days", value: 14 },
+    ssoSaml: { kind: "boolean", value: false },
+    deployment: { kind: "text", value: "cloud" },
+    support: { kind: "text", value: "email" },
+  },
+  {
     id: "pro",
-    monthlyPriceGbp: 39,
-    annualPriceGbp: 390,
+    monthlyPriceGbp: 49,
+    annualPriceGbp: 470,
     includedSeats: 3,
-    extraSeatPriceGbp: 12,
+    extraSeatPriceGbp: 15,
     agents: { kind: "count", value: 10 },
     knowledgeBases: { kind: "count", value: 10 },
     knowledgeStorage: { kind: "storage_gb", value: 2 },
@@ -83,7 +99,7 @@ export const subscriptionTierEntitlements: TierEntitlements[] = [
     monthlyPriceGbp: 149,
     annualPriceGbp: 1490,
     includedSeats: 10,
-    extraSeatPriceGbp: 10,
+    extraSeatPriceGbp: 12,
     agents: { kind: "unlimited" },
     knowledgeBases: { kind: "unlimited" },
     knowledgeStorage: { kind: "storage_gb", value: 20 },
@@ -127,7 +143,7 @@ export type PlatformGap = {
 export const platformGapRegister: PlatformGap[] = [
   {
     service: "org_seats",
-    marketed: "1 / 3 / 10 / unlimited seats by tier",
+    marketed: "1 / 1–5 / 3–25 / 10–50 / unlimited seats by tier",
     platformToday: "Organization.max_users enforced on invite (default 5)",
     status: "partial",
     priority: "P0",
@@ -135,7 +151,7 @@ export const platformGapRegister: PlatformGap[] = [
   },
   {
     service: "agents",
-    marketed: "2 / 10 / unlimited / unlimited agents",
+    marketed: "2 / 3 / 10 / unlimited / unlimited agents",
     platformToday: "No agent count limit on create",
     status: "missing",
     priority: "P0",
@@ -233,10 +249,12 @@ export const implementationBacklog: ImplementationEpic[] = [
 ];
 
 export const productDecisions = [
-  "Free tier: 1-seat individual workspace (org created on upgrade to Pro).",
-  "Pro £39/mo is per workspace (3 seats included); +£12/mo per extra seat.",
-  "Team is the homepage anchor tier (most popular); Pro is the entry paid tier.",
-  "Currency: GBP canonical on site; USD optional later for US checkout.",
+  "Free tier: 1-seat individual workspace (org created on upgrade to Starter/Pro).",
+  "Starter $19/mo — solo builders; +$8/mo per extra seat (up to 5).",
+  "Pro $49/mo per workspace (3 seats included); +$15/mo per extra seat.",
+  "Team $149/mo (10 seats included); +$12/mo per extra seat — homepage anchor tier.",
+  "Annual billing: 20% discount (one Stripe txn/yr improves margin vs monthly).",
+  "Currency: USD canonical on site; COGS ≈ Stripe 2.9% + $0.30/txn (~96–98% margin on paid tiers).",
   "BYO keys: no per-task markup on any tier — platform fee only.",
 ] as const;
 

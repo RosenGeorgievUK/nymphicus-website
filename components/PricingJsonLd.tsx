@@ -1,4 +1,4 @@
-import { pricingTiers, formatGbp } from "@/lib/pricing-page";
+import { pricingTiers, formatUsd } from "@/lib/pricing-page";
 import { siteConfig } from "@/lib/site";
 
 export function PricingJsonLd() {
@@ -12,15 +12,15 @@ export function PricingJsonLd() {
       "@type": "Offer",
       name: tier.name,
       price,
-      priceCurrency: "GBP",
+      priceCurrency: "USD",
       description: tier.features.join("; "),
       url: `${siteConfig.url}/pricing`,
       availability: "https://schema.org/InStock",
       ...(tier.id === "enterprise" && {
         priceSpecification: {
           "@type": "PriceSpecification",
-          price: formatGbp(tier.monthlyPrice!, { prefix: "from", period: "mo" }),
-          priceCurrency: "GBP",
+          price: formatUsd(tier.monthlyPrice!, { prefix: "from", period: "mo" }),
+          priceCurrency: "USD",
         },
       }),
     };

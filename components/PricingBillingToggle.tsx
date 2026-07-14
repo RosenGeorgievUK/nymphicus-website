@@ -36,7 +36,7 @@ export function PricingBillingToggle({ annual, onChange }: PricingBillingToggleP
             annual ? "bg-marketing-bg/25 text-on-gradient" : "bg-nym-primary/15 text-nym-primary"
           }`}
         >
-          Save 17%
+          Save 20%
         </span>
       </button>
     </div>
