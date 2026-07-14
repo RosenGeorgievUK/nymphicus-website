@@ -53,62 +53,72 @@ export function Navbar() {
         }`}
       >
         <nav
-          className="relative mx-auto flex h-16 max-w-nym items-center justify-between gap-4 px-4 sm:px-6 lg:px-8"
+          className="mx-auto grid h-16 max-w-nym grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8"
           aria-label={dict.nav.ariaMain}
         >
-          <LogoLink />
+          <div className="shrink-0">
+            <LogoLink />
+          </div>
 
-          <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
+          <ul className="hidden min-w-0 items-center justify-center gap-3 overflow-hidden md:flex lg:gap-4 xl:gap-5">
             {dict.nav.links.map((link) => (
-              <li key={link.href}>
-                <Link href={path(link.href)} className={navLinkClass}>
+              <li
+                key={link.href}
+                className={
+                  link.href === "/blog"
+                    ? "hidden xl:list-item"
+                    : link.href === "/compare"
+                      ? "hidden lg:list-item"
+                      : undefined
+                }
+              >
+                <Link href={path(link.href)} className={`${navLinkClass} whitespace-nowrap text-xs lg:text-sm`}>
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <span className="hidden rounded-full border border-marketing-border bg-marketing-surface/60 px-2.5 py-1 text-xs font-medium text-marketing-text-muted lg:inline">
-              {dict.site.socialProof}
-            </span>
-            <GhostButton href={platformUrls.login} size="sm">
-              {dict.cta.login}
-            </GhostButton>
-            <GradientButton href={platformUrls.register} size="sm">
-              {dict.cta.getStartedFree}
-            </GradientButton>
-          </div>
+          <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-3">
+            <div className="hidden items-center gap-2 md:flex">
+              <GhostButton href={platformUrls.login} size="sm">
+                {dict.cta.login}
+              </GhostButton>
+              <GradientButton href={platformUrls.register} size="sm">
+                {dict.cta.getStartedFree}
+              </GradientButton>
+            </div>
 
-          <button
-            type="button"
-            className="nym-focus inline-flex items-center justify-center rounded-nym p-2 text-marketing-text md:hidden"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            aria-label={menuOpen ? dict.nav.closeMenu : dict.nav.openMenu}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span className="sr-only">{menuOpen ? dict.nav.closeMenu : dict.nav.menu}</span>
-            {menuOpen ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path
-                  d="M4 7h16M4 12h16M4 17h16"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            )}
-          </button>
+            <button
+              type="button"
+              className="nym-focus inline-flex items-center justify-center rounded-nym p-2 text-marketing-text md:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label={menuOpen ? dict.nav.closeMenu : dict.nav.openMenu}
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              <span className="sr-only">{menuOpen ? dict.nav.closeMenu : dict.nav.menu}</span>
+              {menuOpen ? (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path
+                    d="M6 6l12 12M18 6L6 18"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path
+                    d="M4 7h16M4 12h16M4 17h16"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </nav>
       </header>
 
