@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
+import { PlausibleAnalytics } from "@/components/PlausibleAnalytics";
 import { SiteShell } from "@/components/SiteShell";
 import { defaultOgImage } from "@/lib/metadata";
 import { siteConfig } from "@/lib/site";
@@ -54,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" className={spaceGrotesk.variable}>
       <body className="flex min-h-screen flex-col font-sans">
+        <PlausibleAnalytics />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

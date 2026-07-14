@@ -1,4 +1,8 @@
 import type { Dictionary } from "./types";
+import { blogPosts } from "@/lib/blog-posts";
+import { caseStudies } from "@/lib/case-studies";
+import { changelogEntries } from "@/lib/changelog";
+import { homepageFaq } from "@/lib/faq";
 
 const en: Dictionary = {
   locale: "en",
@@ -11,26 +15,32 @@ const en: Dictionary = {
   site: {
     name: "Nymphi",
     tagline: "Build AI agents your team can trust.",
-    heroBadge: "Visual agent platform",
-    heroTitlePrefix: "Build",
-    heroGradientPhrase: "AI agents",
-    heroTitleSuffix: "your team can trust",
+    heroIntro: "The visual agent platform for technical teams — including",
+    heroUseCases: [
+      { role: "Support teams", action: "triage tickets with human approval" },
+      { role: "RevOps", action: "update HubSpot from the canvas" },
+      { role: "Platform", action: "ship governed agents on your infra" },
+      { role: "You", action: "start from a template in under an hour" },
+    ],
     heroSubhead:
-      "Design workflows, connect tools via MCP, and run agents at scale — on infrastructure you control.",
-    heroFootnote: "No credit card · BYO API keys · Self-host or cloud",
+      "Visual agent builder with MCP — the alternative to wiring n8n + LangChain + custom approval glue.",
+    heroFootnote: "Free to start · No credit card · BYO keys · Self-host or cloud",
     heroScreenshotAlt: "Nymphi agent builder dashboard",
-    getStartedFree: "Get started — it's free",
+    socialProof: "12+ MCP connectors",
   },
   cta: {
     login: "Log in",
     signIn: "Sign in",
-    getStarted: "Get started",
-    startFree: "Start building",
-    register: "Create account",
-    bookDemo: "Book a demo",
+    getStarted: "Get started free",
+    startFree: "Get started free",
+    register: "Get started free",
+    bookDemo: "Talk to sales",
     contactUs: "Contact us",
-    startFromTemplate: "Start from template",
+    startFromTemplate: "Use this template",
     getStartedFree: "Get started free",
+    seeInAction: "See it in action",
+    talkToSales: "Talk to sales",
+    useTemplate: "Use this template",
   },
   nav: {
     ariaMain: "Main navigation",
@@ -41,7 +51,9 @@ const en: Dictionary = {
     links: [
       { href: "/use-cases", label: "Use Cases" },
       { href: "/templates", label: "Templates" },
+      { href: "/integrations", label: "Integrations" },
       { href: "/features", label: "Features" },
+      { href: "/compare", label: "Compare" },
       { href: "/security", label: "Security" },
       { href: "/pricing", label: "Pricing" },
       { href: "/blog", label: "Blog" },
@@ -103,108 +115,50 @@ const en: Dictionary = {
     pricingFaqLink: "Pricing FAQ →",
     trustBadgesAria: "Trust and compliance badges",
     trustBadges: ["SOC 2 (in progress)", "GDPR-ready", "Self-hosted option"],
-    capabilityMarqueeAria: "Platform capabilities",
-    capabilities: [
-      "Visual canvas",
-      "15 node types",
-      "MCP integrations",
-      "Knowledge + RAG",
-      "BYO API keys",
-      "Self-hosted",
-      "RBAC",
-      "Audit trail",
-      "Human approval",
-      "Execution logs",
-      "HubSpot",
-      "Intercom",
-      "Stripe",
-      "Notion",
-      "GitHub",
-    ],
     ctaBand: {
-      title: "Your agents. Your keys. Your infrastructure.",
-      subtitle: "Start building in minutes — no credit card, no per-task credit markup.",
+      title: "Start building your first agent today",
+      subtitle: "Free to start. No credit card. Bring your own API keys.",
       primaryLabel: "Get started free",
+      secondaryLabel: "Talk to sales",
     },
   },
   home: {
-    pillarsEyebrow: "Why teams switch",
-    pillarsTitle: "The control plane for",
-    pillarsTitleHighlight: "production agents",
-    pillarsSubtitle:
-      "Not another credit-based copilot. A visual builder with governance your security team will approve.",
-    pillars: [
-      {
-        highlight: "Speed",
-        title: "Ship in hours, not quarters",
-        description:
-          "15 node types, templates, and in-canvas testing — builders own the workflow end to end.",
-      },
-      {
-        highlight: "Control",
-        title: "Your keys. No credit markup.",
-        description: "Connect OpenAI, Anthropic, or self-host. You pay providers directly.",
-      },
-      {
-        highlight: "Trust",
-        title: "Governance built in",
-        description: "RBAC, audit trail, human approval, and execution logs from day one.",
-      },
-    ],
-    bentoEyebrow: "Product",
-    bentoTitle: "From template to production in one platform",
-    bentoSubtitle:
-      "Pre-built workflows for support, sales, and knowledge — or build your own on the canvas.",
+    bentoTitle: "Popular",
+    bentoTitleHighlight: "agent",
+    bentoTitleSuffix: "templates",
     bentoItems: [
       {
         title: "Support triage",
-        description: "Classify tickets, search KB, draft replies — with human approval.",
-        href: "/templates",
+        description:
+          "Classify support tickets, search the knowledge base, and draft replies with human approval.",
+        href: "/customers/support-triage",
+        category: "Customer Support",
+        cta: "Use this template",
+        apps: ["Intercom", "File Search", "User Approval"],
+        iconSlugs: ["intercom"],
       },
       {
         title: "CRM copilot",
-        description: "HubSpot Q&A and deal updates via MCP.",
-        href: "/templates",
+        description: "Look up HubSpot records, update deals, and run CRM actions from the canvas via MCP.",
+        href: "/customers/crm-copilot",
+        category: "RevOps",
+        cta: "Use this template",
+        apps: ["HubSpot", "MCP", "Agent"],
+        iconSlugs: ["hubspot"],
       },
       {
         title: "Knowledge + RAG",
-        description: "Cited answers over your company docs.",
+        description: "Answer from company docs with citations and guardrails on every agent run.",
         href: "/templates",
-      },
-      {
-        title: "MCP registry",
-        description: "Connect any tool without glue code.",
-        href: "/integrations",
+        category: "Knowledge",
+        cta: "View workflow",
+        apps: ["File Search", "LLM", "Citations"],
+        iconSlugs: ["notion"],
       },
     ],
     bentoLinks: {
       templates: "All templates",
-      features: "Features",
-      useCases: "Use cases",
     },
-    diffEyebrow: "Why Nymphi",
-    diffTitle: "Visual builder. Your keys. Production governance.",
-    diffPoints: [
-      {
-        title: "BYO keys",
-        body: "Pay providers directly. No per-task credit markup.",
-        href: "/pricing",
-        label: "See pricing",
-      },
-      {
-        title: "MCP-native",
-        body: "Connect HubSpot, Intercom, Stripe, and more from the registry.",
-        href: "/integrations",
-        label: "Integrations",
-      },
-      {
-        title: "Governed by default",
-        body: "RBAC, audit trail, and human approval on every sensitive action.",
-        href: "/security",
-        label: "Security",
-      },
-    ],
-    diffCompareLink: "Full comparison vs copilots & DIY →",
     caseStudyEyebrow: "Example workflow",
     caseStudyTitle: "From blocked pilot to",
     caseStudyTitleHighlight: "production in one afternoon",
@@ -212,55 +166,25 @@ const en: Dictionary = {
       "An illustrative support triage workflow — ship governed agents without a multi-week sprint.",
     faqEyebrow: "FAQ",
     faqTitle: "Common questions",
+    changelogStripTitle: "What's new",
+    changelogStripViewAll: "Full changelog",
     integrationsSection: {
       title: "Plug agents into your data & MCP integrations",
       subtitle:
         "Pre-built connectors for common apps. Custom API connections for everything else.",
       cta: "Browse all integrations",
     },
-    spotlights: [
-      {
-        title: "Flexible, visual AI workflow automation",
-        bullets: [
-          "Drag-and-drop canvas with 15 node types — no glue code between steps",
-          "Test runs in the builder before you ship to production",
-          "Templates for support, sales, and knowledge workflows out of the box",
-        ],
-        href: "/features",
-        label: "Explore features",
-      },
-      {
-        title: "Connect your stack via MCP",
-        bullets: [
-          "Browse HubSpot, Intercom, Stripe, and more from the integrations registry",
-          "Standard MCP interface — no per-tool custom adapters",
-          "Wire tools visually from the canvas, not from a config file",
-        ],
-        href: "/integrations",
-        label: "View integrations",
-      },
-      {
-        title: "Run with governance built in",
-        bullets: [
-          "RBAC and workspace isolation from day one",
-          "Human approval gates before sensitive actions execute",
-          "Full execution logs and audit trail for every node run",
-        ],
-        href: "/security",
-        label: "Security & governance",
-      },
-    ],
   },
-  pages: {
+    pages: {
     pricing: {
       title: "Pricing",
       description:
-        "Transparent pricing for Nymphi — start free with your own API keys. Pro from $49/seat/mo. Enterprise with self-hosting and SSO.",
+        "Transparent pricing for Nymphi — start free with your own API keys. Pro from £39/mo, Team £149/mo, Enterprise self-hosting and SSO.",
       eyebrow: "Pricing",
       heroTitle: "Transparent pricing,",
       heroTitleHighlight: "no credit anxiety",
       heroSubtitle:
-        "Start free with your own keys. Pro from $49/seat/mo. Enterprise when you need self-hosting, SSO, and SLAs.",
+        "Start free with your own keys. Pro from £39/mo, Team £149/mo. Enterprise when you need self-hosting, SSO, and SLAs.",
     },
     features: {
       title: "Features",
@@ -281,6 +205,7 @@ const en: Dictionary = {
       heroTitleHighlight: "already works",
       heroSubtitle: "Three production-ready templates. Customize on the canvas, deploy with your keys.",
       ctaBandTitle: "Clone a template. Ship your first agent today.",
+      searchPlaceholder: "Search templates…",
     },
     integrations: {
       title: "Integrations",
@@ -293,6 +218,9 @@ const en: Dictionary = {
         "Browse the registry, wire tools to your canvas, and extend workflows without custom glue code.",
       screenshotAlt: "MCP integrations registry in Nymphi",
       ctaBandTitle: "Your stack. Connected in minutes.",
+      searchPlaceholder: "Search integrations…",
+      resultsLabel: "MCP connectors",
+      docsLabel: "MCP integration guide",
     },
     useCases: {
       title: "Use Cases",
@@ -307,15 +235,16 @@ const en: Dictionary = {
       ctaBandSubtitle: "Start from a template or build your own workflow on the canvas.",
     },
     compare: {
-      title: "Compare",
+      title: "Nymphi vs n8n & Zapier",
       description:
-        "Compare Nymphi to credit-based copilots and DIY agent frameworks — visual builder, BYO keys, MCP, and governance.",
+        "Compare Nymphi to n8n and Zapier — visual agent builder, MCP-native integrations, BYO keys, and production governance.",
       eyebrow: "Compare",
-      heroTitle: "The platform security approves",
-      heroTitleHighlight: "and builders use",
+      heroTitle: "Nymphi vs n8n",
+      heroTitleHighlight: "and Zapier",
       heroSubtitle:
-        "Nymphi sits between opaque credit copilots and months-long DIY framework projects — visual, governed, and MCP-native.",
-      startBuilding: "Start building free",
+        "See how a governed agent builder compares to workflow automation and zap-style tools — on AI depth, MCP, approvals, and pricing.",
+      startBuilding: "Get started free",
+      migrationTemplateLink: "Start from the Support Triage template →",
     },
     security: {
       title: "Security",
@@ -415,70 +344,7 @@ const en: Dictionary = {
     },
   },
   data: {
-    homepageFaq: [
-      {
-        question: "How is Nymphi different from Zapier or n8n?",
-        answer:
-          "Zapier and n8n excel at deterministic automation. Nymphi is built for AI agents — LLM nodes, RAG, human approval gates, and MCP-native tool calls — with governance (RBAC, audit trail) designed for production agent workloads.",
-      },
-      {
-        question: "Do I need to be a developer?",
-        answer:
-          "No. The visual canvas lets ops and support teams build workflows with drag-and-drop. Developers can still extend via MCP servers, custom HTTP nodes, and self-hosted deployments when needed.",
-      },
-      {
-        question: "What happens to my API keys?",
-        answer:
-          "You bring your own keys. Nymphi orchestrates calls through your provider accounts — we don't resell tokens or add a per-task credit markup. Enterprise and self-hosted options keep keys entirely on your infrastructure.",
-      },
-      {
-        question: "Can my security team review every agent action?",
-        answer:
-          "Yes. Every run produces an immutable execution log with full node trace. RBAC controls who can build, deploy, and approve. Human-in-the-loop gates stop sensitive actions before they execute.",
-      },
-      {
-        question: "How fast can we ship our first agent?",
-        answer:
-          "Most teams deploy their first agent from a template in under an hour. Support Triage, CRM Copilot, and Knowledge Base templates include pre-wired flows you customize on the canvas.",
-      },
-      {
-        question: "Is there a free plan?",
-        answer:
-          "Yes — the Free tier includes the visual builder, 15 node types, knowledge bases, MCP integrations, and community support. No credit card required.",
-      },
-    ],
-    pricingFaq: [
-      {
-        question: "How do bring-your-own API keys work?",
-        answer:
-          "You connect your own provider accounts (OpenAI, Anthropic, etc.) directly. Nymphi orchestrates calls through your keys — no per-task credit markup from us. You pay providers at their standard rates.",
-      },
-      {
-        question: "Can I self-host Nymphi?",
-        answer:
-          "Yes. Enterprise includes a self-hosted deployment option so you can run agents on your own infrastructure with full data residency control. Contact us for deployment details.",
-      },
-      {
-        question: "Where is my data stored?",
-        answer:
-          "Cloud deployments use encrypted storage in your chosen region. Self-hosted deployments keep all data on your infrastructure. Knowledge-base permissions and RBAC apply in both modes.",
-      },
-      {
-        question: "Does Nymphi support MCP integrations?",
-        answer:
-          "Yes. MCP is a first-class integration path — connect any MCP-compatible tool to your agent workflows without custom glue code.",
-      },
-      {
-        question: "Can I cancel anytime?",
-        answer:
-          "Free tier has no commitment. Paid plans can be cancelled at the end of your billing period — no long-term lock-in required.",
-      },
-      {
-        question: "What does Pro cost?",
-        answer:
-          "Pro starts at $49 per seat per month for growing teams that need collaboration, advanced RBAC, and priority support. Contact us for volume pricing or annual billing.",
-      },
-    ],
+    homepageFaq,
     securityFaq: [
       {
         question: "Where are API keys stored?",
@@ -501,333 +367,9 @@ const en: Dictionary = {
           "Role-based access controls scope who can build agents, edit knowledge bases, connect MCP tools, and approve sensitive workflow steps.",
       },
     ],
-    pricingTiers: [
-      {
-        id: "free",
-        name: "Free",
-        price: "$0",
-        priceNote: "forever",
-        description: "Start building — bring your own keys",
-        features: [
-          "Visual agent builder",
-          "15 node types",
-          "Knowledge bases + RAG",
-          "MCP integrations",
-          "Community support",
-        ],
-        ctaLabel: "Get started free",
-      },
-      {
-        id: "pro",
-        name: "Pro",
-        price: "From $49",
-        priceNote: "per seat / month",
-        description: "For growing teams that need collaboration and scale",
-        features: [
-          "Everything in Free",
-          "Team collaboration",
-          "Advanced RBAC",
-          "Priority support",
-          "Usage analytics",
-        ],
-        ctaLabel: "Book a demo",
-        highlighted: true,
-      },
-      {
-        id: "enterprise",
-        name: "Enterprise",
-        price: "Custom",
-        priceNote: "self-host · SSO · SLA",
-        description: "For regulated teams with infrastructure requirements",
-        features: [
-          "Everything in Pro",
-          "Self-hosted deployment",
-          "SSO / SAML",
-          "Full audit trail export",
-          "Dedicated SLA",
-        ],
-        ctaLabel: "Contact us",
-      },
-    ],
-    pricingValueSignals: [
-      {
-        value: "$0",
-        label: "Credit markup",
-        detail: "Pay LLM providers directly at their rates",
-      },
-      {
-        value: "BYO",
-        label: "API keys",
-        detail: "Your OpenAI, Anthropic, or self-hosted models",
-      },
-      {
-        value: "Anytime",
-        label: "Cancel",
-        detail: "No long-term lock-in on paid plans",
-      },
-    ],
-    caseStudies: [
-      {
-        slug: "support-triage",
-        title: "Support triage in an afternoon",
-        company: "B2B software company",
-        industry: "Customer Support",
-        template: "Support Triage Agent",
-        challenge:
-          "Support volume was climbing but every AI pilot got blocked — black-box copilots with credit meters didn't pass security review, and a custom LangChain build was quoted at two engineering weeks.",
-        solution:
-          "The CS team cloned the Support Triage template, connected Intercom via MCP, and attached their existing knowledge base. Human approval gates were added before any customer-facing reply went out.",
-        results: [
-          { value: "~4 hrs", label: "Typical build time" },
-          { value: "High", label: "Draft acceptance (varies)" },
-          { value: "0%", label: "Platform credit markup" },
-        ],
-        quote: {
-          text: "Support triage went from a two-day engineering project to an afternoon on the canvas. Human approval before every send gave our team confidence to actually turn it on.",
-          name: "Jordan K.",
-          role: "Director of Customer Success",
-        },
-        highlights: [
-          "Ticket classification and KB search automated",
-          "Every draft requires human sign-off before send",
-          "Full execution trace for compliance reviews",
-        ],
-      },
-      {
-        slug: "crm-copilot",
-        title: "RevOps copilot without glue code",
-        company: "Growth-stage startup",
-        industry: "Sales & RevOps",
-        template: "CRM Copilot",
-        challenge:
-          "RevOps needed CRM Q&A and deal updates in Slack, but internal tools wanted a maintained Python service. Previous copilot trials added unpredictable per-seat AI credits on top of HubSpot.",
-        solution:
-          "They deployed the CRM Copilot template with HubSpot wired through the MCP registry. The team customized deal-update logic on the canvas and connected their own Anthropic keys.",
-        results: [
-          { value: "~1 day", label: "Typical time to production" },
-          { value: "3+", label: "MCP tools connectable" },
-          { value: "Direct", label: "Provider billing (BYO keys)" },
-        ],
-        quote: {
-          text: "MCP changed how we integrate. HubSpot and Intercom wired in without custom glue code, and the execution logs made our compliance review straightforward.",
-          name: "Sam R.",
-          role: "RevOps Lead",
-        },
-        highlights: [
-          "HubSpot queries and updates via MCP — no custom API layer",
-          "Outreach drafts scoped to rev ops, not a generic copilot",
-          "Immutable logs for every CRM write action",
-        ],
-      },
-      {
-        slug: "governed-agents",
-        title: "Agents security would actually approve",
-        company: "Series B SaaS",
-        industry: "Platform Engineering",
-        template: "Custom multi-agent workflows",
-        challenge:
-          "Platform engineering needed internal agents for onboarding and policy Q&A, but security rejected every SaaS copilot — opaque data handling, no audit trail, and keys held by the vendor.",
-        solution:
-          "The team self-hosted Nymphi on their infrastructure, connected BYO API keys, and enforced RBAC so only approved builders could publish agents. Execution logs became the default incident review surface.",
-        results: [
-          { value: "Full", label: "Run audit trace" },
-          { value: "SSO", label: "Enterprise option" },
-          { value: "Self-host", label: "Deployment option" },
-        ],
-        quote: {
-          text: "We needed agents our security team would sign off on — not another black-box copilot with a credit meter. Nymphi was the first platform that let us keep our keys and still move fast.",
-          name: "Alex M.",
-          role: "Head of Platform Engineering",
-        },
-        highlights: [
-          "Self-hosted deployment with full data residency",
-          "RBAC across agents, knowledge bases, and tools",
-          "Export-ready audit trail for security reviews",
-        ],
-      },
-    ],
-    blogPosts: [
-      {
-        slug: "what-is-mcp-for-ai-agents",
-        title: "What is MCP — and why your agent stack needs it",
-        excerpt:
-          "Model Context Protocol lets agents call real tools without custom glue code. Here's how MCP changes the integration story for production teams.",
-        date: "2026-06-18",
-        readTime: "6 min read",
-        category: "Integrations",
-        sections: [
-          {
-            type: "paragraph",
-            content:
-              "Most agent projects stall on integrations. Every new tool — CRM, ticketing, payments — means another adapter, another secret to rotate, another service to maintain. Model Context Protocol (MCP) flips that model: tools expose a standard interface, and your agent canvas wires them in visually.",
-          },
-          {
-            type: "heading",
-            content: "MCP in one sentence",
-          },
-          {
-            type: "paragraph",
-            content:
-              "MCP is an open protocol for connecting AI applications to external data sources and tools. Instead of hard-coding HubSpot or Intercom into every workflow, you register an MCP server once and call it from any agent node.",
-          },
-          {
-            type: "heading",
-            content: "Why agent builders care",
-          },
-          {
-            type: "list",
-            content: "Key benefits for production teams:",
-            items: [
-              "No per-integration glue code — connect via the registry",
-              "Consistent auth and scoping across tools",
-              "Composable workflows: one MCP node, many providers",
-              "Audit-friendly: tool calls appear in execution logs",
-            ],
-          },
-          {
-            type: "paragraph",
-            content:
-              "On Nymphi, MCP is first-class. Browse the registry, attach tools to your canvas, and ship — whether you're building support triage, a CRM copilot, or internal ops automation.",
-          },
-        ],
-      },
-      {
-        slug: "support-triage-agent-in-one-afternoon",
-        title: "How to ship a support triage agent in one afternoon",
-        excerpt:
-          "A step-by-step walkthrough using the Support Triage template — classify tickets, search your KB, draft replies, and gate sends with human approval.",
-        date: "2026-06-02",
-        readTime: "5 min read",
-        category: "Templates",
-        sections: [
-          {
-            type: "paragraph",
-            content:
-              "Support teams don't need another black-box copilot. They need a workflow they can inspect, test, and approve. The Support Triage template on Nymphi gives you that starting point — and most teams customize it in a single afternoon.",
-          },
-          {
-            type: "heading",
-            content: "The workflow",
-          },
-          {
-            type: "list",
-            content: "Out of the box, the template runs:",
-            items: [
-              "Classify incoming ticket intent",
-              "Search your knowledge base with RAG",
-              "Draft a customer reply with citations",
-              "Pause at a human approval gate",
-              "Update Intercom (or your connected tool) on approval",
-            ],
-          },
-          {
-            type: "heading",
-            content: "What to customize first",
-          },
-          {
-            type: "paragraph",
-            content:
-              "Start with your knowledge base documents and approval policy. Most teams add a second approval path for billing or security topics, and tune the classifier node with 5–10 example tickets from their backlog.",
-          },
-          {
-            type: "paragraph",
-            content:
-              "Bring your own API keys, run in-canvas tests, and check execution logs before turning on production traffic. Governance isn't a phase two — it's day one.",
-          },
-        ],
-      },
-      {
-        slug: "governance-checklist-production-ai-agents",
-        title: "A governance checklist for production AI agents",
-        excerpt:
-          "RBAC, audit trails, human approval, and BYO keys — the controls security teams ask for before agents touch customer data.",
-        date: "2026-05-14",
-        readTime: "7 min read",
-        category: "Security",
-        sections: [
-          {
-            type: "paragraph",
-            content:
-              "Moving from demo to production means answering hard questions: Who can publish agents? What gets logged? Can we stop a run mid-flight? This checklist covers what platform and security teams typically require before sign-off.",
-          },
-          {
-            type: "heading",
-            content: "Before you ship",
-          },
-          {
-            type: "list",
-            content: "Minimum controls for production agents:",
-            items: [
-              "Role-based access — builders vs operators vs viewers",
-              "Immutable execution logs with full node trace",
-              "Human-in-the-loop gates on external actions",
-              "BYO API keys — no vendor credit markup",
-              "Data residency option (cloud region or self-host)",
-            ],
-          },
-          {
-            type: "heading",
-            content: "During operation",
-          },
-          {
-            type: "paragraph",
-            content:
-              "Runbooks should reference execution log IDs, not chat transcripts. When something goes wrong, you need the node-level trace — which MCP tool fired, which KB chunk was retrieved, which approval was pending.",
-          },
-          {
-            type: "paragraph",
-            content:
-              "Nymphi bakes these controls into the platform rather than bolting them on. RBAC, audit trail, and approval nodes are table stakes — not enterprise upsells.",
-          },
-        ],
-      },
-    ],
-    changelogEntries: [
-      {
-        version: "0.9.0",
-        date: "2026-06-20",
-        title: "MCP registry & template library",
-        changes: [
-          {
-            type: "feature",
-            text: "MCP integrations registry — browse and connect tools from the canvas",
-          },
-          {
-            type: "feature",
-            text: "Support Triage, CRM Copilot, and Knowledge Base templates",
-          },
-          {
-            type: "improvement",
-            text: "Execution logs now include full MCP tool call trace",
-          },
-        ],
-      },
-      {
-        version: "0.8.0",
-        date: "2026-05-28",
-        title: "Governance & approval gates",
-        changes: [
-          { type: "feature", text: "Human-in-the-loop approval node" },
-          { type: "feature", text: "RBAC across agents, knowledge bases, and workflows" },
-          { type: "feature", text: "Export-ready audit trail for compliance reviews" },
-          {
-            type: "improvement",
-            text: "Dashboard metrics for active runs and success rate",
-          },
-        ],
-      },
-      {
-        version: "0.7.0",
-        date: "2026-05-05",
-        title: "Visual builder launch",
-        changes: [
-          { type: "feature", text: "Drag-and-drop canvas with 15 node types" },
-          { type: "feature", text: "Knowledge bases with RAG query nodes" },
-          { type: "feature", text: "Bring-your-own API keys — no credit markup" },
-          { type: "fix", text: "Canvas performance improvements for large workflows" },
-        ],
-      },
-    ],
+    caseStudies,
+    blogPosts,
+    changelogEntries,
     industryUseCases: [
       {
         title: "Sales",
@@ -870,7 +412,11 @@ const en: Dictionary = {
         outcome: "Prepare client deliverables, pull context from docs, and track billable work.",
       },
     ],
+    templateGalleryCategories: ["Customer Support", "Sales & RevOps", "Any team"],
+    templateGalleryAllLabel: "All",
+    templateGallerySearchPlaceholder: "Search templates…",
     integrationsHeading: "Works with the tools your team already uses",
+    integrationsSubheading: "Search the MCP registry — OAuth, bearer token, or open connectors.",
     integrationsCustom: "Need a custom connector?",
     integrationsCustomLink: "Talk to us about MCP servers",
     featureSections: [
@@ -902,6 +448,7 @@ const en: Dictionary = {
     ],
     templateCards: [
       {
+        slug: "support-triage",
         title: "Support Triage Agent",
         category: "Customer Support",
         description:
@@ -917,6 +464,7 @@ const en: Dictionary = {
         integrations: ["Intercom", "File Search", "User Approval"],
       },
       {
+        slug: "crm-copilot",
         title: "CRM Copilot",
         category: "Sales & RevOps",
         description:
@@ -930,6 +478,7 @@ const en: Dictionary = {
         integrations: ["HubSpot MCP", "Agent"],
       },
       {
+        slug: "governed-agents",
         title: "Knowledge Base Chatbot",
         category: "Any team",
         description:

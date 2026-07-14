@@ -2,7 +2,7 @@ import Link from "next/link";
 import { GradientButton } from "@/components/GradientButton";
 import { GhostButton } from "@/components/GhostButton";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { pricingTiers } from "@/lib/pricing";
+import { pricingTeaserTiers } from "@/lib/pricing-page";
 
 export function PricingTeaser() {
   return (
@@ -15,17 +15,17 @@ export function PricingTeaser() {
               Start free. <span className="text-gradient">Scale on your terms.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-marketing-text-muted">
-              No credit card. No per-task markup. Pro plans from $49/seat/mo when your team is ready.
+              No credit card. No per-task markup. Pro from £39/mo, Team £149/mo when your team is ready.
             </p>
           </div>
         </ScrollReveal>
 
         <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {pricingTiers.map((tier) => (
+          {pricingTeaserTiers.map((tier) => (
             <ScrollReveal key={tier.id}>
               <article
                 className={`flex h-full flex-col rounded-nym-lg border p-6 md:p-8 ${
-                  tier.id === "free"
+                  tier.id === "free" || tier.id === "team"
                     ? "border-nym-primary/40 bg-marketing-surface shadow-lg shadow-nym-primary/10"
                     : "border-marketing-border bg-marketing-surface"
                 }`}
@@ -37,7 +37,7 @@ export function PricingTeaser() {
                 )}
                 <p className="mt-3 flex-1 text-sm text-marketing-text-muted">{tier.description}</p>
                 <div className="mt-6">
-                  {tier.id === "free" ? (
+                  {tier.id === "free" || tier.id === "team" ? (
                     <GradientButton href={tier.ctaHref} className="w-full justify-center">
                       {tier.ctaLabel}
                     </GradientButton>

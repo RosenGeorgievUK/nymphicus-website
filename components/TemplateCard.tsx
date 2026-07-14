@@ -1,9 +1,11 @@
+import Link from "next/link";
 import { ProductPreviewFrame } from "@/components/ProductPreviewFrame";
 import { GradientButton } from "@/components/GradientButton";
 import type { ScreenshotKey } from "@/lib/screenshots";
 import { platformUrls } from "@/lib/site";
 
 type TemplateCardProps = {
+  slug: string;
   title: string;
   category: string;
   description: string;
@@ -11,10 +13,18 @@ type TemplateCardProps = {
   integrations: string[];
   screenshots: ScreenshotKey[];
   ctaLabel: string;
+  detailHref?: string;
   className?: string;
 };
 
+function registerHref(slug: string) {
+  const base = platformUrls.register;
+  const separator = base.includes("?") ? "&" : "?";
+  return `${base}${separator}template=${encodeURIComponent(slug)}`;
+}
+
 export function TemplateCard({
+  slug,
   title,
   category,
   description,
@@ -22,6 +32,7 @@ export function TemplateCard({
   integrations,
   screenshots,
   ctaLabel,
+  detailHref,
   className = "",
 }: TemplateCardProps) {
   return (
@@ -42,7 +53,15 @@ export function TemplateCard({
 
       <div className="flex flex-1 flex-col p-6 md:p-8">
         <p className="text-xs font-medium uppercase tracking-wider text-nym-primary">{category}</p>
-        <h2 className="mt-2 text-xl font-semibold text-marketing-text">{title}</h2>
+        <h2 className="mt-2 text-xl font-semibold text-marketing-text">
+          {detailHref ? (
+            <Link href={detailHref} className="hover:text-nym-primary hover:underline">
+              {title}
+            </Link>
+          ) : (
+            title
+          )}
+        </h2>
         <p className="mt-3 text-sm leading-relaxed text-marketing-text-muted">{description}</p>
 
         <ol className="mt-4 space-y-1.5 text-sm text-marketing-text">
@@ -67,10 +86,23 @@ export function TemplateCard({
           ))}
         </div>
 
-        <div className="mt-6">
-          <GradientButton href={platformUrls.register} className="w-full justify-center sm:w-auto">
+        <div className="mt-6 flex flex-wrap gap-3">
+          <GradientButton
+            href={registerHref(slug)}
+            className="justify-center sm:w-auto"
+            eventName="cta_click"
+            eventProps={{ label: ctaLabel, location: "template_card", template: slug }}
+          >
             {ctaLabel}
           </GradientButton>
+          {detailHref && (
+            <Link
+              href={detailHref}
+              className="nym-focus inline-flex items-center text-sm font-medium text-nym-primary hover:underline"
+            >
+              View workflow →
+            </Link>
+          )}
         </div>
       </div>
     </article>

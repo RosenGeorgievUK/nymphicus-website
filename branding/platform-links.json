@@ -8,18 +8,32 @@
       "registerOrganization": "http://127.0.0.1:8000/auth/register/organization/",
       "dashboard": "http://127.0.0.1:8000/agent-builder/dashboard/"
     },
+    "staging": {
+      "baseUrl": "https://staging.app.nymphi.ai",
+      "login": "https://staging.app.nymphi.ai/auth/login/",
+      "registerIndividual": "https://staging.app.nymphi.ai/auth/register/individual/",
+      "registerOrganization": "https://staging.app.nymphi.ai/auth/register/organization/",
+      "dashboard": "https://staging.app.nymphi.ai/agent-builder/dashboard/"
+    },
     "production": {
       "baseUrl": "https://app.nymphi.ai",
       "login": "https://app.nymphi.ai/auth/login/",
       "registerIndividual": "https://app.nymphi.ai/auth/register/individual/",
       "registerOrganization": "https://app.nymphi.ai/auth/register/organization/",
       "dashboard": "https://app.nymphi.ai/agent-builder/dashboard/"
+    },
+    "fallback": {
+      "baseUrl": "https://www.nymphi.ai/contact",
+      "login": "mailto:hello@nymphi.ai?subject=Log%20in%20request%20-%20Nymphi",
+      "registerIndividual": "mailto:hello@nymphi.ai?subject=Get%20started%20-%20Nymphi",
+      "registerOrganization": "mailto:hello@nymphi.ai?subject=Team%20signup%20-%20Nymphi",
+      "dashboard": "https://www.nymphi.ai/contact"
     }
   },
   "marketing": {
     "recommendedDomain": "https://www.nymphi.ai",
     "platformSubdomain": "app.nymphi.ai",
-    "bookDemo": "mailto:hello@nymphi.ai?subject=Book%20a%20demo%20-%20Nymphi",
+    "bookDemo": "mailto:hello@nymphi.ai?subject=Talk%20to%20sales%20-%20Nymphi",
     "contactEmail": "hello@nymphi.ai",
     "enterpriseContact": "mailto:hello@nymphi.ai?subject=Enterprise%20%2F%20Self-hosting%20inquiry%20-%20Nymphi",
     "demoVideo": "",
@@ -30,11 +44,13 @@
   "ctaLabels": {
     "login": "Log in",
     "signIn": "Sign in",
-    "getStarted": "Get started",
-    "startFree": "Start building",
-    "register": "Create account",
-    "bookDemo": "Book a demo",
+    "getStarted": "Get started free",
+    "startFree": "Get started free",
+    "register": "Get started free",
+    "bookDemo": "Talk to sales",
+    "seeInAction": "See it in action",
     "contactUs": "Contact us",
-    "startFromTemplate": "Start from template"
+    "startFromTemplate": "Use this template",
+    "useTemplate": "Use this template"
   }
 }

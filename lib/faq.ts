@@ -3,39 +3,6 @@ export type FaqItem = {
   answer: string;
 };
 
-export const pricingFaq: FaqItem[] = [
-  {
-    question: "How do bring-your-own API keys work?",
-    answer:
-      "You connect your own provider accounts (OpenAI, Anthropic, etc.) directly. Nymphi orchestrates calls through your keys — no per-task credit markup from us. You pay providers at their standard rates.",
-  },
-  {
-    question: "Can I self-host Nymphi?",
-    answer:
-      "Yes. Enterprise includes a self-hosted deployment option so you can run agents on your own infrastructure with full data residency control. Contact us for deployment details.",
-  },
-  {
-    question: "Where is my data stored?",
-    answer:
-      "Cloud deployments use encrypted storage in your chosen region. Self-hosted deployments keep all data on your infrastructure. Knowledge-base permissions and RBAC apply in both modes.",
-  },
-  {
-    question: "Does Nymphi support MCP integrations?",
-    answer:
-      "Yes. MCP is a first-class integration path — connect any MCP-compatible tool to your agent workflows without custom glue code.",
-  },
-  {
-    question: "Can I cancel anytime?",
-    answer:
-      "Free tier has no commitment. Paid plans can be cancelled at the end of your billing period — no long-term lock-in required.",
-  },
-  {
-    question: "What does Pro cost?",
-    answer:
-      "Pro starts at $49 per seat per month for growing teams that need collaboration, advanced RBAC, and priority support. Contact us for volume pricing or annual billing.",
-  },
-];
-
 export const homepageFaq: FaqItem[] = [
   {
     question: "How is Nymphi different from Zapier or n8n?",
@@ -65,6 +32,6 @@ export const homepageFaq: FaqItem[] = [
   {
     question: "Is there a free plan?",
     answer:
-      "Yes — the Free tier includes the visual builder, 15 node types, knowledge bases, MCP integrations, and community support. No credit card required.",
+      "Yes — the Free tier includes the visual builder, 15 node types, 1 knowledge base (50MB), 2 MCP integrations, and community support. No credit card required.",
   },
 ];

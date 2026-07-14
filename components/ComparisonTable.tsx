@@ -11,7 +11,7 @@ export function ComparisonTable({ compact = false, className = "" }: ComparisonT
 
   return (
     <div className={`overflow-x-auto ${className}`}>
-      <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+      <table className="w-full min-w-[720px] border-collapse text-left text-sm">
         <thead>
           <tr className="border-b border-marketing-border">
             <th scope="col" className="py-4 pr-4 font-medium text-marketing-text-muted">
@@ -21,10 +21,10 @@ export function ComparisonTable({ compact = false, className = "" }: ComparisonT
               Nymphi
             </th>
             <th scope="col" className="py-4 px-4 font-medium text-marketing-text-muted">
-              Credit copilots
+              n8n
             </th>
             <th scope="col" className="py-4 pl-4 font-medium text-marketing-text-muted">
-              DIY frameworks
+              Zapier
             </th>
           </tr>
         </thead>
@@ -35,8 +35,8 @@ export function ComparisonTable({ compact = false, className = "" }: ComparisonT
                 {row.feature}
               </th>
               <td className="py-4 px-4 text-marketing-text">{row.nymphi}</td>
-              <td className="py-4 px-4 text-marketing-text-muted">{row.creditCopilots}</td>
-              <td className="py-4 pl-4 text-marketing-text-muted">{row.diyFrameworks}</td>
+              <td className="py-4 px-4 text-marketing-text-muted">{row.n8n}</td>
+              <td className="py-4 pl-4 text-marketing-text-muted">{row.zapier}</td>
             </tr>
           ))}
         </tbody>

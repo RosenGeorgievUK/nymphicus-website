@@ -6,7 +6,7 @@ type CTABandProps = {
   title: string;
   subtitle: string;
   primaryLabel: string;
-  bookDemoLabel: string;
+  secondaryLabel: string;
   className?: string;
 };
 
@@ -14,7 +14,7 @@ export function CTABand({
   title,
   subtitle,
   primaryLabel,
-  bookDemoLabel,
+  secondaryLabel,
   className = "",
 }: CTABandProps) {
   return (
@@ -47,7 +47,7 @@ export function CTABand({
             size="lg"
             className="min-w-[220px] border-on-gradient/30 bg-marketing-bg/20 text-on-gradient hover:bg-marketing-bg/30 hover:text-on-gradient"
           >
-            {bookDemoLabel}
+            {secondaryLabel}
           </GhostButton>
         </div>
       </div>

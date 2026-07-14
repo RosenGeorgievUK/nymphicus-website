@@ -42,7 +42,7 @@ export function UseCasesView() {
         title={page.ctaBandTitle!}
         subtitle={page.ctaBandSubtitle!}
         primaryLabel={dict.common.ctaBand.primaryLabel}
-        bookDemoLabel={dict.cta.bookDemo}
+        secondaryLabel={dict.cta.talkToSales}
       />
     </>
   );

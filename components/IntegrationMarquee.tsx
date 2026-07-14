@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { GradientButton } from "@/components/GradientButton";
+import { McpBrandTile } from "@/components/McpServerIcon";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { integrationBrands } from "@/lib/integration-brands";
+import { mcpMarqueeServers } from "@/lib/mcp-icons";
 
 type IntegrationMarqueeProps = {
   title: string;
@@ -10,40 +10,19 @@ type IntegrationMarqueeProps = {
   ctaHref: string;
 };
 
-function BrandTile({ abbr, color, name }: { abbr: string; color: string; name: string }) {
-  return (
-    <div
-      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-marketing-border/80 bg-marketing-surface/60 shadow-sm backdrop-blur-sm md:h-16 md:w-16"
-      title={name}
-    >
-      <span
-        className="text-sm font-bold md:text-base"
-        style={{ color }}
-        aria-hidden
-      >
-        {abbr}
-      </span>
-      <span className="sr-only">{name}</span>
-    </div>
-  );
-}
-
-function MarqueeRow({ reverse = false }: { reverse?: boolean }) {
-  const brands = [...integrationBrands, ...integrationBrands];
+function MarqueeRow() {
+  const servers = [...mcpMarqueeServers, ...mcpMarqueeServers];
 
   return (
     <div className="overflow-hidden">
-      <div
-        className={`marquee-track flex w-max gap-4 md:gap-5 ${
-          reverse ? "motion-safe:animate-marquee-reverse" : "motion-safe:animate-marquee"
-        }`}
-      >
-        {brands.map((brand, index) => (
-          <BrandTile
-            key={`${brand.name}-${index}`}
-            abbr={brand.abbr}
-            color={brand.color}
-            name={brand.name}
+      <div className="marquee-track flex w-max gap-4 motion-safe:animate-marquee md:gap-5">
+        {servers.map((server, index) => (
+          <McpBrandTile
+            key={`${server.slug}-${index}`}
+            src={server.iconUrl}
+            alt={server.name}
+            slug={server.slug}
+            size="sm"
           />
         ))}
       </div>
@@ -79,10 +58,7 @@ export function IntegrationMarquee({ title, subtitle, ctaLabel, ctaHref }: Integ
             aria-hidden
           />
 
-          <div className="space-y-5">
-            <MarqueeRow />
-            <MarqueeRow reverse />
-          </div>
+          <MarqueeRow />
         </div>
 
         <div className="mt-10 text-center">

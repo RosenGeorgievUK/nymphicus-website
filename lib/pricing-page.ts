@@ -159,7 +159,7 @@ export const pricingCta = {
   title: "Your agents. Your keys. Your infrastructure.",
   subtitle: "",
   primaryLabel: "Start free",
-  bookDemoLabel: "Book a demo",
+  bookDemoLabel: "Talk to sales",
 };
 
 export function formatGbp(amount: number, options?: { prefix?: string; period?: "mo" | "yr" }) {
@@ -174,6 +174,51 @@ export function formatGbp(amount: number, options?: { prefix?: string; period?: 
   const period = options?.period ? `/${options.period}` : "";
   return `${prefix}${formatted}${period}`;
 }
+
+export type PricingTeaserTier = {
+  id: string;
+  name: string;
+  price: string;
+  priceNote?: string;
+  description: string;
+  ctaHref: string;
+  ctaLabel: string;
+  variant: "gradient" | "ghost";
+};
+
+/** Homepage pricing strip — Free, Team (anchor), Enterprise */
+export const pricingTeaserTiers: PricingTeaserTier[] = [
+  {
+    id: "free",
+    name: "Free",
+    price: formatGbp(0),
+    priceNote: "forever",
+    description: "Start building — bring your own keys",
+    ctaHref: platformUrls.register,
+    ctaLabel: "Start free",
+    variant: "gradient",
+  },
+  {
+    id: "team",
+    name: "Team",
+    price: formatGbp(149, { period: "mo" }),
+    priceNote: "10 seats included",
+    description: "Unlimited agents, full RBAC, and priority support for growing teams",
+    ctaHref: platformUrls.register,
+    ctaLabel: "Start free trial",
+    variant: "gradient",
+  },
+  {
+    id: "enterprise",
+    name: "Self-Hosted / Enterprise",
+    price: formatGbp(499, { prefix: "from", period: "mo" }),
+    priceNote: "self-host · SSO · SLA",
+    description: "For regulated teams with infrastructure requirements",
+    ctaHref: "/contact",
+    ctaLabel: "Talk to us",
+    variant: "ghost",
+  },
+];
 
 export function priceForTier(tier: PricingTier, annual: boolean): { price: string; note?: string } {
   if (tier.id === "free") {

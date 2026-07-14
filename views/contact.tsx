@@ -72,7 +72,7 @@ export function ContactView() {
         title={dict.common.ctaBand.title}
         subtitle={dict.common.ctaBand.subtitle}
         primaryLabel={dict.common.ctaBand.primaryLabel}
-        bookDemoLabel={dict.cta.bookDemo}
+        secondaryLabel={dict.cta.talkToSales}
       />
     </>
   );

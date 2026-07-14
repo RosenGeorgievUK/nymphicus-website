@@ -5,6 +5,9 @@
   "description": "Static marketing site for Nymphi — visual AI agent builder platform",
   "scripts": {
     "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev.ps1",
+    "dev:3001": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev.ps1 -Port 3001",
+    "dev:clean": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev.ps1 -Clean",
+    "dev:3001:clean": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev.ps1 -Port 3001 -Clean",
     "sync:mcp-icons": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/sync-mcp-icons.ps1",
     "build": "next build",
     "start": "next start",

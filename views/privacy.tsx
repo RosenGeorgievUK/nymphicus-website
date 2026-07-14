@@ -65,7 +65,7 @@ export function PrivacyView() {
         title={page.ctaBandTitle!}
         subtitle={dict.common.ctaBand.subtitle}
         primaryLabel={page.ctaPrimaryLabel!}
-        bookDemoLabel={dict.cta.bookDemo}
+        secondaryLabel={dict.cta.talkToSales}
       />
     </>
   );

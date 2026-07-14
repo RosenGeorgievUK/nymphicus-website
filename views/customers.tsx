@@ -24,6 +24,9 @@ export function CustomersView() {
       />
 
       <PageSection>
+        <p className="mb-8 rounded-nym border border-nym-primary/20 bg-nym-primary-50 px-4 py-3 text-center text-sm text-marketing-text-muted">
+          {dict.common.illustrativeDisclaimer}
+        </p>
         <div className="grid gap-6 md:grid-cols-3">
           {dict.data.caseStudies.map((study) => (
             <ScrollReveal key={study.slug}>
@@ -44,7 +47,7 @@ export function CustomersView() {
         title={page.ctaBandTitle!}
         subtitle={dict.common.ctaBand.subtitle}
         primaryLabel={dict.common.ctaBand.primaryLabel}
-        bookDemoLabel={dict.cta.bookDemo}
+        secondaryLabel={dict.cta.talkToSales}
       />
     </>
   );

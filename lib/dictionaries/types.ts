@@ -15,17 +15,6 @@ export type FooterColumn = {
   links: { href: string; label: string; external?: boolean }[];
 };
 
-export type PricingTierCopy = {
-  id: string;
-  name: string;
-  price: string;
-  priceNote?: string;
-  description: string;
-  features: string[];
-  ctaLabel: string;
-  highlighted?: boolean;
-};
-
 export type CaseStudyCopy = {
   slug: string;
   title: string;
@@ -75,14 +64,12 @@ export type Dictionary = {
   site: {
     name: string;
     tagline: string;
-    heroBadge: string;
-    heroTitlePrefix: string;
-    heroGradientPhrase: string;
-    heroTitleSuffix: string;
+    heroIntro: string;
+    heroUseCases: { role: string; action: string }[];
     heroSubhead: string;
     heroFootnote: string;
     heroScreenshotAlt: string;
-    getStartedFree: string;
+    socialProof: string;
   };
   cta: {
     login: string;
@@ -94,6 +81,9 @@ export type Dictionary = {
     contactUs: string;
     startFromTemplate: string;
     getStartedFree: string;
+    seeInAction: string;
+    talkToSales: string;
+    useTemplate: string;
   };
   nav: {
     ariaMain: string;
@@ -129,46 +119,40 @@ export type Dictionary = {
     pricingFaqLink: string;
     trustBadgesAria: string;
     trustBadges: string[];
-    capabilityMarqueeAria: string;
-    capabilities: string[];
     ctaBand: {
       title: string;
       subtitle: string;
       primaryLabel: string;
+      secondaryLabel: string;
     };
   };
   home: {
-    pillarsEyebrow: string;
-    pillarsTitle: string;
-    pillarsTitleHighlight: string;
-    pillarsSubtitle: string;
-    pillars: { highlight: string; title: string; description: string }[];
-    bentoEyebrow: string;
     bentoTitle: string;
-    bentoSubtitle: string;
-    bentoItems: { title: string; description: string; href: string }[];
-    bentoLinks: { templates: string; features: string; useCases: string };
-    diffEyebrow: string;
-    diffTitle: string;
-    diffPoints: { title: string; body: string; href: string; label: string }[];
-    diffCompareLink: string;
+    bentoTitleHighlight?: string;
+    bentoTitleSuffix?: string;
+    bentoItems: {
+      title: string;
+      description: string;
+      href: string;
+      category: string;
+      cta: string;
+      apps?: string[];
+      iconSlugs?: string[];
+    }[];
+    bentoLinks: { templates: string };
     caseStudyEyebrow: string;
     caseStudyTitle: string;
     caseStudyTitleHighlight: string;
     caseStudySubtitle: string;
     faqEyebrow: string;
     faqTitle: string;
+    changelogStripTitle: string;
+    changelogStripViewAll: string;
     integrationsSection: {
       title: string;
       subtitle: string;
       cta: string;
     };
-    spotlights: {
-      title: string;
-      bullets: string[];
-      href: string;
-      label: string;
-    }[];
   };
   pages: Record<
     | "pricing"
@@ -198,15 +182,16 @@ export type Dictionary = {
   >;
   data: {
     homepageFaq: FaqItem[];
-    pricingFaq: FaqItem[];
     securityFaq: FaqItem[];
-    pricingTiers: PricingTierCopy[];
-    pricingValueSignals: { value: string; label: string; detail: string }[];
     caseStudies: CaseStudyCopy[];
     blogPosts: BlogPostCopy[];
     changelogEntries: ChangelogEntryCopy[];
     industryUseCases: UseCaseCopy[];
+    templateGalleryCategories: string[];
+    templateGalleryAllLabel: string;
+    templateGallerySearchPlaceholder: string;
     integrationsHeading: string;
+    integrationsSubheading: string;
     integrationsCustom: string;
     integrationsCustomLink: string;
     featureSections: {
@@ -216,6 +201,7 @@ export type Dictionary = {
       subtitle: string;
     }[];
     templateCards: {
+      slug: string;
       title: string;
       category: string;
       description: string;

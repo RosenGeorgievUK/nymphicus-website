@@ -43,10 +43,7 @@ export function FeaturesView() {
                     reverse ? "lg:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  <ProductInteractivePreview
-                    screenshot={screenshot}
-                    alt={`${section.eyebrow} — Nymphi`}
-                  >
+                  <ProductInteractivePreview alt={`${section.eyebrow} — Nymphi`}>
                     <ProductScreenshotImage screenshot={screenshot} alt={`${section.eyebrow} — Nymphi`} />
                   </ProductInteractivePreview>
                   <div>
@@ -104,7 +101,7 @@ export function FeaturesView() {
         title={dict.common.ctaBand.title}
         subtitle={dict.common.ctaBand.subtitle}
         primaryLabel={dict.common.ctaBand.primaryLabel}
-        bookDemoLabel={dict.cta.bookDemo}
+        secondaryLabel={dict.cta.talkToSales}
       />
     </>
   );

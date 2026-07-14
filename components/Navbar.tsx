@@ -68,12 +68,15 @@ export function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-3 md:flex">
+            <span className="hidden rounded-full border border-marketing-border bg-marketing-surface/60 px-2.5 py-1 text-xs font-medium text-marketing-text-muted lg:inline">
+              {dict.site.socialProof}
+            </span>
             <GhostButton href={platformUrls.login} size="sm">
               {dict.cta.login}
             </GhostButton>
             <GradientButton href={platformUrls.register} size="sm">
-              {dict.cta.getStarted}
+              {dict.cta.getStartedFree}
             </GradientButton>
           </div>
 
@@ -155,7 +158,7 @@ export function Navbar() {
               {dict.cta.login}
             </GhostButton>
             <GradientButton href={platformUrls.register} className="w-full justify-center">
-              {dict.cta.getStarted}
+              {dict.cta.getStartedFree}
             </GradientButton>
           </div>
         </div>

@@ -2,6 +2,7 @@ import { CTABand } from "@/components/CTABand";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { PageSection } from "@/components/PageSection";
 import { PricingByoComparison } from "@/components/PricingByoComparison";
+import { PricingJsonLd } from "@/components/PricingJsonLd";
 import { PricingPlansBlock } from "@/components/PricingPlansBlock";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -14,6 +15,7 @@ import {
 export function PricingView() {
   return (
     <>
+      <PricingJsonLd />
       <PricingPlansBlock />
 
       <PricingByoComparison
@@ -33,7 +35,7 @@ export function PricingView() {
         title={pricingCta.title}
         subtitle={pricingCta.subtitle}
         primaryLabel={pricingCta.primaryLabel}
-        bookDemoLabel={pricingCta.bookDemoLabel}
+        secondaryLabel={pricingCta.bookDemoLabel}
       />
     </>
   );

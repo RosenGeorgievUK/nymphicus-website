@@ -36,6 +36,23 @@ const PLATFORM_ICON_URLS: Record<string, string> = {
     "https://www.clipartmax.com/png/middle/70-709042_zapier-logo-zapier-logo.png",
   "cloudflare_mcp.png":
     "https://download.logo.wine/logo/Cloudflare/Cloudflare-Logo.wine.png",
+  "clerk_mcp.png": "https://clerk.com/v2/downloads/avatar-circle-primary-light.png",
+  "dropbox_mcp.png":
+    "https://framerusercontent.com/images/qwZHL2pifMnE26IeeNITy8NsozI.png?width=400&height=400",
+  "paypal_mcp.png":
+    "https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png",
+  "supabase_mcp.png":
+    "https://monkedo-static.s3.eu-central-1.amazonaws.com/component-icons/supabase.png",
+  "click_up_mcp.png":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBlCAeZTtCKu3AgBfAodstpMeroo905pj5og&s",
+  "calendly_mcp.png":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTktU8TSdEWm9FlT_6o2wXBZJy7SiODCf251Q&s",
+  "pipedream_mcp.png":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRiv-PYQ3tayBDjFqyBRqtxAL-3lcO0cMs1Q&s",
+  "plaid_mcp.png":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRv4di43NnuA6378fql-sQ6Cf6dzwOxiyMjg&s",
+  "google_calendar.png":
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Calendar_icon_%282020%29.svg/960px-Google_Calendar_icon_%282020%29.svg.png",
 };
 
 function iconUrlFor(filename: string, slug: string): string {
@@ -109,4 +126,28 @@ export const mcpRegistryServers: McpRegistryServer[] = [
     platformIconFile: "cloudflare_mcp.png",
     iconUrl: iconUrlFor("cloudflare_mcp.png", "cloudflare"),
   },
+];
+
+function mcpLogo(slug: string, name: string, platformIconFile: string): McpRegistryServer {
+  return {
+    slug,
+    name,
+    auth: "",
+    platformIconFile,
+    iconUrl: iconUrlFor(platformIconFile, slug),
+  };
+}
+
+/** Broader set for homepage marquee / integrations grid — all platform MCP CDN logos */
+export const mcpMarqueeServers: McpRegistryServer[] = [
+  ...mcpRegistryServers,
+  mcpLogo("clerk", "Clerk", "clerk_mcp.png"),
+  mcpLogo("dropbox", "Dropbox", "dropbox_mcp.png"),
+  mcpLogo("paypal", "PayPal", "paypal_mcp.png"),
+  mcpLogo("supabase", "Supabase", "supabase_mcp.png"),
+  mcpLogo("clickup", "ClickUp", "click_up_mcp.png"),
+  mcpLogo("calendly", "Calendly", "calendly_mcp.png"),
+  mcpLogo("pipedream", "Pipedream", "pipedream_mcp.png"),
+  mcpLogo("plaid", "Plaid", "plaid_mcp.png"),
+  mcpLogo("google-calendar", "Google Calendar", "google_calendar.png"),
 ];

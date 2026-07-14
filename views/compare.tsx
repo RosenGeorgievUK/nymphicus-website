@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { GradientButton } from "@/components/GradientButton";
@@ -40,9 +41,19 @@ export function CompareView() {
           </div>
         </ScrollReveal>
         <p className="mt-10 text-center">
-          <GradientButton href={platformUrls.register} size="lg">
-            {page.startBuilding}
+          <GradientButton
+            href={platformUrls.register}
+            size="lg"
+            eventName="cta_click"
+            eventProps={{ label: "get_started_free", location: "compare_page" }}
+          >
+            {dict.cta.getStartedFree}
           </GradientButton>
+        </p>
+        <p className="mt-4 text-center text-sm text-marketing-text-muted">
+          <Link href="/customers/support-triage" className="font-medium text-nym-primary hover:underline">
+            {page.migrationTemplateLink}
+          </Link>
         </p>
       </PageSection>
 
@@ -65,7 +76,7 @@ export function CompareView() {
         title={dict.common.ctaBand.title}
         subtitle={dict.common.ctaBand.subtitle}
         primaryLabel={dict.common.ctaBand.primaryLabel}
-        bookDemoLabel={dict.cta.bookDemo}
+        secondaryLabel={dict.cta.talkToSales}
       />
     </>
   );

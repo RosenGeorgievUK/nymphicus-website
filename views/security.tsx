@@ -80,7 +80,7 @@ export function SecurityView() {
       <PageSection>
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <ScrollReveal>
-            <ProductInteractivePreview screenshot="executionLogs" alt={page.screenshotAlt!} glow>
+            <ProductInteractivePreview alt={page.screenshotAlt!} glow>
               <ProductScreenshotImage screenshot="executionLogs" alt={page.screenshotAlt!} />
             </ProductInteractivePreview>
           </ScrollReveal>
@@ -114,7 +114,7 @@ export function SecurityView() {
         title={page.ctaBandTitle!}
         subtitle={dict.common.ctaBand.subtitle}
         primaryLabel={dict.common.ctaBand.primaryLabel}
-        bookDemoLabel={dict.cta.bookDemo}
+        secondaryLabel={dict.cta.talkToSales}
       />
     </>
   );
