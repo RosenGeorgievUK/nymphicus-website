@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ProductInteractivePreview } from "@/components/ProductInteractivePreview";
-import { ProductPreviewContent } from "@/components/ProductPreviewContent";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { SectionHeading } from "@/components/SectionHeading";
-import type { ScreenshotKey } from "@/lib/screenshots";
+import {
+  screenshotDimensions,
+  screenshotPath,
+  type ScreenshotKey,
+} from "@/lib/screenshots";
 import { bentoScreenshotForItem } from "@/lib/view-helpers";
 
 type FeatureGridItem = {
@@ -31,11 +33,10 @@ const FEATURE_META = [
   { category: "Integration", stat: "No glue code" },
 ] as const;
 
-const AUTO_ROTATE_MS = 7000;
 const CAPABILITY_TAGS = ["Canvas builder", "Human approval", "Execution logs"] as const;
 
-function FeatureIcon({ index, compact = false }: { index: number; compact?: boolean }) {
-  const className = compact ? "h-4 w-4 text-nym-primary" : "h-5 w-5 text-nym-primary";
+function FeatureIcon({ index }: { index: number }) {
+  const className = "h-4 w-4 text-nym-primary";
 
   switch (index) {
     case 0:
@@ -93,21 +94,11 @@ export function HomeFeatureGrid({
   links,
 }: HomeFeatureGridProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
   const tabScrollerRef = useRef<HTMLDivElement>(null);
 
   const activeItem = items[activeIndex] ?? items[0];
   const activeScreenshot: ScreenshotKey = bentoScreenshotForItem(activeItem.href, activeIndex);
   const activeMeta = FEATURE_META[activeIndex] ?? FEATURE_META[0];
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setIsDesktop(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
 
   const focusTab = useCallback((index: number) => {
     setActiveIndex(index);
@@ -115,26 +106,14 @@ export function HomeFeatureGrid({
   }, []);
 
   useEffect(() => {
-    if (paused || items.length <= 1 || !isDesktop) return;
-
-    const id = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % items.length);
-    }, AUTO_ROTATE_MS);
-
-    return () => window.clearInterval(id);
-  }, [paused, items.length, isDesktop]);
-
-  useEffect(() => {
-    if (isDesktop) return;
-
     const scroller = tabScrollerRef.current;
     const tab = document.getElementById(`feature-tab-${activeIndex}`);
-    if (!scroller || !tab) return;
+    if (!scroller || !tab || window.matchMedia("(min-width: 768px)").matches) return;
 
     const targetScroll =
       tab.offsetLeft - scroller.clientWidth / 2 + tab.offsetWidth / 2;
     scroller.scrollTo({ left: targetScroll, behavior: "smooth" });
-  }, [activeIndex, isDesktop]);
+  }, [activeIndex]);
 
   const onKeyDown = (event: React.KeyboardEvent, index: number) => {
     let nextIndex = index;
@@ -169,15 +148,6 @@ export function HomeFeatureGrid({
     <section
       className="relative overflow-hidden border-t border-marketing-border py-12 sm:py-16 md:py-20 lg:py-24"
       aria-labelledby="feature-grid-heading"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-          setPaused(false);
-        }
-      }}
-      onTouchStart={() => setPaused(true)}
     >
       <div className="product-showcase-grid pointer-events-none absolute inset-0" aria-hidden />
       <div
@@ -186,7 +156,7 @@ export function HomeFeatureGrid({
       />
 
       <div className="relative mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
-        <ScrollReveal>
+        <ScrollReveal eager>
           <SectionHeading
             id="feature-grid-heading"
             eyebrow={eyebrow}
@@ -245,7 +215,7 @@ export function HomeFeatureGrid({
                     >
                       <div className="flex items-center gap-2 md:items-start md:gap-2.5 lg:gap-3">
                         <span className="feature-tab-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-marketing-border/70 bg-marketing-surface/80 md:h-8 md:w-8 lg:mt-0.5 lg:h-9 lg:w-9">
-                          <FeatureIcon index={index} compact />
+                          <FeatureIcon index={index} />
                         </span>
 
                         <div className="min-w-0 flex-1">
@@ -309,15 +279,9 @@ export function HomeFeatureGrid({
                 className="feature-preview-panel relative min-w-0"
               >
                 <div className="feature-preview-chrome mb-3 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-3">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-nym-primary/40 opacity-75" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-nym-primary" />
-                    </span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-marketing-text-muted sm:text-[11px]">
-                      Live canvas preview
-                    </span>
-                  </div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-marketing-text-muted sm:text-[11px]">
+                    Canvas preview
+                  </span>
                   <Link
                     href={activeItem.href}
                     className="nym-focus text-sm font-medium text-nym-primary hover:underline"
@@ -327,15 +291,20 @@ export function HomeFeatureGrid({
                   </Link>
                 </div>
 
-                <ProductInteractivePreview
-                  screenshot={activeScreenshot}
-                  alt={activeItem.title}
-                  glow
-                  autoPlay={!paused && isDesktop}
-                  resetKey={`${activeIndex}-${activeScreenshot}`}
-                >
-                  <ProductPreviewContent screenshot={activeScreenshot} alt={activeItem.title} />
-                </ProductInteractivePreview>
+                <div className="browser-glow relative overflow-hidden rounded-nym-lg border border-marketing-border/80 bg-marketing-surface shadow-xl">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    key={activeScreenshot}
+                    src={screenshotPath(activeScreenshot)}
+                    alt={activeItem.title}
+                    width={screenshotDimensions.width}
+                    height={screenshotDimensions.height}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1280px"
+                    className="block h-auto w-full"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
 
                 <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-5 sm:gap-2">
                   {CAPABILITY_TAGS.map((tag) => (
@@ -355,40 +324,38 @@ export function HomeFeatureGrid({
           </div>
         </div>
 
-        <ScrollReveal delay={120}>
-          <nav
-            className="mt-10 flex flex-col items-stretch gap-2 border-t border-marketing-border/80 pt-6 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 sm:gap-y-3 sm:pt-8 md:mt-14"
-            aria-label="Explore product"
-          >
-            {[
-              { label: links.templates, href: links.hrefs.templates },
-              { label: links.features, href: links.hrefs.features },
-              { label: links.useCases, href: links.hrefs.useCases },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="nym-focus group inline-flex items-center justify-center gap-1.5 rounded-lg border border-marketing-border/60 px-4 py-2.5 text-sm font-medium text-marketing-text-muted transition-colors hover:border-nym-primary/30 hover:text-nym-primary sm:justify-start sm:border-0 sm:p-0"
+        <nav
+          className="mt-10 flex flex-col items-stretch gap-2 border-t border-marketing-border/80 pt-6 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 sm:gap-y-3 sm:pt-8 md:mt-14"
+          aria-label="Explore product"
+        >
+          {[
+            { label: links.templates, href: links.hrefs.templates },
+            { label: links.features, href: links.hrefs.features },
+            { label: links.useCases, href: links.hrefs.useCases },
+          ].map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="nym-focus group inline-flex items-center justify-center gap-1.5 rounded-lg border border-marketing-border/60 px-4 py-2.5 text-sm font-medium text-marketing-text-muted transition-colors hover:border-nym-primary/30 hover:text-nym-primary sm:justify-start sm:border-0 sm:p-0"
+            >
+              {link.label}
+              <svg
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden
               >
-                {link.label}
-                <svg
-                  className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden
-                >
-                  <path
-                    d="M3 8h10M9 4l4 4-4 4"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-            ))}
-          </nav>
-        </ScrollReveal>
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          ))}
+        </nav>
       </div>
     </section>
   );

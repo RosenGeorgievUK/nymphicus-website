@@ -1,6 +1,3 @@
-"use client";
-
-import Image from "next/image";
 import {
   screenshotDimensions,
   screenshotPath,
@@ -12,24 +9,29 @@ type ProductScreenshotImageProps = {
   alt: string;
   className?: string;
   priority?: boolean;
+  loading?: "lazy" | "eager";
 };
 
-/** Client-safe product screenshot — use inside interactive previews. */
+/** Optimized product screenshot — server-rendered with native lazy loading. */
 export function ProductScreenshotImage({
   screenshot,
   alt,
   className = "h-auto w-full",
   priority = false,
+  loading,
 }: ProductScreenshotImageProps) {
   return (
-    <Image
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       src={screenshotPath(screenshot)}
       alt={alt}
       width={screenshotDimensions.width}
       height={screenshotDimensions.height}
-      sizes="(max-width: 1280px) 100vw, 1280px"
+      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1280px"
       className={className}
-      priority={priority}
+      loading={loading ?? (priority ? "eager" : "lazy")}
+      decoding="async"
+      fetchPriority={priority ? "high" : "auto"}
     />
   );
 }
