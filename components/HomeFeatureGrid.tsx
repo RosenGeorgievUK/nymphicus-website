@@ -32,9 +32,10 @@ const FEATURE_META = [
 ] as const;
 
 const AUTO_ROTATE_MS = 7000;
+const CAPABILITY_TAGS = ["Canvas builder", "Human approval", "Execution logs"] as const;
 
-function FeatureIcon({ index }: { index: number }) {
-  const className = "h-5 w-5 text-nym-primary";
+function FeatureIcon({ index, compact = false }: { index: number; compact?: boolean }) {
+  const className = compact ? "h-4 w-4 text-nym-primary" : "h-5 w-5 text-nym-primary";
 
   switch (index) {
     case 0:
@@ -93,27 +94,47 @@ export function HomeFeatureGrid({
 }: HomeFeatureGridProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const tabScrollerRef = useRef<HTMLDivElement>(null);
 
   const activeItem = items[activeIndex] ?? items[0];
   const activeScreenshot: ScreenshotKey = bentoScreenshotForItem(activeItem.href, activeIndex);
   const activeMeta = FEATURE_META[activeIndex] ?? FEATURE_META[0];
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
   const focusTab = useCallback((index: number) => {
     setActiveIndex(index);
-    const tab = document.getElementById(`feature-tab-${index}`);
-    tab?.focus();
+    document.getElementById(`feature-tab-${index}`)?.focus();
   }, []);
 
   useEffect(() => {
-    if (paused || items.length <= 1) return;
+    if (paused || items.length <= 1 || !isDesktop) return;
 
     const id = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % items.length);
     }, AUTO_ROTATE_MS);
 
     return () => window.clearInterval(id);
-  }, [paused, items.length]);
+  }, [paused, items.length, isDesktop]);
+
+  useEffect(() => {
+    if (isDesktop) return;
+
+    const scroller = tabScrollerRef.current;
+    const tab = document.getElementById(`feature-tab-${activeIndex}`);
+    if (!scroller || !tab) return;
+
+    const targetScroll =
+      tab.offsetLeft - scroller.clientWidth / 2 + tab.offsetWidth / 2;
+    scroller.scrollTo({ left: targetScroll, behavior: "smooth" });
+  }, [activeIndex, isDesktop]);
 
   const onKeyDown = (event: React.KeyboardEvent, index: number) => {
     let nextIndex = index;
@@ -146,7 +167,7 @@ export function HomeFeatureGrid({
 
   return (
     <section
-      className="relative overflow-hidden border-t border-marketing-border py-16 md:py-24"
+      className="relative overflow-hidden border-t border-marketing-border py-12 sm:py-16 md:py-20 lg:py-24"
       aria-labelledby="feature-grid-heading"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -156,6 +177,7 @@ export function HomeFeatureGrid({
           setPaused(false);
         }
       }}
+      onTouchStart={() => setPaused(true)}
     >
       <div className="product-showcase-grid pointer-events-none absolute inset-0" aria-hidden />
       <div
@@ -180,133 +202,162 @@ export function HomeFeatureGrid({
             }
             subtitle={subtitle}
             align="center"
+            className="[&_p:last-child]:mt-4 [&_p:last-child]:text-base [&_p:last-child]:md:mt-5 [&_p:last-child]:md:text-lg [&_p:last-child]:lg:text-xl"
           />
         </ScrollReveal>
 
-        <div className="mt-14 grid items-start gap-8 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-12 xl:grid-cols-[minmax(0,24rem)_1fr]">
-          <div
-            className="flex gap-3 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0"
-            role="tablist"
-            aria-label="Product workflows"
-          >
-            {items.map((item, index) => {
-              const selected = activeIndex === index;
-              const meta = FEATURE_META[index] ?? FEATURE_META[0];
+        <div className="mt-8 md:mt-10 lg:mt-14">
+          <div className="relative lg:grid lg:grid-cols-[minmax(0,22rem)_1fr] lg:items-start lg:gap-12 xl:grid-cols-[minmax(0,24rem)_1fr]">
+            <div className="relative mb-6 lg:mb-0">
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 bg-gradient-to-r from-marketing-bg to-transparent md:hidden"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 bg-gradient-to-l from-marketing-bg to-transparent md:hidden"
+                aria-hidden
+              />
 
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  role="tab"
-                  id={`feature-tab-${index}`}
-                  tabIndex={selected ? 0 : -1}
-                  aria-selected={selected}
-                  aria-controls="feature-grid-panel"
-                  className={`feature-tab nym-focus group min-w-[17rem] shrink-0 text-left lg:min-w-0 ${
-                    selected ? "feature-tab-active" : ""
-                  }`}
-                  onClick={() => setActiveIndex(index)}
-                  onKeyDown={(event) => onKeyDown(event, index)}
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="feature-tab-icon mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-marketing-border/70 bg-marketing-surface/80">
-                      <FeatureIcon index={index} />
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-nym-primary/80">
-                          {meta.category}
-                        </span>
-                        <span className="hidden text-[10px] text-marketing-text-muted sm:inline">·</span>
-                        <span className="hidden text-[10px] font-medium text-marketing-text-muted sm:inline">
-                          {meta.stat}
-                        </span>
-                      </div>
-                      <h3 className="mt-1.5 text-base font-semibold text-marketing-text transition-colors group-hover:text-nym-primary md:text-lg">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-marketing-text-muted line-clamp-2 lg:line-clamp-none">
-                        {item.description}
-                      </p>
-                    </div>
-                    <svg
-                      className={`mt-1 h-4 w-4 shrink-0 transition-all ${
-                        selected
-                          ? "translate-x-0 text-nym-primary opacity-100"
-                          : "-translate-x-1 text-marketing-text-muted opacity-0 group-hover:translate-x-0 group-hover:opacity-60"
-                      }`}
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      aria-hidden
-                    >
-                      <path
-                        d="M6 3l5 5-5 5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          <div
-            ref={panelRef}
-            role="tabpanel"
-            id="feature-grid-panel"
-            aria-labelledby={`feature-tab-${activeIndex}`}
-            className="feature-preview-panel relative"
-          >
-            <div className="feature-preview-chrome mb-4 flex flex-wrap items-center justify-between gap-3 px-1">
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-nym-primary/40 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-nym-primary" />
-                </span>
-                <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-marketing-text-muted">
-                  Live canvas preview
-                </span>
-              </div>
-              <Link
-                href={activeItem.href}
-                className="nym-focus text-sm font-medium text-nym-primary hover:underline"
+              <div
+                ref={tabScrollerRef}
+                className="feature-tab-scroller -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:grid md:grid-cols-2 md:gap-3 md:overflow-visible md:px-0 md:pb-0 lg:flex lg:flex-col lg:gap-3"
+                role="tablist"
+                aria-label="Product workflows"
               >
-                Open {activeItem.title.toLowerCase()} →
-              </Link>
+                {items.map((item, index) => {
+                  const selected = activeIndex === index;
+                  const meta = FEATURE_META[index] ?? FEATURE_META[0];
+
+                  return (
+                    <button
+                      key={item.title}
+                      type="button"
+                      role="tab"
+                      id={`feature-tab-${index}`}
+                      tabIndex={selected ? 0 : -1}
+                      aria-selected={selected}
+                      aria-controls="feature-grid-panel"
+                      className={`feature-tab nym-focus group shrink-0 snap-center text-left md:shrink lg:shrink-0 ${
+                        selected ? "feature-tab-active" : ""
+                      } feature-tab-responsive`}
+                      onClick={() => setActiveIndex(index)}
+                      onKeyDown={(event) => onKeyDown(event, index)}
+                    >
+                      <div className="flex items-center gap-2 md:items-start md:gap-2.5 lg:gap-3">
+                        <span className="feature-tab-icon flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-marketing-border/70 bg-marketing-surface/80 md:h-8 md:w-8 lg:mt-0.5 lg:h-9 lg:w-9">
+                          <FeatureIcon index={index} compact />
+                        </span>
+
+                        <div className="min-w-0 flex-1">
+                          <span className="hidden font-mono text-[9px] uppercase tracking-[0.12em] text-nym-primary/80 md:block lg:text-[10px]">
+                            {meta.category}
+                            <span className="hidden lg:inline">
+                              {" · "}
+                              {meta.stat}
+                            </span>
+                          </span>
+                          <h3 className="text-sm font-semibold text-marketing-text transition-colors group-hover:text-nym-primary md:mt-1 lg:mt-1.5 lg:text-lg">
+                            {item.title}
+                          </h3>
+                          <p className="mt-1 hidden text-xs leading-relaxed text-marketing-text-muted line-clamp-2 md:block lg:line-clamp-none lg:text-sm">
+                            {item.description}
+                          </p>
+                        </div>
+
+                        <svg
+                          className={`hidden h-4 w-4 shrink-0 transition-all lg:mt-1 lg:block ${
+                            selected
+                              ? "translate-x-0 text-nym-primary opacity-100"
+                              : "-translate-x-1 text-marketing-text-muted opacity-0 group-hover:translate-x-0 group-hover:opacity-60"
+                          }`}
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          aria-hidden
+                        >
+                          <path
+                            d="M6 3l5 5-5 5"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            <ProductInteractivePreview
-              screenshot={activeScreenshot}
-              alt={activeItem.title}
-              glow
-              autoPlay={!paused}
-              resetKey={`${activeIndex}-${activeScreenshot}`}
-            >
-              <ProductPreviewContent screenshot={activeScreenshot} alt={activeItem.title} />
-            </ProductInteractivePreview>
+            <div className="lg:contents">
+              <div className="mb-4 lg:hidden" aria-live="polite">
+                <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-nym-primary/80">
+                  {activeMeta.category}
+                </p>
+                <h3 className="mt-1 text-lg font-semibold text-marketing-text sm:text-xl">
+                  {activeItem.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-marketing-text-muted sm:text-base">
+                  {activeItem.description}
+                </p>
+              </div>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              {["Canvas builder", "Human approval", "Execution logs"].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-marketing-border/70 bg-marketing-surface/60 px-3 py-1 text-xs text-marketing-text-muted backdrop-blur-sm"
+              <div
+                role="tabpanel"
+                id="feature-grid-panel"
+                aria-labelledby={`feature-tab-${activeIndex}`}
+                className="feature-preview-panel relative min-w-0"
+              >
+                <div className="feature-preview-chrome mb-3 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-3">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-nym-primary/40 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-nym-primary" />
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-marketing-text-muted sm:text-[11px]">
+                      Live canvas preview
+                    </span>
+                  </div>
+                  <Link
+                    href={activeItem.href}
+                    className="nym-focus text-sm font-medium text-nym-primary hover:underline"
+                  >
+                    <span className="hidden sm:inline">Open {activeItem.title.toLowerCase()} →</span>
+                    <span className="sm:hidden">View workflow →</span>
+                  </Link>
+                </div>
+
+                <ProductInteractivePreview
+                  screenshot={activeScreenshot}
+                  alt={activeItem.title}
+                  glow
+                  autoPlay={!paused && isDesktop}
+                  resetKey={`${activeIndex}-${activeScreenshot}`}
                 >
-                  {tag}
-                </span>
-              ))}
-              <span className="rounded-full border border-nym-primary/25 bg-nym-primary/10 px-3 py-1 text-xs font-medium text-nym-primary">
-                {activeMeta.stat}
-              </span>
+                  <ProductPreviewContent screenshot={activeScreenshot} alt={activeItem.title} />
+                </ProductInteractivePreview>
+
+                <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-5 sm:gap-2">
+                  {CAPABILITY_TAGS.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-marketing-border/70 bg-marketing-surface/60 px-2.5 py-0.5 text-[11px] text-marketing-text-muted backdrop-blur-sm sm:px-3 sm:py-1 sm:text-xs"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  <span className="rounded-full border border-nym-primary/25 bg-nym-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-nym-primary sm:px-3 sm:py-1 sm:text-xs">
+                    {activeMeta.stat}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <ScrollReveal delay={120}>
           <nav
-            className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-marketing-border/80 pt-8"
+            className="mt-10 flex flex-col items-stretch gap-2 border-t border-marketing-border/80 pt-6 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 sm:gap-y-3 sm:pt-8 md:mt-14"
             aria-label="Explore product"
           >
             {[
@@ -317,7 +368,7 @@ export function HomeFeatureGrid({
               <Link
                 key={link.href}
                 href={link.href}
-                className="nym-focus group inline-flex items-center gap-1.5 text-sm font-medium text-marketing-text-muted transition-colors hover:text-nym-primary"
+                className="nym-focus group inline-flex items-center justify-center gap-1.5 rounded-lg border border-marketing-border/60 px-4 py-2.5 text-sm font-medium text-marketing-text-muted transition-colors hover:border-nym-primary/30 hover:text-nym-primary sm:justify-start sm:border-0 sm:p-0"
               >
                 {link.label}
                 <svg
