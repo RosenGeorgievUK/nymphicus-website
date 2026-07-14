@@ -145,6 +145,7 @@ export type Dictionary = {
     pillars: { highlight: string; title: string; description: string }[];
     bentoEyebrow: string;
     bentoTitle: string;
+    bentoTitleHighlight: string;
     bentoSubtitle: string;
     bentoItems: { title: string; description: string; href: string }[];
     bentoLinks: { templates: string; features: string; useCases: string };

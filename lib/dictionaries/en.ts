@@ -152,7 +152,8 @@ const en: Dictionary = {
       },
     ],
     bentoEyebrow: "Product",
-    bentoTitle: "From template to production in one platform",
+    bentoTitle: "From template to production",
+    bentoTitleHighlight: "in one platform",
     bentoSubtitle:
       "Pre-built workflows for support, sales, and knowledge — or build your own on the canvas.",
     bentoItems: [

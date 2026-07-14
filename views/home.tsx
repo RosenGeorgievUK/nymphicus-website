@@ -68,9 +68,17 @@ export function HomeView() {
       <HomeFeatureGrid
         eyebrow={dict.home.bentoEyebrow}
         title={dict.home.bentoTitle}
+        titleHighlight={dict.home.bentoTitleHighlight}
         subtitle={dict.home.bentoSubtitle}
-        items={dict.home.bentoItems}
-        localizeHref={p}
+        items={dict.home.bentoItems.map((item) => ({ ...item, href: p(item.href) }))}
+        links={{
+          ...dict.home.bentoLinks,
+          hrefs: {
+            templates: p("/templates"),
+            features: p("/features"),
+            useCases: p("/use-cases"),
+          },
+        }}
       />
 
       <HomeFeatureSpotlight
