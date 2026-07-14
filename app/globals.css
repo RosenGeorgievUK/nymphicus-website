@@ -415,6 +415,60 @@
     contain: layout paint;
   }
 
+  .demo-cursor {
+    transition: left 0.45s cubic-bezier(0.22, 1, 0.36, 1), top 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: left, top;
+  }
+
+  .demo-click-ring {
+    animation: demoClickRing 0.5s ease-out;
+  }
+
+  @keyframes demoClickRing {
+    from {
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(0.6);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.4);
+    }
+  }
+
+  .demo-drag-ghost {
+    transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .demo-edge-in {
+    stroke-dasharray: 120;
+    animation: demoEdgeDraw 0.5s ease-out forwards;
+  }
+
+  @keyframes demoEdgeDraw {
+    from {
+      stroke-dashoffset: 120;
+      opacity: 0.4;
+    }
+    to {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes demoCaretBlink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .demo-typing-caret {
+    animation: demoCaretBlink 1s step-end infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .recording-rec-dot,
     .recording-click-ring,
@@ -433,6 +487,21 @@
     .demo-log-sweep,
     .demo-enter,
     .demo-panel-in {
+      animation: none;
+    }
+
+    .demo-cursor,
+    .demo-drag-ghost {
+      transition: none;
+    }
+
+    .demo-edge-in {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+
+    .demo-click-ring,
+    .demo-typing-caret {
       animation: none;
     }
   }
