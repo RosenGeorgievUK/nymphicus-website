@@ -1,11 +1,9 @@
-"use client";
-
-import { UnifiedPipelineDemo } from "@/components/workflow-demo/UnifiedPipelineDemo";
+import { AgentBuilderStaticDemo } from "@/components/workflow-demo/AgentBuilderStaticDemo";
 
 export function WalkthroughDemoCanvas() {
   return (
     <div className="w-full">
-      <UnifiedPipelineDemo />
+      <AgentBuilderStaticDemo />
     </div>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { WalkthroughDemoCanvas } from "@/components/WalkthroughDemoCanvas";
 
@@ -21,7 +19,7 @@ export function ProductDemoSection() {
               How it works
             </h2>
             <p className="mt-3 text-base text-marketing-text-muted">
-              One continuous flow — build the agent, connect your stack, then watch nodes execute with approval gates and audit logging.
+              Drag nodes onto the canvas, wire branches and MCP tools, and publish with human approval gates built in.
             </p>
           </div>
 
@@ -39,10 +37,7 @@ export function ProductDemoSection() {
           </div>
 
           <p className="mt-4 text-center text-sm leading-relaxed text-marketing-text-muted md:text-base">
-            Build → Connect → Run in one sequence. Nodes execute step-by-step with MCP tools, human approval, and immutable logs.
-            <span className="mt-1 block text-xs text-marketing-text-muted/80">
-              Auto-plays when in view — 23 steps
-            </span>
+            Support Triage Agent — classify tickets, search your KB, draft replies, and route through human review before anything goes out.
           </p>
         </div>
       </div>

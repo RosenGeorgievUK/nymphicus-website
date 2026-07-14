@@ -24,14 +24,31 @@ if ($Port -eq 3000 -and $NextArgs.Count -gt 0) {
     }
 }
 
+$killedListener = $false
+
+function Stop-NextDevProcesses {
+    param([int]$ExceptPid = 0)
+    Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" -ErrorAction SilentlyContinue |
+        Where-Object { $_.CommandLine -match "next dev" -and $_.ProcessId -ne $ExceptPid } |
+        ForEach-Object {
+            Write-Host "Stopping Next.js dev process $($_.ProcessId)..."
+            Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue
+            $script:killedListener = $true
+        }
+}
+
+# Stop every running Next.js dev server so only one writes to .next
+Stop-NextDevProcesses
+
 $connections = Get-NetTCPConnection -LocalPort $Port -ErrorAction SilentlyContinue
 if ($connections) {
-    $pids = $connections | Select-Object -ExpandProperty OwningProcess -Unique | Where-Object { $_ -gt 0 }
-    foreach ($procId in $pids) {
-        Write-Host "Stopping process $procId on port $Port..."
-        Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue
-    }
-    Start-Sleep -Seconds 1
+  $pids = $connections | Select-Object -ExpandProperty OwningProcess -Unique | Where-Object { $_ -gt 0 }
+  foreach ($procId in $pids) {
+    Write-Host "Stopping process $procId on port $Port..."
+    Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue
+    $killedListener = $true
+  }
+  Start-Sleep -Seconds 1
 }
 
 # Fallback: netstat in case Get-NetTCPConnection misses listeners
@@ -43,9 +60,10 @@ foreach ($procId in $netstatPids) {
     if (-not (Get-Process -Id $procId -ErrorAction SilentlyContinue)) { continue }
     Write-Host "Stopping process $procId on port $Port (netstat)..."
     Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue
+    $killedListener = $true
 }
 
-if ($Clean -and (Test-Path ".next")) {
+if (($Clean -or $killedListener) -and (Test-Path ".next")) {
     Write-Host "Clearing .next cache..."
     Remove-Item -Recurse -Force ".next"
 }

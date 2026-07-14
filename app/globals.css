@@ -415,6 +415,24 @@
     contain: layout paint;
   }
 
+  .agent-builder-mock {
+    contain: layout paint;
+  }
+
+  .agent-builder-canvas {
+    background-color: #f8f9fd;
+    background-image: radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0);
+    background-size: 18px 18px;
+  }
+
+  .agent-builder-node {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .agent-builder-node-multi {
+    @apply overflow-visible;
+  }
+
   .demo-cursor {
     transition: left 0.45s cubic-bezier(0.22, 1, 0.36, 1), top 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: left, top;

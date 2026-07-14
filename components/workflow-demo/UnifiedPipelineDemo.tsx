@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { McpServerIcon } from "@/components/McpServerIcon";
 import { DemoCursor } from "@/components/workflow-demo/DemoCursor";
 import { useScriptedDemo } from "@/components/hooks/use-scripted-demo";
@@ -432,8 +432,32 @@ function mcpLabelsForNode(nodeId: string, mcpVisible: number): string[] {
 }
 
 export function UnifiedPipelineDemo() {
-  const { ref, inView } = useInView<HTMLDivElement>();
-  const step = useScriptedDemo(PIPELINE_STEPS.length, 720, 3200, inView, "unified-pipeline");
+  const { ref, inView } = useInView<HTMLDivElement>("0px 0px -5% 0px");
+  const [playSession, setPlaySession] = useState(0);
+
+  useEffect(() => {
+    const restart = () => setPlaySession((id) => id + 1);
+
+    if (window.location.hash === "#product-demo") {
+      const t = window.setTimeout(restart, 50);
+      window.addEventListener("pageshow", restart);
+      return () => {
+        clearTimeout(t);
+        window.removeEventListener("pageshow", restart);
+      };
+    }
+
+    window.addEventListener("pageshow", restart);
+    return () => window.removeEventListener("pageshow", restart);
+  }, []);
+
+  const step = useScriptedDemo(
+    PIPELINE_STEPS.length,
+    720,
+    3200,
+    inView,
+    `unified-pipeline-${playSession}`,
+  );
   const state = pipelineStateForStep(step);
 
   const travelerNode = state.showTraveler && state.travelerAt >= 0 ? NODES[state.travelerAt] : null;

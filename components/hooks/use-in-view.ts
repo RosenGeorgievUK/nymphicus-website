@@ -2,6 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 
+function isElementInView(element: HTMLElement, rootMargin: string) {
+  const rect = element.getBoundingClientRect();
+  const windowH = window.innerHeight || document.documentElement.clientHeight;
+
+  const bottomInset = rootMargin.includes("-")
+    ? Math.abs(parseFloat(rootMargin.split(" ")[2] ?? "0") / 100) * windowH
+    : 0;
+
+  const visibleTop = rect.top < windowH - bottomInset;
+  const visibleBottom = rect.bottom > windowH * 0.12;
+  return visibleTop && visibleBottom && rect.height > 0;
+}
+
 export function useInView<T extends HTMLElement>(rootMargin = "0px 0px -10% 0px") {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
@@ -10,13 +23,43 @@ export function useInView<T extends HTMLElement>(rootMargin = "0px 0px -10% 0px"
     const element = ref.current;
     if (!element) return;
 
+    let mounted = true;
+    const set = (value: boolean) => {
+      if (mounted) setInView(value);
+    };
+
     const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.2, rootMargin },
+      ([entry]) => set(entry.isIntersecting),
+      { threshold: 0.12, rootMargin },
     );
 
     observer.observe(element);
-    return () => observer.disconnect();
+
+    const recheck = () => {
+      if (element) set(isElementInView(element, rootMargin));
+    };
+
+    recheck();
+    const raf = requestAnimationFrame(recheck);
+    const t1 = window.setTimeout(recheck, 80);
+    const t2 = window.setTimeout(recheck, 350);
+    const t3 = window.setTimeout(recheck, 800);
+
+    window.addEventListener("load", recheck);
+    window.addEventListener("hashchange", recheck);
+    window.addEventListener("pageshow", recheck);
+
+    return () => {
+      mounted = false;
+      cancelAnimationFrame(raf);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener("load", recheck);
+      window.removeEventListener("hashchange", recheck);
+      window.removeEventListener("pageshow", recheck);
+      observer.disconnect();
+    };
   }, [rootMargin]);
 
   return { ref, inView };
