@@ -209,6 +209,169 @@
     background-size: 48px 48px;
   }
 
+  .product-showcase-grid {
+    background-image:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(var(--nym-primary-rgb), 0.08), transparent 70%),
+      linear-gradient(rgba(var(--nym-primary-rgb), 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--nym-primary-rgb), 0.04) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      40px 40px,
+      40px 40px;
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  }
+
+  @media (max-width: 767px) {
+    .product-showcase-grid {
+      background-size:
+        100% 100%,
+        28px 28px,
+        28px 28px;
+    }
+  }
+
+  .feature-tab-scroller {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+
+  .feature-tab-scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .feature-tab-responsive {
+    border-radius: 9999px;
+    padding: 0.625rem 0.875rem;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .feature-tab-responsive {
+      border-radius: var(--nym-radius-lg);
+      padding: 0.875rem;
+      white-space: normal;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .feature-tab-responsive {
+      padding: 1rem 1.125rem;
+    }
+  }
+
+  .feature-tab {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--nym-radius-lg);
+    border: 1px solid rgba(var(--nym-primary-rgb), 0.12);
+    background: rgba(var(--nym-primary-rgb), 0.03);
+    padding: 1rem 1.125rem;
+    transition:
+      border-color 0.25s ease,
+      background-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .feature-tab-tablet {
+    padding: 0.875rem;
+  }
+
+  @media (max-width: 1023px) {
+    .feature-tab-active::before {
+      left: 0;
+      right: 0;
+      top: auto;
+      bottom: 0;
+      width: auto;
+      height: 3px;
+    }
+  }
+
+  .feature-tab:hover {
+    border-color: rgba(var(--nym-primary-rgb), 0.22);
+    background: rgba(var(--nym-primary-rgb), 0.05);
+  }
+
+  .feature-tab-active {
+    border-color: rgba(var(--nym-primary-rgb), 0.35);
+    background: rgba(var(--nym-primary-rgb), 0.07);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 8px 32px rgba(var(--nym-primary-rgb), 0.12);
+  }
+
+  .feature-tab-active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--nym-gradient-primary);
+    box-shadow: 0 0 16px rgba(var(--nym-secondary-rgb), 0.45);
+  }
+
+  .feature-tab-active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--nym-secondary-rgb), 0.45),
+      transparent
+    );
+    box-shadow: 0 4px 20px rgba(var(--nym-secondary-rgb), 0.2);
+  }
+
+  .feature-tab-icon {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .feature-tab-active .feature-tab-icon {
+    border-color: rgba(var(--nym-primary-rgb), 0.35);
+    box-shadow: 0 0 16px rgba(var(--nym-primary-rgb), 0.15);
+  }
+
+  .feature-preview-panel {
+    border-radius: calc(var(--nym-radius-lg) + 4px);
+    border: 1px solid rgba(var(--nym-primary-rgb), 0.14);
+    background: linear-gradient(
+      165deg,
+      rgba(var(--nym-primary-rgb), 0.06) 0%,
+      rgba(var(--nym-primary-rgb), 0.02) 45%,
+      transparent 100%
+    );
+    padding: 0.75rem;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 12px 32px rgba(var(--nym-primary-rgb), 0.06);
+  }
+
+  @media (min-width: 640px) {
+    .feature-preview-panel {
+      padding: 1rem;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 20px 40px rgba(var(--nym-primary-rgb), 0.07);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .feature-preview-panel {
+      padding: 1.25rem;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 24px 48px rgba(var(--nym-primary-rgb), 0.08);
+    }
+  }
+
   .section-y {
     @apply py-16 md:py-20;
   }

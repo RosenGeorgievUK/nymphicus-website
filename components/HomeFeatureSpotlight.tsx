@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { ProductPreviewContent } from "@/components/ProductPreviewContent";
-import { ProductInteractivePreview } from "@/components/ProductInteractivePreview";
+import { ProductPreviewFrame } from "@/components/ProductPreviewFrame";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import type { ScreenshotKey } from "@/lib/screenshots";
 
@@ -32,9 +31,10 @@ export function HomeFeatureSpotlight({
         <div className="space-y-6 md:space-y-8">
           {items.map((item, index) => {
             const reverse = index % 2 === 1;
+            const screenshot = screenshots[index] ?? "dashboard";
 
             return (
-              <ScrollReveal key={item.title} delay={index * 100}>
+              <ScrollReveal key={item.title} delay={index * 50}>
                 <article className="spotlight-card relative overflow-hidden rounded-nym-lg border border-marketing-border/80 bg-marketing-surface/25 p-6 md:p-8 lg:p-10">
                   <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
                     <div className={reverse ? "lg:order-2" : ""}>
@@ -64,16 +64,7 @@ export function HomeFeatureSpotlight({
                     </div>
 
                     <div className={reverse ? "lg:order-1" : ""}>
-                      <ProductInteractivePreview
-                        screenshot={screenshots[index] ?? "dashboard"}
-                        alt={item.title}
-                        glow
-                      >
-                        <ProductPreviewContent
-                          screenshot={screenshots[index] ?? "dashboard"}
-                          alt={item.title}
-                        />
-                      </ProductInteractivePreview>
+                      <ProductPreviewFrame screenshot={screenshot} alt={item.title} glow={false} />
                     </div>
                   </div>
                 </article>

@@ -1,6 +1,7 @@
 import { HomeView } from "@/views/home";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { createPageMetadata } from "@/lib/metadata";
+import { screenshotPath } from "@/lib/screenshots";
 
 const dict = getDictionary();
 
@@ -11,5 +12,15 @@ export const metadata = createPageMetadata({
 });
 
 export default function Page() {
-  return <HomeView />;
+  return (
+    <>
+      <link
+        rel="preload"
+        href={screenshotPath("dashboard")}
+        as="image"
+        fetchPriority="high"
+      />
+      <HomeView />
+    </>
+  );
 }

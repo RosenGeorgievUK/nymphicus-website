@@ -79,7 +79,7 @@ export function ProductPreviewFrame({
       role="img"
       aria-label={alt}
     >
-      <div className="relative overflow-hidden rounded-nym-lg border border-marketing-border/80 bg-marketing-surface shadow-2xl transition-transform duration-500 motion-safe:group-hover:scale-[1.01] [&_img]:block">
+      <div className="relative overflow-hidden rounded-nym-lg border border-marketing-border/80 bg-marketing-surface shadow-2xl [&_img]:block">
         {chrome && <PreviewFrameChrome />}
         <ScreenshotOrMock screenshot={screenshot} alt={alt} />
       </div>

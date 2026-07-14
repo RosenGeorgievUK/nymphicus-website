@@ -1,19 +1,26 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { CTABand } from "@/components/CTABand";
-import { FAQAccordion } from "@/components/FAQAccordion";
 import { GhostButton } from "@/components/GhostButton";
 import { GradientButton } from "@/components/GradientButton";
 import { HeroBackground } from "@/components/HeroBackground";
-import { HomeFeatureGrid } from "@/components/HomeFeatureGrid";
 import { HomeFeatureSpotlight } from "@/components/HomeFeatureSpotlight";
 import { IntegrationMarquee } from "@/components/IntegrationMarquee";
 import { PageSection } from "@/components/PageSection";
 import { ProductPreviewFrame } from "@/components/ProductPreviewFrame";
-import { ScrollReveal } from "@/components/ScrollReveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { platformUrls } from "@/lib/site";
 import { SPOTLIGHT_SCREENSHOTS } from "@/lib/view-helpers";
+
+const HomeFeatureGrid = dynamic(
+  () => import("@/components/HomeFeatureGrid").then((m) => m.HomeFeatureGrid),
+  { loading: () => <div className="min-h-[28rem] border-t border-marketing-border" aria-hidden /> },
+);
+
+const FAQAccordion = dynamic(
+  () => import("@/components/FAQAccordion").then((m) => m.FAQAccordion),
+);
 
 export function HomeView() {
   const dict = getDictionary();
@@ -31,17 +38,17 @@ export function HomeView() {
                 {dict.site.heroBadge}
               </span>
             </p>
-            <h1 className="motion-safe:animate-slide-up text-hero font-semibold text-marketing-text [animation-delay:80ms]">
+            <h1 className="motion-safe:animate-slide-up text-hero font-semibold text-marketing-text [animation-delay:40ms]">
               {dict.site.heroTitlePrefix}{" "}
               <span className="text-gradient">{dict.site.heroGradientPhrase}</span>
               <br />
               {dict.site.heroTitleSuffix}
             </h1>
-            <p className="motion-safe:animate-slide-up mx-auto mt-6 max-w-2xl text-hero-sub text-marketing-text-muted [animation-delay:160ms]">
+            <p className="motion-safe:animate-slide-up mx-auto mt-6 max-w-2xl text-hero-sub text-marketing-text-muted [animation-delay:80ms]">
               {dict.site.heroSubhead}
             </p>
 
-            <div className="motion-safe:animate-slide-up mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 [animation-delay:240ms]">
+            <div className="motion-safe:animate-slide-up mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 [animation-delay:120ms]">
               <GradientButton href={platformUrls.register} size="lg" glow>
                 {dict.site.getStartedFree}
               </GradientButton>
@@ -50,27 +57,35 @@ export function HomeView() {
               </GhostButton>
             </div>
 
-            <p className="motion-safe:animate-slide-up mt-5 text-sm text-marketing-text-muted [animation-delay:320ms]">
+            <p className="motion-safe:animate-slide-up mt-5 text-sm text-marketing-text-muted [animation-delay:160ms]">
               {dict.site.heroFootnote}
             </p>
           </div>
 
-          <ScrollReveal className="mx-auto mt-14 max-w-5xl md:mt-20" delay={400}>
+          <div className="mx-auto mt-14 max-w-5xl md:mt-20">
             <ProductPreviewFrame
               screenshot="dashboard"
               alt={dict.site.heroScreenshotAlt}
               glow
             />
-          </ScrollReveal>
+          </div>
         </div>
       </section>
 
       <HomeFeatureGrid
         eyebrow={dict.home.bentoEyebrow}
         title={dict.home.bentoTitle}
+        titleHighlight={dict.home.bentoTitleHighlight}
         subtitle={dict.home.bentoSubtitle}
-        items={dict.home.bentoItems}
-        localizeHref={p}
+        items={dict.home.bentoItems.map((item) => ({ ...item, href: p(item.href) }))}
+        links={{
+          ...dict.home.bentoLinks,
+          hrefs: {
+            templates: p("/templates"),
+            features: p("/features"),
+            useCases: p("/use-cases"),
+          },
+        }}
       />
 
       <HomeFeatureSpotlight
@@ -87,14 +102,12 @@ export function HomeView() {
       />
 
       <PageSection size="lg" ariaLabelledBy="faq-heading">
-        <ScrollReveal>
-          <SectionHeading
-            id="faq-heading"
-            eyebrow={dict.home.faqEyebrow}
-            title={dict.home.faqTitle}
-            align="center"
-          />
-        </ScrollReveal>
+        <SectionHeading
+          id="faq-heading"
+          eyebrow={dict.home.faqEyebrow}
+          title={dict.home.faqTitle}
+          align="center"
+        />
         <FAQAccordion items={dict.data.homepageFaq.slice(0, 3)} className="mx-auto mt-10 max-w-2xl" />
         <p className="mt-8 text-center text-sm text-marketing-text-muted">
           <Link href={p("/pricing")} className="font-medium text-nym-primary hover:underline">

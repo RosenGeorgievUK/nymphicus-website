@@ -1,19 +1,19 @@
-/** Physical pixel dimensions of captured product screenshots (1920×1080 @ 2× DPR). */
+/** Display dimensions of optimized JPEG product screenshots. */
 export const screenshotDimensions = {
-  width: 3840,
-  height: 2160,
+  width: 2560,
+  height: 1249,
 } as const;
 
 export const screenshots = {
-  dashboard: "demo-01-dashboard.png",
-  supportWorkflow: "demo-02-support-triage-workflow.png",
-  supportChat: "demo-03-support-chat.png",
-  executionLogs: "demo-04-execution-logs.png",
-  agentsList: "demo-05-agents-list.png",
-  crmWorkflow: "demo-06-crm-copilot-workflow.png",
-  conversations: "demo-07-conversations.png",
-  mcpRegistry: "demo-08-mcp-registry.png",
-  knowledgeWorkflow: "demo-09-knowledge-base-workflow.png",
+  dashboard: "demo-01-dashboard.jpeg",
+  supportWorkflow: "demo-02-support-triage-workflow.jpeg",
+  supportChat: "demo-03-support-chat.jpeg",
+  executionLogs: "demo-04-execution-logs.jpeg",
+  agentsList: "demo-05-agents-list.jpeg",
+  crmWorkflow: "demo-06-crm-copilot-workflow.jpeg",
+  conversations: "demo-07-conversations.jpeg",
+  mcpRegistry: "demo-08-mcp-registry.jpeg",
+  knowledgeWorkflow: "demo-09-knowledge-base-workflow.jpeg",
 } as const;
 
 export type ScreenshotKey = keyof typeof screenshots;
