@@ -1,6 +1,9 @@
 import { platformUrls } from "@/lib/site";
 
-export type PricingTierId = "free" | "starter" | "pro" | "team" | "enterprise";
+export type PricingTierId = "free" | "starter" | "cloud" | "enterprise";
+
+/** @deprecated Pro and Team merged into cloud */
+export type LegacyPricingTierId = "pro" | "team";
 
 /** Annual billing discount (Stripe COGS model — one txn/yr improves margin). */
 export const ANNUAL_BILLING_DISCOUNT = 0.2;
@@ -8,20 +11,70 @@ export const ANNUAL_BILLING_DISCOUNT = 0.2;
 export type PricingTier = {
   id: PricingTierId;
   name: string;
+  tagline: string;
   monthlyPrice: number | null;
-  includedSeats: number;
-  minSeats: number;
-  maxSeats: number;
-  extraSeatMonthly: number | null;
-  seatAdjustable: boolean;
   pricePrefix?: string;
+  hostedLabel?: string;
+  includesTitle: string;
   features: string[];
   ctaLabel: string;
   ctaHref: string;
   variant: "gradient" | "ghost";
   highlighted?: boolean;
   badge?: string;
+  seatAdjustable?: boolean;
 };
+
+export const CLOUD_PLAN = {
+  minSeats: 1,
+  maxSeats: 50,
+  defaultSeats: 3,
+  /** Aligns with former Pro ($49/3 seats) and Team ($149/10 seats). */
+  includedAtBase: 3,
+  baseMonthly: 49,
+  teamThreshold: 10,
+  teamBaseMonthly: 149,
+  midExtraSeatRate: 14,
+  volumeExtraSeatRate: 10,
+} as const;
+
+export function computeCloudMonthly(seats: number): {
+  monthly: number;
+  effectivePerSeat: number;
+  volumeActive: boolean;
+} {
+  const s = Math.max(CLOUD_PLAN.minSeats, Math.min(CLOUD_PLAN.maxSeats, seats));
+
+  let monthly: number;
+  if (s <= CLOUD_PLAN.includedAtBase) {
+    monthly = CLOUD_PLAN.baseMonthly;
+  } else if (s < CLOUD_PLAN.teamThreshold) {
+    monthly = CLOUD_PLAN.baseMonthly + (s - CLOUD_PLAN.includedAtBase) * CLOUD_PLAN.midExtraSeatRate;
+  } else {
+    monthly =
+      CLOUD_PLAN.teamBaseMonthly + (s - CLOUD_PLAN.teamThreshold) * CLOUD_PLAN.volumeExtraSeatRate;
+  }
+
+  return {
+    monthly,
+    effectivePerSeat: Math.round((monthly / s) * 100) / 100,
+    volumeActive: s >= CLOUD_PLAN.teamThreshold,
+  };
+}
+
+export function cloudFeaturesForSeats(seats: number): string[] {
+  const volume = seats >= CLOUD_PLAN.teamThreshold;
+  return [
+    `${seats} seat${seats === 1 ? "" : "s"} on your workspace`,
+    volume ? "Unlimited agents" : "10 agents",
+    volume ? "Unlimited knowledge bases (20GB)" : "10 knowledge bases (2GB)",
+    "Unlimited MCP integrations",
+    volume ? "Full RBAC" : "Basic roles",
+    volume ? "1-year audit trail" : "30-day audit trail",
+    volume ? "Priority support" : "Email support",
+    "BYO keys — no AI markup",
+  ];
+}
 
 export const pricingHero = {
   eyebrow: "Pricing",
@@ -34,18 +87,17 @@ export const pricingTiers: PricingTier[] = [
   {
     id: "free",
     name: "Free",
+    tagline: "Great for exploring the builder and shipping your first agent.",
     monthlyPrice: 0,
-    includedSeats: 1,
-    minSeats: 1,
-    maxSeats: 1,
-    extraSeatMonthly: null,
-    seatAdjustable: false,
+    includesTitle: "This plan includes:",
     features: [
       "1 seat",
       "2 agents",
       "1 knowledge base (50MB)",
       "2 MCP integrations",
-      "BYO keys",
+      "Visual agent builder",
+      "BYO API keys",
+      "7-day audit trail",
       "Community support",
     ],
     ctaLabel: "Start free",
@@ -55,97 +107,73 @@ export const pricingTiers: PricingTier[] = [
   {
     id: "starter",
     name: "Starter",
+    tagline: "For solo builders running agents in production.",
     monthlyPrice: 19,
-    includedSeats: 1,
-    minSeats: 1,
-    maxSeats: 5,
-    extraSeatMonthly: 8,
-    seatAdjustable: true,
+    hostedLabel: "Hosted by Nymphi",
+    includesTitle: "Everything in Free, plus:",
     features: [
-      "1 seat included, $8/mo per extra seat",
+      "1 seat (add up to 5)",
       "3 agents",
       "1 knowledge base (250MB)",
       "3 MCP integrations",
-      "BYO keys",
       "14-day audit trail",
       "Email support",
     ],
     ctaLabel: "Start free trial",
     ctaHref: platformUrls.register,
     variant: "gradient",
+    seatAdjustable: true,
   },
   {
-    id: "pro",
+    id: "cloud",
     name: "Pro",
-    monthlyPrice: 49,
-    includedSeats: 3,
-    minSeats: 1,
-    maxSeats: 25,
-    extraSeatMonthly: 15,
-    seatAdjustable: true,
-    features: [
-      "3 seats included, $15/mo per extra seat",
-      "10 agents",
-      "10 knowledge bases (2GB total)",
-      "Unlimited MCP integrations",
-      "BYO keys",
-      "Basic roles",
-      "30-day audit trail",
-      "Email support",
-    ],
-    ctaLabel: "Start free trial",
-    ctaHref: platformUrls.register,
-    variant: "gradient",
-  },
-  {
-    id: "team",
-    name: "Team",
-    monthlyPrice: 149,
-    includedSeats: 10,
-    minSeats: 1,
-    maxSeats: 50,
-    extraSeatMonthly: 12,
-    seatAdjustable: true,
-    features: [
-      "10 seats included, $12/mo per extra seat",
-      "Unlimited agents",
-      "Unlimited knowledge bases (20GB total)",
-      "Unlimited MCP integrations",
-      "BYO keys",
-      "Full RBAC",
-      "1-year audit trail",
-      "Priority support",
-    ],
+    tagline: "For teams that scale — price drops as you add seats.",
+    monthlyPrice: null,
+    hostedLabel: "Hosted by Nymphi",
+    includesTitle: "Everything in Starter, plus:",
+    features: [],
     ctaLabel: "Start free trial",
     ctaHref: platformUrls.register,
     variant: "gradient",
     highlighted: true,
     badge: "Most popular",
+    seatAdjustable: true,
   },
   {
     id: "enterprise",
-    name: "Self-Hosted / Enterprise",
+    name: "Enterprise",
+    tagline: "For organisations with compliance, SSO, and self-hosting needs.",
     monthlyPrice: 499,
-    includedSeats: 999,
-    minSeats: 1,
-    maxSeats: 999,
-    extraSeatMonthly: null,
-    seatAdjustable: false,
     pricePrefix: "from",
+    includesTitle: "Everything in Pro, plus:",
     features: [
-      "Deploy on your own infrastructure (on-prem or VPC)",
+      "Self-hosted or VPC deployment",
       "Unlimited seats and agents",
-      "Full RBAC + SSO/SAML",
+      "SSO / SAML",
       "Unlimited audit retention",
       "Your storage, your limits",
-      "SLA + onboarding",
-      "Annual licence option available",
+      "SLA + dedicated onboarding",
+      "Invoice billing",
     ],
     ctaLabel: "Talk to us",
     ctaHref: "/contact",
     variant: "ghost",
   },
 ];
+
+export const STARTER_PLAN = {
+  monthly: 19,
+  includedSeats: 1,
+  minSeats: 1,
+  maxSeats: 5,
+  extraSeatMonthly: 8,
+  defaultSeats: 1,
+} as const;
+
+export function computeStarterMonthly(seats: number): number {
+  const s = Math.max(STARTER_PLAN.minSeats, Math.min(STARTER_PLAN.maxSeats, seats));
+  return STARTER_PLAN.monthly + Math.max(0, s - STARTER_PLAN.includedSeats) * STARTER_PLAN.extraSeatMonthly;
+}
 
 export const pricingByoComparison = {
   title: "The BYO-keys difference",
@@ -176,24 +204,19 @@ export const pricingFaq = [
       "You connect your own OpenAI, Anthropic, or other provider API keys. Model usage is billed by the provider directly at their standard rates. We never mark up or meter your AI usage.",
   },
   {
-    question: "Is there really no usage-based billing?",
+    question: "How does Pro seat pricing work?",
     answer:
-      "Correct. No per-message, per-execution, or credit-based charges. You pay a flat platform fee plus optional extra seats.",
+      "One Pro plan for all team sizes. $49/mo covers up to 3 seats. Add seats 4–9 at $14/seat. At 10+ seats you get Team-level features and volume pricing at $10/seat above the $149 base.",
   },
   {
     question: "How does annual billing work?",
     answer:
-      "Pay yearly and save 20% versus monthly. Stripe processes one payment per year on paid tiers — same features, lower platform fee.",
+      "Pay yearly and save 20% versus monthly. Stripe processes one payment per year on paid tiers.",
   },
   {
-    question: "Can I add or remove seats?",
+    question: "What's included in self-hosted Enterprise?",
     answer:
-      "Yes on Starter, Pro, and Team. Adjust seats on the pricing page — your total updates instantly. Extra seats bill at the per-seat rate for that tier.",
-  },
-  {
-    question: "What's included in self-hosted?",
-    answer:
-      "The full platform deployed on your infrastructure: visual agent builder, knowledge bases with RAG, MCP integrations, RBAC, SSO/SAML, and full audit trail. Includes updates and support while your licence is active.",
+      "The full platform on your infrastructure: visual agent builder, knowledge bases with RAG, MCP integrations, RBAC, SSO/SAML, and full audit trail.",
   },
   {
     question: "Can I switch plans?",
@@ -224,79 +247,84 @@ export function formatUsd(amount: number, options?: { prefix?: string; period?: 
 /** @deprecated Use formatUsd */
 export const formatGbp = formatUsd;
 
-export function monthlySubtotal(tier: PricingTier, seats: number): number {
-  if (tier.monthlyPrice === null) return 0;
-  if (tier.id === "free") return 0;
-
-  const billableSeats = Math.max(tier.minSeats, Math.min(tier.maxSeats, seats));
-  const extraSeats = tier.extraSeatMonthly
-    ? Math.max(0, billableSeats - tier.includedSeats)
-    : 0;
-
-  return tier.monthlyPrice + extraSeats * (tier.extraSeatMonthly ?? 0);
-}
+export type PriceResult = {
+  price: string;
+  note?: string;
+  monthlyEquivalent?: number;
+  volumeActive?: boolean;
+};
 
 export function priceForTier(
   tier: PricingTier,
   annual: boolean,
-  seats = tier.includedSeats,
-): { price: string; note?: string; monthlyEquivalent?: number } {
+  seats?: number,
+): PriceResult {
   if (tier.id === "free") {
     return { price: formatUsd(0), note: "forever" };
+  }
+
+  if (tier.id === "cloud") {
+    const s = seats ?? CLOUD_PLAN.defaultSeats;
+    const { monthly, effectivePerSeat, volumeActive } = computeCloudMonthly(s);
+    if (annual) {
+      const yearly = Math.round(monthly * 12 * (1 - ANNUAL_BILLING_DISCOUNT));
+      const perMonth = Math.round((yearly / 12) * 100) / 100;
+      return {
+        price: formatUsd(perMonth, { period: "mo" }),
+        note: `billed annually · ${formatUsd(yearly, { period: "yr" })} · ${s} seats`,
+        monthlyEquivalent: perMonth,
+        volumeActive,
+      };
+    }
+    return {
+      price: formatUsd(monthly, { period: "mo" }),
+      note: volumeActive
+        ? `${s} seats · $${CLOUD_PLAN.volumeExtraSeatRate}/seat volume rate`
+        : `${s} seats · ${formatUsd(effectivePerSeat, { period: "mo" })} effective per seat`,
+      monthlyEquivalent: monthly,
+      volumeActive,
+    };
+  }
+
+  if (tier.id === "starter") {
+    const s = seats ?? STARTER_PLAN.defaultSeats;
+    const monthly = computeStarterMonthly(s);
+    if (annual) {
+      const yearly = Math.round(monthly * 12 * (1 - ANNUAL_BILLING_DISCOUNT));
+      const perMonth = Math.round((yearly / 12) * 100) / 100;
+      return {
+        price: formatUsd(perMonth, { period: "mo" }),
+        note: `billed annually · ${s} seat${s === 1 ? "" : "s"}`,
+        monthlyEquivalent: perMonth,
+      };
+    }
+    return {
+      price: formatUsd(monthly, { period: "mo" }),
+      note: `${s} seat${s === 1 ? "" : "s"}`,
+      monthlyEquivalent: monthly,
+    };
   }
 
   if (tier.id === "enterprise") {
     const base = tier.monthlyPrice!;
     if (annual) {
       const yearly = Math.round(base * 12 * (1 - ANNUAL_BILLING_DISCOUNT));
+      const perMonth = Math.round((yearly / 12) * 100) / 100;
       return {
-        price: formatUsd(yearly, { prefix: "from", period: "yr" }),
-        note: "Save 20% · annual licence · contact us",
-        monthlyEquivalent: Math.round((yearly / 12) * 100) / 100,
+        price: formatUsd(perMonth, { period: "mo" }),
+        note: `billed annually · self-hosted`,
+        monthlyEquivalent: perMonth,
       };
     }
-    return { price: formatUsd(base, { prefix: "from", period: "mo" }) };
+    return { price: formatUsd(base, { prefix: "from", period: "mo" }), note: "self-hosted · SSO · SLA" };
   }
 
-  const monthly = monthlySubtotal(tier, seats);
+  return { price: "—" };
+}
 
-  if (annual) {
-    const yearly = Math.round(monthly * 12 * (1 - ANNUAL_BILLING_DISCOUNT));
-    const perMonth = Math.round((yearly / 12) * 100) / 100;
-    return {
-      price: formatUsd(yearly, { period: "yr" }),
-      note: `Save 20% · ${formatUsd(perMonth, { period: "mo" })} equivalent`,
-      monthlyEquivalent: perMonth,
-    };
+export function featuresForTier(tier: PricingTier, seats?: number): string[] {
+  if (tier.id === "cloud") {
+    return cloudFeaturesForSeats(seats ?? CLOUD_PLAN.defaultSeats);
   }
-
-  const seatNote =
-    seats > tier.includedSeats
-      ? `${seats} seats (${seats - tier.includedSeats} extra)`
-      : seats < tier.includedSeats
-        ? `${seats} seat${seats === 1 ? "" : "s"}`
-        : `${tier.includedSeats} seats included`;
-
-  return {
-    price: formatUsd(monthly, { period: "mo" }),
-    note: seatNote,
-    monthlyEquivalent: monthly,
-  };
+  return tier.features;
 }
-
-export function defaultSeatsForTier(tierId: PricingTierId): number {
-  const tier = pricingTiers.find((t) => t.id === tierId);
-  return tier?.includedSeats ?? 1;
-}
-
-export type PricingTeaserTierId = "free" | "starter" | "pro" | "team";
-
-/** Homepage pricing strip — paid tiers with seat adjustment on page */
-export const pricingTeaserTierIds: PricingTeaserTierId[] = ["free", "starter", "pro", "team"];
-
-export const pricingTeaserDescriptions: Record<PricingTeaserTierId, string> = {
-  free: "Start building — bring your own keys",
-  starter: "Ship your first agents — perfect for solo builders",
-  pro: "Growing teams that need more agents and seats",
-  team: "Unlimited agents, full RBAC, and priority support",
-};

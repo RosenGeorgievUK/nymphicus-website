@@ -87,8 +87,6 @@ const en: Dictionary = {
       links: [
         { href: "/about", label: "About" },
         { href: "/contact", label: "Contact" },
-        { href: "/privacy", label: "Privacy" },
-        { href: "/terms", label: "Terms" },
       ],
     },
     privacy: "Privacy",
@@ -179,12 +177,12 @@ const en: Dictionary = {
     pricing: {
       title: "Pricing",
       description:
-        "Transparent pricing for Nymphi — start free with your own API keys. Starter $19/mo, Pro $49/mo, Team $149/mo, Enterprise self-hosting and SSO.",
+        "Transparent pricing for Nymphi — Free, Starter $19/mo, Pro scales with seats, Enterprise self-hosted.",
       eyebrow: "Pricing",
       heroTitle: "Transparent pricing,",
       heroTitleHighlight: "no credit anxiety",
       heroSubtitle:
-        "Start free with your own keys. Starter $19/mo, Pro $49/mo, Team $149/mo. Enterprise when you need self-hosting, SSO, and SLAs.",
+        "Start free. Starter $19/mo. Pro scales with your team — volume discounts from 10 seats. Enterprise for self-hosting and SSO.",
     },
     features: {
       title: "Features",

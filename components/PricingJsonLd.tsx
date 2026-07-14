@@ -1,19 +1,21 @@
-import { pricingTiers, formatUsd } from "@/lib/pricing-page";
+import { pricingTiers, formatUsd, computeCloudMonthly } from "@/lib/pricing-page";
 import { siteConfig } from "@/lib/site";
 
 export function PricingJsonLd() {
   const offers = pricingTiers.map((tier) => {
     const price =
-      tier.monthlyPrice === 0
+      tier.id === "free"
         ? "0"
-        : tier.monthlyPrice?.toString() ?? undefined;
+        : tier.id === "cloud"
+          ? computeCloudMonthly(3).monthly.toString()
+          : tier.monthlyPrice?.toString() ?? undefined;
 
     return {
       "@type": "Offer",
       name: tier.name,
       price,
       priceCurrency: "USD",
-      description: tier.features.join("; "),
+      description: tier.features.join("; ") || tier.tagline,
       url: `${siteConfig.url}/pricing`,
       availability: "https://schema.org/InStock",
       ...(tier.id === "enterprise" && {
