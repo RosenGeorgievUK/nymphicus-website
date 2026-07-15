@@ -17,10 +17,10 @@ export const nodeTypeCategories = [
   },
   {
     category: "Tools",
-    description: "Search files, call MCP servers, and hit external APIs.",
+    description: "Search your documents, connect apps, and call external APIs.",
     nodes: [
-      { name: "File Search", description: "RAG over vector DBs and documents" },
-      { name: "MCP", description: "Model Context Protocol integrations" },
+      { name: "File Search", description: "Search your uploaded documents and knowledge base" },
+      { name: "MCP", description: "Connect to HubSpot, Intercom, and other apps" },
       { name: "API Call", description: "HTTP requests to any REST endpoint" },
     ],
   },

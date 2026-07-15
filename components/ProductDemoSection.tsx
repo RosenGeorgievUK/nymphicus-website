@@ -19,7 +19,7 @@ export function ProductDemoSection() {
               How it works
             </h2>
             <p className="mt-3 text-base text-marketing-text-muted">
-              Drag nodes onto the canvas, wire branches and MCP tools, and publish with human approval gates built in.
+              Drag steps onto the canvas, connect your apps, and require human approval before anything sensitive runs.
             </p>
           </div>
 

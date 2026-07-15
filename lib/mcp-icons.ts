@@ -12,8 +12,8 @@ export type McpRegistryServer = {
 };
 
 export const MCP_REGISTRY_META = {
-  title: "MCP Server Registry",
-  subtitle: "Remote MCP servers you can connect to — OAuth, Bearer token, or no auth.",
+  title: "App directory",
+  subtitle: "Connect HubSpot, Intercom, and more — sign in with OAuth or use an API key.",
 } as const;
 
 /** Platform _CDN_FALLBACKS keyed by static_icon() filename — see _icons.py */

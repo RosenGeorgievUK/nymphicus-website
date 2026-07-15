@@ -58,9 +58,9 @@ export const siteConfig = {
   heroTitle: "Build AI agents your team can trust",
   heroGradientPhrase: "AI agents",
   heroSubhead:
-    "Design workflows, connect tools via MCP, and run agents at scale — on infrastructure you control.",
+    "Build AI workflows visually, connect the apps you already use, and stay in control of your data and costs.",
   description:
-    "Design workflows, connect tools via MCP, and run agents at scale — on infrastructure you control.",
+    "Build AI workflows visually, connect the apps you already use, and stay in control of your data and costs.",
   url: marketing.recommendedDomain,
   ogImage: "/og-image.svg",
   demoVideo: marketing.demoVideo ?? "",

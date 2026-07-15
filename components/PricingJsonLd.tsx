@@ -33,7 +33,7 @@ export function PricingJsonLd() {
     "@type": "Product",
     name: "Nymphi AI Agent Platform",
     description:
-      "Visual AI agent builder with MCP integrations, knowledge bases, and governance. Flat platform pricing with bring-your-own API keys.",
+      "Visual AI builder with app integrations and searchable knowledge bases. Flat platform pricing with your own AI account.",
     brand: { "@type": "Brand", name: siteConfig.name },
     url: `${siteConfig.url}/pricing`,
     offers,

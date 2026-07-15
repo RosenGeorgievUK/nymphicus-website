@@ -7,31 +7,31 @@ export const homepageFaq: FaqItem[] = [
   {
     question: "How is Nymphi different from Zapier or n8n?",
     answer:
-      "Zapier and n8n excel at deterministic automation. Nymphi is built for AI agents — LLM nodes, RAG, human approval gates, and MCP-native tool calls — with governance (RBAC, audit trail) designed for production agent workloads.",
+      "Zapier and n8n are great for simple automations. Nymphi is built for AI assistants — it understands context, searches your documents, asks a human before sensitive actions, and connects to your apps. Security controls like team permissions and activity logs are included from the start.",
   },
   {
     question: "Do I need to be a developer?",
     answer:
-      "No. The visual canvas lets ops and support teams build workflows with drag-and-drop. Developers can still extend via MCP servers, custom HTTP nodes, and self-hosted deployments when needed.",
+      "No. The visual builder lets support, sales, and operations teams create workflows by dragging and dropping. Developers can still add custom connections and self-hosted setups when needed.",
   },
   {
     question: "What happens to my API keys?",
     answer:
-      "You bring your own keys. Nymphi orchestrates calls through your provider accounts — we don't resell tokens or add a per-task credit markup. Enterprise and self-hosted options keep keys entirely on your infrastructure.",
+      "You connect your own OpenAI, Anthropic, or other provider account. Nymphi runs the workflow — we don't resell AI credits or add a per-use markup. Enterprise and self-hosted options keep keys entirely on your servers.",
   },
   {
-    question: "Can my security team review every agent action?",
+    question: "Can my security team review every action?",
     answer:
-      "Yes. Every run produces an immutable execution log with full node trace. RBAC controls who can build, deploy, and approve. Human-in-the-loop gates stop sensitive actions before they execute.",
+      "Yes. Every run creates a detailed activity log. You control who can build, deploy, and approve. Sensitive steps pause until a human signs off.",
   },
   {
-    question: "How fast can we ship our first agent?",
+    question: "How fast can we launch our first assistant?",
     answer:
-      "Most teams deploy their first agent from a template in under an hour. Support Triage, CRM Copilot, and Knowledge Base templates include pre-wired flows you customize on the canvas.",
+      "Most teams start from a template and have something working in under an hour. Support Triage, CRM Copilot, and Knowledge Base templates come with pre-built flows you can customize.",
   },
   {
     question: "Is there a free plan?",
     answer:
-      "Yes — the Free tier includes the visual builder, 15 node types, 1 knowledge base (50MB), 2 MCP integrations, and community support. No credit card required.",
+      "Yes — the Free tier includes the visual builder, 2 assistants, 1 knowledge base, 2 app connections, and community support. No credit card required.",
   },
 ];

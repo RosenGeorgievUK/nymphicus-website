@@ -9,24 +9,24 @@ const en: Dictionary = {
   meta: {
     siteTitle: "Visual AI Agent Builder",
     siteDescription:
-      "Design workflows, connect tools via MCP, and run agents at scale — on infrastructure you control.",
+      "Build AI assistants visually, connect the apps you already use, and stay in control of your data and costs.",
     ogAlt: "Nymphi — Visual AI Agent Builder",
   },
   site: {
     name: "Nymphi",
     tagline: "Build AI agents your team can trust.",
-    heroIntro: "The visual agent platform for technical teams — including",
+    heroIntro: "AI assistants for every team — including",
     heroUseCases: [
-      { role: "Support teams", action: "triage tickets with human approval" },
-      { role: "RevOps", action: "update HubSpot from the canvas" },
-      { role: "Platform", action: "ship governed agents on your infra" },
+      { role: "Support teams", action: "draft replies with a human checking before send" },
+      { role: "Sales teams", action: "update HubSpot without leaving the builder" },
+      { role: "IT teams", action: "run AI on your own servers with full oversight" },
       { role: "You", action: "start from a template in under an hour" },
     ],
     heroSubhead:
-      "Visual agent builder with MCP — the alternative to wiring n8n + LangChain + custom approval glue.",
-    heroFootnote: "Free to start · No credit card · BYO keys · Self-host or cloud",
+      "Design AI workflows on a visual canvas, connect your existing tools, and keep humans in the loop — without stitching together multiple products.",
+    heroFootnote: "Free to start · No credit card · Use your own AI account · Cloud or your own servers",
     heroScreenshotAlt: "Nymphi agent builder dashboard",
-    socialProof: "12+ MCP connectors",
+    socialProof: "12+ app connectors",
   },
   cta: {
     login: "Log in",
@@ -79,7 +79,7 @@ const en: Dictionary = {
         { href: "https://docs.nymphi.ai", label: "Documentation", external: true },
         { href: "/blog", label: "Blog" },
         { href: "/changelog", label: "Changelog" },
-        { href: "https://docs.nymphi.ai/integrations/mcp", label: "MCP guide", external: true },
+        { href: "https://docs.nymphi.ai/integrations/mcp", label: "Integration guide", external: true },
       ],
     },
     company: {
@@ -98,7 +98,7 @@ const en: Dictionary = {
     readMore: "Read more",
     backToBlog: "Back to blog",
     illustrativeDisclaimer:
-      "Illustrative outcomes from support, rev ops, and platform engineering — built on templates, governed by design. Not verified customer claims.",
+      "Illustrative examples from support, sales, and IT teams — built from templates with built-in controls. Not verified customer claims.",
     startedFromTemplate: "Started from template",
     seeAllWorkflows: "All example workflows →",
     readWorkflow: "Read workflow →",
@@ -115,7 +115,7 @@ const en: Dictionary = {
     trustBadges: ["SOC 2 (in progress)", "GDPR-ready", "Self-hosted option"],
     ctaBand: {
       title: "Start building your first agent today",
-      subtitle: "Free to start. No credit card. Bring your own API keys.",
+      subtitle: "Free to start. No credit card. Connect your own OpenAI or Anthropic account.",
       primaryLabel: "Get started free",
       secondaryLabel: "Talk to sales",
     },
@@ -137,16 +137,16 @@ const en: Dictionary = {
       },
       {
         title: "CRM copilot",
-        description: "Look up HubSpot records, update deals, and run CRM actions from the canvas via MCP.",
+        description: "Look up HubSpot records, update deals, and take CRM actions — right from the builder.",
         href: "/customers/crm-copilot",
-        category: "RevOps",
+        category: "Sales",
         cta: "Use this template",
-        apps: ["HubSpot", "MCP", "Agent"],
+        apps: ["HubSpot", "CRM actions", "AI assistant"],
         iconSlugs: ["hubspot"],
       },
       {
-        title: "Knowledge + RAG",
-        description: "Answer from company docs with citations and guardrails on every agent run.",
+        title: "Knowledge search",
+        description: "Answer questions from your company docs with sources cited on every response.",
         href: "/templates",
         category: "Knowledge",
         cta: "View workflow",
@@ -161,15 +161,15 @@ const en: Dictionary = {
     caseStudyTitle: "From blocked pilot to",
     caseStudyTitleHighlight: "production in one afternoon",
     caseStudySubtitle:
-      "An illustrative support triage workflow — ship governed agents without a multi-week sprint.",
+      "An illustrative support workflow — go from idea to a working assistant in an afternoon, not a multi-week project.",
     faqEyebrow: "FAQ",
     faqTitle: "Common questions",
     changelogStripTitle: "What's new",
     changelogStripViewAll: "Full changelog",
     integrationsSection: {
-      title: "Plug agents into your data & MCP integrations",
+      title: "Connect the apps your team already uses",
       subtitle:
-        "Pre-built connectors for common apps. Custom API connections for everything else.",
+        "Pre-built connectors for common tools. Custom connections for everything else.",
       cta: "Browse all integrations",
     },
   },
@@ -187,11 +187,11 @@ const en: Dictionary = {
     features: {
       title: "Features",
       description:
-        "Nymphi features: visual agent builder, MCP integrations, knowledge bases with RAG, and enterprise governance.",
+        "Nymphi features: visual AI builder, app integrations, searchable knowledge bases, and built-in security controls.",
       eyebrow: "Features",
-      heroTitle: "Build, connect, and govern —",
+      heroTitle: "Build, connect, and control —",
       heroTitleHighlight: "without trade-offs",
-      heroSubtitle: "From the visual builder to MCP integrations and execution logs.",
+      heroSubtitle: "From the visual builder to app connections and activity logs.",
       getStartedLink: "Get started free →",
     },
     templates: {
@@ -202,23 +202,23 @@ const en: Dictionary = {
       heroTitle: "Start from a workflow that",
       heroTitleHighlight: "already works",
       heroSubtitle: "Three production-ready templates. Customize on the canvas, deploy with your keys.",
-      ctaBandTitle: "Clone a template. Ship your first agent today.",
+      ctaBandTitle: "Clone a template. Launch your first assistant today.",
       searchPlaceholder: "Search templates…",
     },
     integrations: {
       title: "Integrations",
       description:
-        "Connect Nymphi agents to your stack via MCP, APIs, webhooks, and knowledge bases.",
+        "Connect Nymphi assistants to your tools via integrations, APIs, webhooks, and knowledge bases.",
       eyebrow: "Integrations",
-      heroTitle: "Connect any tool via",
-      heroTitleHighlight: "MCP",
+      heroTitle: "Connect any tool",
+      heroTitleHighlight: "your team uses",
       heroSubtitle:
-        "Browse the registry, wire tools to your canvas, and extend workflows without custom glue code.",
-      screenshotAlt: "MCP integrations registry in Nymphi",
+        "Browse the app directory, attach tools to your workflow, and extend without writing custom glue code.",
+      screenshotAlt: "App integrations directory in Nymphi",
       ctaBandTitle: "Your stack. Connected in minutes.",
       searchPlaceholder: "Search integrations…",
-      resultsLabel: "MCP connectors",
-      docsLabel: "MCP integration guide",
+      resultsLabel: "connectors",
+      docsLabel: "Integration guide",
     },
     useCases: {
       title: "Use Cases",
@@ -235,35 +235,35 @@ const en: Dictionary = {
     compare: {
       title: "Nymphi vs n8n & Zapier",
       description:
-        "Compare Nymphi to n8n and Zapier — visual agent builder, MCP-native integrations, BYO keys, and production governance.",
+        "Compare Nymphi to n8n and Zapier — visual AI builder, native integrations, your own AI account, and built-in approvals.",
       eyebrow: "Compare",
       heroTitle: "Nymphi vs n8n",
       heroTitleHighlight: "and Zapier",
       heroSubtitle:
-        "See how a governed agent builder compares to workflow automation and zap-style tools — on AI depth, MCP, approvals, and pricing.",
+        "See how an AI-first builder compares to workflow automation tools — on intelligence, connections, human approvals, and pricing.",
       startBuilding: "Get started free",
       migrationTemplateLink: "Start from the Support Triage template →",
     },
     security: {
       title: "Security",
       description:
-        "Nymphi security: RBAC, audit trails, BYO API keys, self-hosted deployment, and compliance-ready governance for production AI agents.",
+        "Nymphi security: team permissions, activity logs, your own AI keys, self-hosted option, and compliance-ready controls.",
       eyebrow: "Security",
-      heroTitle: "Production agents need",
-      heroTitleHighlight: "production governance",
+      heroTitle: "AI assistants need",
+      heroTitleHighlight: "real security",
       heroSubtitle:
-        "RBAC, immutable audit trails, BYO keys, and self-hosted deployment — built in, not bolted on.",
+        "Team permissions, full activity logs, your own AI account, and self-hosting — built in, not bolted on.",
       faqTitle: "Security FAQ",
-      ctaBandTitle: "Governed agents. Without the enterprise tax.",
+      ctaBandTitle: "Secure assistants. Without the enterprise price tag.",
       screenshotAlt: "Execution logs and audit trail",
     },
     about: {
       title: "About",
       description:
-        "Nymphi is building the visual AI agent platform for teams who need speed, control, and governance.",
+        "Nymphi is building the visual AI platform for teams who need speed, control, and peace of mind.",
       eyebrow: "About",
       heroTitle: "Building the future of",
-      heroTitleHighlight: "governed AI agents",
+      heroTitleHighlight: "trustworthy AI assistants",
       startBuilding: "Start building free",
     },
     contact: {
@@ -279,12 +279,12 @@ const en: Dictionary = {
     customers: {
       title: "Example Workflows",
       description:
-        "Illustrative Nymphi workflows — support triage, CRM copilots, and governed self-hosted deployments.",
+        "Illustrative Nymphi workflows — support triage, CRM assistants, and secure self-hosted setups.",
       eyebrow: "Example workflows",
-      heroTitle: "How teams ship agents",
+      heroTitle: "How teams launch assistants",
       heroTitleHighlight: "without the trade-offs",
       heroSubtitle:
-        "Illustrative outcomes from support, rev ops, and platform engineering — built on templates, governed by design. Not verified customer claims.",
+        "Illustrative examples from support, sales, and IT teams — built from templates with built-in controls. Not verified customer claims.",
       shareStory: "Want to share your story?",
       shareStoryLink: "Get in touch",
       ctaBandTitle: "Your team could be next.",
@@ -292,19 +292,19 @@ const en: Dictionary = {
     blog: {
       title: "Blog",
       description:
-        "Guides on MCP integrations, support triage agents, and governance for production AI workflows.",
+        "Guides on connecting your tools, building support assistants, and rolling out AI with proper controls.",
       eyebrow: "Blog",
-      heroTitle: "Patterns for",
-      heroTitleHighlight: "production agents",
+      heroTitle: "Practical guides for",
+      heroTitleHighlight: "real-world AI",
       heroSubtitle:
-        "MCP, templates, and governance — practical guides for teams shipping governed AI workflows.",
+        "Integrations, templates, and security — written for teams putting AI to work, not just experimenting.",
     },
     changelog: {
       title: "Changelog",
       description: "Product updates for Nymphi — new features, improvements, and fixes.",
       eyebrow: "Changelog",
-      heroTitle: "Shipping fast,",
-      heroTitleHighlight: "governed by default",
+      heroTitle: "Moving fast,",
+      heroTitleHighlight: "with security built in",
       heroSubtitle:
         "New features, improvements, and fixes — the platform evolves with the teams building on it.",
       betaPrompt: "Want early access to what's next?",
@@ -347,7 +347,7 @@ const en: Dictionary = {
       {
         question: "Where are API keys stored?",
         answer:
-          "You connect provider keys to your workspace. Cloud deployments encrypt credentials at rest. Self-hosted deployments keep keys entirely on your infrastructure.",
+          "You connect your OpenAI, Anthropic, or other provider keys to your workspace. Cloud accounts encrypt credentials at rest. Self-hosted setups keep keys entirely on your own servers.",
       },
       {
         question: "Can we export audit logs?",
@@ -360,9 +360,9 @@ const en: Dictionary = {
           "SOC 2 Type II is in progress. GDPR-ready data handling is supported today, with region selection on cloud deployments.",
       },
       {
-        question: "How does RBAC work?",
+        question: "How do team permissions work?",
         answer:
-          "Role-based access controls scope who can build agents, edit knowledge bases, connect MCP tools, and approve sensitive workflow steps.",
+          "You decide who can build assistants, edit knowledge bases, connect apps, and approve sensitive steps before they run.",
       },
     ],
     caseStudies,
@@ -403,33 +403,33 @@ const en: Dictionary = {
       },
       {
         title: "Engineering",
-        outcome: "Triage incidents, search runbooks, and propose remediation steps with audit trail.",
+        outcome: "Triage incidents, search runbooks, and suggest fixes with a full record of what happened.",
       },
       {
         title: "Professional Services",
         outcome: "Prepare client deliverables, pull context from docs, and track billable work.",
       },
     ],
-    templateGalleryCategories: ["Customer Support", "Sales & RevOps", "Any team"],
+    templateGalleryCategories: ["Customer Support", "Sales", "Any team"],
     templateGalleryAllLabel: "All",
     templateGallerySearchPlaceholder: "Search templates…",
     integrationsHeading: "Works with the tools your team already uses",
-    integrationsSubheading: "Search the MCP registry — OAuth, bearer token, or open connectors.",
+    integrationsSubheading: "Search the app directory — sign in with OAuth or connect with an API key.",
     integrationsCustom: "Need a custom connector?",
-    integrationsCustomLink: "Talk to us about MCP servers",
+    integrationsCustomLink: "Talk to us about custom integrations",
     featureSections: [
       {
         eyebrow: "Dashboard",
         title: "One place to",
         titleHighlight: "run every agent",
         subtitle:
-          "Monitor workflows, track runs, and jump into the builder — the control center your ops team actually wants.",
+          "Monitor workflows, track activity, and jump into the builder — one place to see everything running.",
       },
       {
         eyebrow: "Agent Builder",
         title: "Design workflows on a visual canvas",
         subtitle:
-          "15 node types, drag-and-drop wiring, versioning, and in-canvas testing — builders and engineers in the same interface.",
+          "Drag-and-drop steps, test as you build, and version your work — no coding required to get started.",
       },
       {
         eyebrow: "Agents",
@@ -438,10 +438,10 @@ const en: Dictionary = {
           "Organize agents by team and environment — with permissions that match how your company actually works.",
       },
       {
-        eyebrow: "Governance",
-        title: "Audit every execution",
+        eyebrow: "Security",
+        title: "Audit every run",
         subtitle:
-          "Immutable logs, human approvals, RBAC, and knowledge-base permissions — production confidence, not vibes.",
+          "Full activity logs, human approvals, and team permissions — confidence you can show your security team.",
       },
     ],
     templateCards: [
@@ -455,7 +455,7 @@ const en: Dictionary = {
           "Start → Classify Ticket",
           "File Search (Technical branch)",
           "Draft Reply (Agent)",
-          "Update Intercom (MCP)",
+          "Update Intercom",
           "Human Review (User Approval)",
           "End",
         ],
@@ -464,23 +464,23 @@ const en: Dictionary = {
       {
         slug: "crm-copilot",
         title: "CRM Copilot",
-        category: "Sales & RevOps",
+        category: "Sales",
         description:
-          "Answer CRM questions, draft outreach emails, and update deal records through HubSpot MCP — owned by your rev ops team.",
+          "Answer CRM questions, draft outreach emails, and update deal records in HubSpot — built for sales teams.",
         flow: [
           "Start",
-          "CRM Assistant (Agent)",
-          "HubSpot Actions (MCP)",
+          "CRM Assistant",
+          "HubSpot actions",
           "End",
         ],
-        integrations: ["HubSpot MCP", "Agent"],
+        integrations: ["HubSpot", "AI assistant"],
       },
       {
         slug: "governed-agents",
         title: "Knowledge Base Chatbot",
         category: "Any team",
         description:
-          "RAG over company docs with cited answers — for internal copilots, policy Q&A, and onboarding assistants.",
+          "Search your company docs and answer with cited sources — for internal help desks, policy Q&A, and onboarding.",
         flow: [
           "Start",
           "Company Docs (File Search)",
@@ -500,40 +500,40 @@ const en: Dictionary = {
       {
         title: "Book a demo",
         description:
-          "See the visual agent builder, MCP integrations, and governance controls in a live walkthrough.",
+          "See the visual builder, app integrations, and security controls in a live walkthrough.",
         cta: "Book a demo",
       },
       {
         title: "Enterprise & self-hosting",
         description:
-          "Discuss SSO, audit trail export, SLAs, and on-prem deployment with our team.",
+          "Discuss single sign-on, activity log export, SLAs, and running on your own servers with our team.",
         cta: "Contact us",
       },
     ],
     aboutValues: [
       {
-        title: "Builder-first",
+        title: "Built for everyone",
         description:
-          "The best agent platform is one your team actually uses. We optimize for the visual builder experience first.",
+          "The best platform is one your whole team actually uses. We start with a visual builder anyone can learn.",
       },
       {
-        title: "Your infrastructure",
+        title: "Your data stays yours",
         description:
-          "Your keys, your data, your deployment. We don't believe in credit markups or forced cloud lock-in.",
+          "Your AI keys, your documents, your servers. We don't mark up AI usage or lock you into our cloud.",
       },
       {
-        title: "Governance by default",
+        title: "Security from day one",
         description:
-          "RBAC, audit trails, and permissions aren't enterprise add-ons — they're table stakes for production agents.",
+          "Team permissions, activity logs, and approvals aren't paid add-ons — they're included from the start.",
       },
     ],
     aboutMissionLabel: "Our mission",
     aboutMission:
-      "Give every team the power to build production-ready agents — without surrendering control of their models, data, or infrastructure.",
+      "Give every team the power to build AI assistants that actually work — without giving up control of their data, costs, or security.",
     aboutParagraphs: [
-      "Nymphi is a visual AI agent builder for teams who need to ship fast without giving up control. We believe the next wave of AI adoption won't come from black-box copilots — it'll come from composable agents your team designs, deploys, and governs on their own terms.",
-      "Our platform combines a drag-and-drop canvas with 15 node types, knowledge bases with RAG, MCP integrations, and enterprise-grade RBAC and audit trails. Whether you run in our cloud or self-host on your infrastructure, you bring your own API keys and pay providers directly — no per-task credit markup.",
-      "We're an early-stage team focused on giving builders, operators, and security teams a shared surface to ship agents that actually do the work.",
+      "Nymphi is a visual AI builder for teams who need to move fast without losing control. We believe the next wave of AI won't come from black-box chatbots — it'll come from assistants your team designs, tests, and approves on their own terms.",
+      "Our platform combines a drag-and-drop builder with searchable knowledge bases, app integrations, team permissions, and activity logs. Whether you use our cloud or run on your own servers, you connect your own AI account and pay providers directly — no hidden AI markup.",
+      "We're an early-stage team focused on giving business teams and IT a shared place to launch AI that does real work.",
     ],
     comparePillars: [
       {
@@ -544,13 +544,13 @@ const en: Dictionary = {
       },
       {
         highlight: "vs. DIY",
-        title: "Ship in hours",
-        description: "Templates, visual canvas, and MCP registry replace weeks of framework plumbing.",
+        title: "Launch in hours",
+        description: "Templates, visual builder, and an app directory replace weeks of custom development.",
       },
       {
         highlight: "vs. Both",
-        title: "Governance built in",
-        description: "RBAC, audit trail, and human approval — not a phase-two project.",
+        title: "Security built in",
+        description: "Team permissions, activity logs, and human approval — not a later project.",
       },
     ],
     securityPillars: [
@@ -558,7 +558,7 @@ const en: Dictionary = {
         highlight: "Access",
         title: "Role-based control",
         description:
-          "Scope permissions across agents, knowledge bases, MCP tools, and approval gates — so the right people touch the right workflows.",
+          "Set who can build assistants, edit documents, connect apps, and approve actions — so the right people stay in control.",
       },
       {
         highlight: "Audit",
@@ -568,9 +568,9 @@ const en: Dictionary = {
       },
       {
         highlight: "Data",
-        title: "Your keys, your infra",
+        title: "Your keys, your servers",
         description:
-          "Bring your own API keys with no credit markup. Enterprise self-hosting keeps data and credentials on your infrastructure.",
+          "Connect your own AI account with no markup. Enterprise self-hosting keeps data and credentials on your systems.",
       },
     ],
     securityBullets: [
@@ -581,7 +581,7 @@ const en: Dictionary = {
     ],
     securitySectionTitle: "Human-in-the-loop by design",
     securitySectionBody:
-      "Sensitive actions pause at approval nodes until a human signs off. Security teams get the trail they need. Builders keep shipping without bypassing governance.",
+      "Sensitive actions pause until a human approves them. Security teams get the logs they need. Business teams keep moving without workarounds.",
     nodeTypesEyebrow: "Canvas",
     nodeTypesTitle: "15 node types. Zero black boxes.",
     nodeTypesSubtitle:

@@ -55,11 +55,11 @@ export const CASE_STUDY_ASSETS: Record<
     screenshots: ["supportWorkflow", "supportChat"],
   },
   "crm-copilot": {
-    integrations: ["HubSpot MCP", "Agent"],
+    integrations: ["HubSpot", "AI assistant"],
     screenshots: ["crmWorkflow", "mcpRegistry"],
   },
   "governed-agents": {
-    integrations: ["File Search", "MCP", "User Approval", "Self-hosted"],
+    integrations: ["File Search", "App connections", "User Approval", "Self-hosted"],
     screenshots: ["dashboard", "executionLogs", "agentsList"],
   },
 };

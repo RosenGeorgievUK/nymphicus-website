@@ -68,11 +68,11 @@ export function cloudFeaturesForSeats(seats: number): string[] {
     `${seats} seat${seats === 1 ? "" : "s"} on your workspace`,
     volume ? "Unlimited agents" : "10 agents",
     volume ? "Unlimited knowledge bases (20GB)" : "10 knowledge bases (2GB)",
-    "Unlimited MCP integrations",
-    volume ? "Full RBAC" : "Basic roles",
-    volume ? "1-year audit trail" : "30-day audit trail",
+    "Unlimited app integrations",
+    volume ? "Full team permissions" : "Basic roles",
+    volume ? "1-year activity log" : "30-day activity log",
     volume ? "Priority support" : "Email support",
-    "BYO keys — no AI markup",
+    "Your own AI account — no markup",
   ];
 }
 
@@ -80,24 +80,24 @@ export const pricingHero = {
   eyebrow: "Pricing",
   title: "Pricing that doesn't meter your AI.",
   subtitle:
-    "Bring your own API keys. Pay us for the platform — Stripe is our only real COGS. No credits, no markups, no surprise AI bills.",
+    "Connect your own AI account. Pay us a flat platform fee — no AI credits, no markups, no surprise bills.",
 };
 
 export const pricingTiers: PricingTier[] = [
   {
     id: "free",
     name: "Free",
-    tagline: "Great for exploring the builder and shipping your first agent.",
+    tagline: "Great for exploring the builder and launching your first assistant.",
     monthlyPrice: 0,
     includesTitle: "This plan includes:",
     features: [
       "1 seat",
       "2 agents",
       "1 knowledge base (50MB)",
-      "2 MCP integrations",
-      "Visual agent builder",
-      "BYO API keys",
-      "7-day audit trail",
+      "2 app connections",
+      "Visual AI builder",
+      "Your own AI account",
+      "7-day activity log",
       "Community support",
     ],
     ctaLabel: "Start free",
@@ -107,7 +107,7 @@ export const pricingTiers: PricingTier[] = [
   {
     id: "starter",
     name: "Starter",
-    tagline: "For solo builders running agents in production.",
+    tagline: "For individuals running assistants day to day.",
     monthlyPrice: 19,
     hostedLabel: "Hosted by Nymphi",
     includesTitle: "Everything in Free, plus:",
@@ -115,8 +115,8 @@ export const pricingTiers: PricingTier[] = [
       "1 seat (add up to 5)",
       "3 agents",
       "1 knowledge base (250MB)",
-      "3 MCP integrations",
-      "14-day audit trail",
+      "3 app connections",
+      "14-day activity log",
       "Email support",
     ],
     ctaLabel: "Start free trial",
@@ -142,15 +142,15 @@ export const pricingTiers: PricingTier[] = [
   {
     id: "enterprise",
     name: "Enterprise",
-    tagline: "For organisations with compliance, SSO, and self-hosting needs.",
+    tagline: "For organisations that need compliance, single sign-on, and self-hosting.",
     monthlyPrice: 499,
     pricePrefix: "from",
     includesTitle: "Everything in Pro, plus:",
     features: [
-      "Self-hosted or VPC deployment",
-      "Unlimited seats and agents",
-      "SSO / SAML",
-      "Unlimited audit retention",
+      "Run on your own servers",
+      "Unlimited seats and assistants",
+      "Single sign-on (SSO)",
+      "Unlimited activity history",
       "Your storage, your limits",
       "SLA + dedicated onboarding",
       "Invoice billing",
@@ -176,9 +176,9 @@ export function computeStarterMonthly(seats: number): number {
 }
 
 export const pricingByoComparison = {
-  title: "The BYO-keys difference",
+  title: "Pay for AI directly — not through us",
   typical: {
-    heading: "Typical agent platform",
+    heading: "Typical AI platform",
     points: [
       "Subscription fee",
       "Marked-up AI credits",
@@ -190,18 +190,18 @@ export const pricingByoComparison = {
     heading: "Nymphi",
     points: [
       "Flat platform subscription",
-      "Your own API keys",
-      "Provider billed at cost",
-      "~96–98% margin room — we don't meter your AI",
+      "Your own AI account",
+      "Billed by the provider at their rates",
+      "No hidden AI markup",
     ],
   },
 };
 
 export const pricingFaq = [
   {
-    question: "What does BYO keys mean?",
+    question: "What does bringing your own AI account mean?",
     answer:
-      "You connect your own OpenAI, Anthropic, or other provider API keys. Model usage is billed by the provider directly at their standard rates. We never mark up or meter your AI usage.",
+      "You connect your own OpenAI, Anthropic, or other provider account. AI usage is billed by that provider at their standard rates. We never mark up or meter your AI usage.",
   },
   {
     question: "How does Pro seat pricing work?",
@@ -216,7 +216,7 @@ export const pricingFaq = [
   {
     question: "What's included in self-hosted Enterprise?",
     answer:
-      "The full platform on your infrastructure: visual agent builder, knowledge bases with RAG, MCP integrations, RBAC, SSO/SAML, and full audit trail.",
+      "The full platform on your own servers: visual builder, searchable knowledge bases, app integrations, team permissions, single sign-on, and complete activity logs.",
   },
   {
     question: "Can I switch plans?",
@@ -225,7 +225,7 @@ export const pricingFaq = [
 ];
 
 export const pricingCta = {
-  title: "Your agents. Your keys. Your infrastructure.",
+  title: "Your assistants. Your AI account. Your servers.",
   subtitle: "",
   primaryLabel: "Start free",
   bookDemoLabel: "Talk to sales",
