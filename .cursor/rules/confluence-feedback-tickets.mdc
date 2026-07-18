@@ -1,0 +1,73 @@
+---
+description: Triage Product Feedback Inbox on Confluence and create KAN Jira tickets for website and platform items
+alwaysApply: false
+---
+
+# Confluence feedback → Jira tickets
+
+Use when the user asks to triage feedback, create tickets from Confluence, or process the feedback inbox.
+
+## Source page
+
+- **Confluence space:** KAN (Nymphicus)
+- **Page title:** `Product Feedback Inbox (Website + Platform)`
+- **URL:** https://nymphicusai.atlassian.net/wiki/spaces/KAN/pages/2850818/Product+Feedback+Inbox+Website+Platform
+- **Cloud:** nymphicusai.atlassian.net
+
+Fetch with Atlassian MCP: `getConfluencePage` or `searchConfluenceUsingCql` → `title = "Product Feedback Inbox (Website + Platform)"`.
+
+## Parse the Backlog table
+
+Columns: ID, Status, Product, Type, Priority, Title, Area, Description, Steps, Expected / Actual, Reporter, Jira.
+
+Process rows where **Status** is `new` or `ready` only. Skip `ticket-created`, `done`, `wont-fix`.
+
+## Create Jira issues (project KAN)
+
+| Type column | Jira issue type | Extra labels |
+|-------------|-----------------|--------------|
+| bug | Task | `bug` |
+| suggestion, improvement | Story | — |
+| chore, question | Task | — |
+
+**Always set labels:** product label (`website`, `platform`, or both as two labels), plus type if useful.
+
+**Summary format:** `[website] Title` or `[platform] Title` or `[both] Title`
+
+**Description template:**
+
+```markdown
+**Feedback ID:** FB-xxx
+**Product:** website | platform
+**Priority:** …
+**Area:** …
+**Reporter:** …
+
+## Description
+…
+
+## Steps to reproduce
+…
+
+## Expected / Actual
+…
+
+**Source:** Product Feedback Inbox (Confluence)
+```
+
+## After creating tickets
+
+1. Update the Confluence row: `Status` → `ticket-created`, **Jira** → `KAN-xxx`.
+2. Use `updateConfluencePage` with the full updated table body.
+3. Report created keys to the user.
+
+## Product scope
+
+- **website** → nymphicus-website repo (marketing site, www.nymphi.ai)
+- **platform** → app.nymphi.ai / The_Platform (agent builder, org admin, executions, MCP)
+- **both** → create one ticket with both labels; note both surfaces in description
+
+## Do not
+
+- Create duplicate tickets for the same FB-xxx ID
+- Change template/example rows unless the user asked to triage them (FB-002 is a template — confirm before ticketing)
