@@ -18,38 +18,38 @@ Fetch with Atlassian MCP: `getConfluencePage` or `searchConfluenceUsingCql` → 
 
 ## Parse the Backlog table
 
-Columns: ID, Status, Product, Type, Priority, Title, Area, Description, Steps, Expected / Actual, Reporter, Jira.
+Columns: **ID, Status, Where, Kind, Summary, Details, Name, Jira**.
 
-Process rows where **Status** is `new` or `ready` only. Skip `ticket-created`, `done`, `wont-fix`.
+(Legacy rows may still use old columns: Product, Type, Priority, Title, Area, Description, Steps, Expected / Actual, Reporter — map Product→Where, Type→Kind, Title→Summary, merge Description/Steps/Expected into Details, Reporter→Name.)
+
+Process rows where **Status** is `new` or `ready` only. Skip `ticket-created`, `done`, `wont-fix`, and italic template/example rows (e.g. summary contains "One-line title" or "Paste your filled template").
 
 ## Create Jira issues (project KAN)
 
-| Type column | Jira issue type | Extra labels |
+| Kind column | Jira issue type | Extra labels |
 |-------------|-----------------|--------------|
-| bug | Task | `bug` |
-| suggestion, improvement | Story | — |
-| chore, question | Task | — |
+| Bug (or bug) | Task | `bug` |
+| Idea, suggestion, improvement | Story | — |
+| Question, chore | Task | — |
 
-**Always set labels:** product label (`website`, `platform`, or both as two labels), plus type if useful.
+Infer **priority** from Details/Summary if obvious (blocks work → high; nice-to-have → low; else medium).
 
-**Summary format:** `[website] Title` or `[platform] Title` or `[both] Title`
+**Where → labels:** `Website` → `website`; `Platform` → `platform`; `Both` → both labels.
+
+**Summary format:** `[website] Summary` or `[platform] Summary` or `[both] Summary` (lowercase tag from Where)
 
 **Description template:**
 
 ```markdown
 **Feedback ID:** FB-xxx
-**Product:** website | platform
-**Priority:** …
-**Area:** …
-**Reporter:** …
+**Where:** Website | Platform | Both
+**Kind:** Bug | Idea | Question
+**Reporter:** Name
 
-## Description
+## Summary
 …
 
-## Steps to reproduce
-…
-
-## Expected / Actual
+## Details
 …
 
 **Source:** Product Feedback Inbox (Confluence)
@@ -70,4 +70,4 @@ Process rows where **Status** is `new` or `ready` only. Skip `ticket-created`, `
 ## Do not
 
 - Create duplicate tickets for the same FB-xxx ID
-- Change template/example rows unless the user asked to triage them (FB-002 is a template — confirm before ticketing)
+- Ticket italic template rows (FB-004 placeholder row with "One-line title")
