@@ -24,14 +24,14 @@ export function PricingPlanCard({
 
   return (
     <article
-      className={`relative flex h-full flex-col rounded-nym-lg border p-6 md:p-7 ${
+      className={`relative flex h-full flex-col rounded-nym border p-6 shadow-nym md:p-7 ${
         tier.highlighted
-          ? "border-nym-primary/50 bg-marketing-surface shadow-lg shadow-nym-primary/10"
+          ? "border-nym-primary bg-marketing-surface"
           : "border-marketing-border bg-marketing-surface"
       }`}
     >
       {tier.badge && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-nym px-3 py-1 text-xs font-semibold text-on-gradient shadow-nym-primary">
+        <span className="absolute -top-3 left-6 whitespace-nowrap rounded-full bg-nym-primary px-3 py-1 text-xs font-normal text-white">
           {tier.badge}
         </span>
       )}

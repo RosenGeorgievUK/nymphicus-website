@@ -1,70 +1,62 @@
 {
-  "$schema": "https://design-tokens.github.io/community-group/format/",
   "meta": {
-    "name": "Nymphicus",
-    "source": "Platform/static/assets/scss/_variables.scss",
-    "extracted": "2026-07-11"
+    "name": "nymphi",
+    "source": "nymphi design system",
+    "extracted": "2026-10-15"
   },
   "color": {
-    "primary": {
-      "value": "#985FFD",
-      "rgb": "152, 95, 253",
-      "description": "Primary brand purple"
-    },
-    "secondary": {
-      "value": "#FF49CD",
-      "rgb": "255, 73, 205",
-      "description": "Accent pink/magenta"
-    },
+    "primary": { "value": "#9B5FFD" },
+    "secondary": { "value": "#FF49CD" },
+    "success": { "value": "#32d484" },
+    "warning": { "value": "#fdaf22" },
+    "danger": { "value": "#fe6757" },
+    "info": { "value": "#00c9ff" },
     "gradient": {
       "primary": {
-        "value": "linear-gradient(to bottom right, #985FFD 0%, #FF49CD 100%)",
-        "description": "Brand hero gradient"
+        "value": "linear-gradient(to bottom right, #9B5FFD 0%, #FF49CD 100%)"
+      },
+      "menu": {
+        "value": "linear-gradient(to right, #9B5FFD 0%, #FF3DBB 100%)"
       }
     },
     "background": {
-      "body": { "value": "#F8F9FD", "rgb": "248, 249, 253" },
-      "surface": { "value": "#FFFFFF" },
-      "muted": { "value": "#F9F7FC" }
+      "body": { "value": "#f8f9fd" },
+      "body2": { "value": "#ffffff" },
+      "surface": { "value": "#ffffff" },
+      "default": { "value": "#f9f7fc" }
     },
     "text": {
-      "primary": { "value": "#011A42" },
-      "muted": { "value": "#5D6576" },
-      "nav": { "value": "#302D36" },
-      "icon": { "value": "#6C7E96" }
+      "primary": { "value": "#011e42" },
+      "muted": { "value": "#5d6576" },
+      "nav": { "value": "#302836" },
+      "icon": { "value": "#6c7e96" },
+      "onPrimary": { "value": "#ffffff" },
+      "onSecondary": { "value": "#011e42" }
     },
     "border": {
-      "default": { "value": "#E2E8EE" },
-      "input": { "value": "#E2E8EE" }
-    },
-    "semantic": {
-      "success": { "value": "#32D484", "rgb": "50, 212, 132" },
-      "warning": { "value": "#FDAF22", "rgb": "253, 175, 34" },
-      "danger": { "value": "#FF6757", "rgb": "255, 103, 87" },
-      "info": { "value": "#00C9FF", "rgb": "0, 201, 255" }
-    },
-    "gray": {
-      "50": { "value": "#F9FAFB" },
-      "100": { "value": "#F2F4F5" },
-      "200": { "value": "#E6EAEB" },
-      "300": { "value": "#DBDFE1" },
-      "400": { "value": "#949EB7" },
-      "500": { "value": "#7987A1" },
-      "600": { "value": "#4D5875" },
-      "700": { "value": "#383853" },
-      "800": { "value": "#323251" }
-    },
-    "dark": {
-      "background": { "value": "#161623", "rgb": "22, 22, 35" },
-      "surface": { "value": "#262634", "rgb": "38, 38, 52" },
-      "text": { "value": "rgba(255, 255, 255, 0.8)" },
-      "border": { "value": "rgba(255, 255, 255, 0.1)" }
+      "default": { "value": "#e2e8ee" },
+      "input": { "value": "#8a93a3" }
     },
     "primaryAlpha": {
-      "5": { "value": "rgba(152, 95, 253, 0.05)" },
-      "10": { "value": "rgba(152, 95, 253, 0.1)" },
-      "20": { "value": "rgba(152, 95, 253, 0.2)" },
-      "50": { "value": "rgba(152, 95, 253, 0.5)" }
+      "005": { "value": "rgba(152, 95, 253, 0.05)" },
+      "01": { "value": "rgba(152, 95, 253, 0.1)" },
+      "02": { "value": "rgba(152, 95, 253, 0.2)" },
+      "03": { "value": "rgba(152, 95, 253, 0.3)" },
+      "04": { "value": "rgba(152, 95, 253, 0.4)" },
+      "05": { "value": "rgba(152, 95, 253, 0.5)" },
+      "06": { "value": "rgba(152, 95, 253, 0.6)" },
+      "07": { "value": "rgba(152, 95, 253, 0.7)" },
+      "08": { "value": "rgba(152, 95, 253, 0.8)" },
+      "09": { "value": "rgba(152, 95, 253, 0.9)" }
+    },
+    "dark": {
+      "background": { "value": "#161623" },
+      "surface": { "value": "#262634" },
+      "text": { "value": "rgba(255, 255, 255, 0.8)" },
+      "textMuted": { "value": "rgba(255, 255, 255, 0.5)" },
+      "border": { "value": "rgba(255, 255, 255, 0.1)" },
+      "focus": { "value": "#ccaffe" },
+      "shadow": { "value": "0 0.125rem 0.25rem rgba(0, 0, 0, 0.65)" }
     }
   }
 }

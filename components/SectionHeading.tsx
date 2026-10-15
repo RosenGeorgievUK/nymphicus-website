@@ -24,21 +24,21 @@ export function SectionHeading({
     <div className={`${widthClass} ${alignClass} ${className}`}>
       {eyebrow && (
         <p className="mb-4">
-          <span className="inline-flex items-center rounded-full border border-nym-primary/25 bg-nym-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-nym-primary">
+        <span className="inline-flex items-center rounded-full border border-marketing-border bg-marketing-surface px-3 py-1 text-xs font-normal text-marketing-text shadow-nym">
             {eyebrow}
           </span>
         </p>
       )}
       <Tag
         id={id}
-        className={`font-semibold text-marketing-text ${
-          Tag === "h1" ? "text-hero" : "text-section-title"
+        className={`text-marketing-text ${
+          Tag === "h1" ? "text-hero font-bold" : "text-section-title font-semibold"
         }`}
       >
         {title}
       </Tag>
       {subtitle && (
-        <p className="mt-5 text-lg leading-relaxed text-marketing-text-muted md:text-xl">
+        <p className="mt-4 text-sm leading-relaxed text-marketing-text-muted">
           {subtitle}
         </p>
       )}

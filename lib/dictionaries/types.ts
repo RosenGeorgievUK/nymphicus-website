@@ -64,6 +64,8 @@ export type Dictionary = {
   site: {
     name: string;
     tagline: string;
+    heroHeadline: string;
+    heroHeadlineAccent: string;
     heroIntro: string;
     heroUseCases: { role: string; action: string }[];
     heroSubhead: string;

@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dark" className={spaceGrotesk.variable}>
+    <html lang="en" className={spaceGrotesk.variable}>
       <body className="flex min-h-screen flex-col font-sans">
         <PlausibleAnalytics />
         <SiteShell>{children}</SiteShell>

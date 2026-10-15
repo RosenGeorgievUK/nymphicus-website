@@ -80,7 +80,7 @@ export function SecurityView() {
       <PageSection>
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <ScrollReveal>
-            <ProductInteractivePreview alt={page.screenshotAlt!} glow>
+            <ProductInteractivePreview alt={page.screenshotAlt!}>
               <ProductScreenshotImage screenshot="executionLogs" alt={page.screenshotAlt!} />
             </ProductInteractivePreview>
           </ScrollReveal>

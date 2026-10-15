@@ -320,7 +320,7 @@ export function WorkflowBuilderDemo() {
 
       <header className="relative z-10 flex h-9 shrink-0 items-center justify-between border-b border-slate-200 bg-white/95 px-3">
         <div className="flex items-center gap-2">
-          <div className="h-5 w-5 rounded bg-gradient-nym" />
+          <div className="h-5 w-5 rounded bg-nym-primary" />
           <span className="text-[11px] font-semibold text-slate-800">Nymphi · Agent Builder</span>
         </div>
         <button

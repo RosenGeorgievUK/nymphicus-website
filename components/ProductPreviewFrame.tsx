@@ -11,7 +11,6 @@ type ProductPreviewFrameProps = {
   screenshot: ScreenshotKey;
   alt: string;
   className?: string;
-  glow?: boolean;
   chrome?: boolean;
 };
 
@@ -70,16 +69,11 @@ export function ProductPreviewFrame({
   screenshot,
   alt,
   className = "",
-  glow = true,
   chrome = false,
 }: ProductPreviewFrameProps) {
   return (
-    <div
-      className={`group relative ${glow ? "browser-glow" : ""} ${className}`}
-      role="img"
-      aria-label={alt}
-    >
-      <div className="relative overflow-hidden rounded-nym-lg border border-marketing-border/80 bg-marketing-surface shadow-2xl transition-transform duration-500 motion-safe:group-hover:scale-[1.01] [&_img]:block">
+    <div className={`group relative ${className}`} role="img" aria-label={alt}>
+      <div className="relative overflow-hidden rounded-nym border border-marketing-border bg-marketing-surface shadow-nym [&_img]:block">
         {chrome && <PreviewFrameChrome />}
         <ScreenshotOrMock screenshot={screenshot} alt={alt} />
       </div>

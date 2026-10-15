@@ -10,11 +10,11 @@ type CaseStudyCardProps = {
 export function CaseStudyCard({ study, readLabel, featured = false }: CaseStudyCardProps) {
   return (
     <article
-      className={`flex h-full flex-col rounded-nym-lg border bg-marketing-surface transition-all hover:-translate-y-0.5 hover:border-nym-primary/35 hover:shadow-xl hover:shadow-nym-primary/10 ${
+      className={`flex h-full flex-col rounded-nym-lg border bg-marketing-surface transition-all hover:border-nym-primary/35 hover:shadow-nym ${
         featured ? "border-nym-primary/30 p-8 md:p-10" : "border-marketing-border p-6 md:p-8"
       }`}
     >
-      <p className="text-xs font-medium uppercase tracking-wider text-nym-primary">
+      <p className="text-xs font-medium text-marketing-text-muted">
         {study.industry}
       </p>
       <h2 className={`mt-2 font-semibold text-marketing-text ${featured ? "text-2xl" : "text-xl"}`}>

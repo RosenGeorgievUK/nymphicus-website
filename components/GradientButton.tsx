@@ -7,16 +7,15 @@ import { trackEvent } from "@/lib/analytics";
 type GradientButtonProps = Omit<ComponentPropsWithoutRef<"a">, "href"> & {
   href: string;
   size?: "sm" | "md" | "lg";
-  glow?: boolean;
   eventName?: string;
   eventProps?: Record<string, string>;
   children: ReactNode;
 };
 
 const sizeClasses = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-6 py-3 text-base",
+  sm: "rounded-nym-sm px-2 py-[0.26rem] text-xs",
+  md: "px-[1.375rem] py-2 text-button",
+  lg: "px-4 py-[0.45rem] text-[0.95rem]",
 };
 
 function isExternal(href: string) {
@@ -28,13 +27,12 @@ export function GradientButton({
   children,
   className = "",
   size = "md",
-  glow = false,
   eventName,
   eventProps,
   onClick,
   ...props
 }: GradientButtonProps) {
-  const classes = `inline-flex items-center justify-center rounded-nym bg-gradient-nym font-medium text-on-gradient shadow-nym-primary transition-all hover:shadow-lg hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nym-primary ${glow ? "btn-glow" : ""} ${sizeClasses[size]} ${className}`;
+  const classes = `inline-flex items-center justify-center rounded-nym border border-nym-primary bg-nym-primary font-normal text-white shadow-none transition-colors hover:border-transparent hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nym-primary ${sizeClasses[size]} ${className}`;
 
   const handleClick: ComponentPropsWithoutRef<"a">["onClick"] = (event) => {
     if (eventName) {

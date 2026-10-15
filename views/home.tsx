@@ -31,6 +31,8 @@ export function HomeView() {
   return (
     <>
       <HomeHero
+        headline={dict.site.heroHeadline}
+        headlineAccent={dict.site.heroHeadlineAccent}
         intro={dict.site.heroIntro}
         useCases={dict.site.heroUseCases}
         subhead={dict.site.heroSubhead}

@@ -24,10 +24,12 @@
   }
 
   body {
-    @apply font-sans antialiased;
+    @apply font-sans text-sm antialiased;
     background-color: var(--nym-body-bg);
     color: var(--nym-text);
     font-family: var(--font-space-grotesk), system-ui, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 
   a:not([class*="nym-btn"]):not([class*="inline-flex"]) {
@@ -131,10 +133,7 @@
   }
 
   .hero-mesh {
-    background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(var(--nym-primary-rgb), 0.2), transparent),
-      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(var(--nym-secondary-rgb), 0.08), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(var(--nym-primary-rgb), 0.06), transparent);
+    background: linear-gradient(180deg, rgba(var(--nym-primary-rgb), 0.06), transparent 72%);
   }
 
   .spotlight-card::before {
@@ -237,10 +236,10 @@
   }
 
   .surface-card {
-    border-radius: var(--nym-radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(var(--nym-primary-rgb), 0.04);
-    backdrop-filter: blur(8px);
+    border-radius: var(--nym-radius);
+    border: 1px solid var(--nym-border);
+    background: var(--nym-surface);
+    box-shadow: var(--nym-shadow-sm);
   }
 
   .product-recording {

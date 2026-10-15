@@ -28,7 +28,7 @@ export function CustomersSlugView({ slug }: { slug: string }) {
         <div className="hero-mesh pointer-events-none absolute inset-0" aria-hidden />
         <div className="relative mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <p className="text-sm font-medium uppercase tracking-wider text-nym-primary">
+            <p className="text-sm font-medium text-marketing-text-muted">
               {study.industry} · Case study
             </p>
             <h1 className="mt-4 max-w-3xl text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-tight text-marketing-text">
@@ -146,7 +146,7 @@ export function CustomersSlugView({ slug }: { slug: string }) {
                   href={`/customers/${other.slug}`}
                   className="nym-focus rounded-nym-lg border border-marketing-border bg-marketing-surface p-6 transition-colors hover:border-nym-primary/30"
                 >
-                  <p className="text-xs font-medium uppercase tracking-wider text-nym-primary">
+                  <p className="text-xs font-medium text-marketing-text-muted">
                     {other.industry}
                   </p>
                   <p className="mt-2 font-semibold text-marketing-text">{other.title}</p>

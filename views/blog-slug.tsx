@@ -23,7 +23,7 @@ export function BlogSlugView({ slug }: { slug: string }) {
         <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
             <p className="mb-4">
-              <span className="inline-flex items-center rounded-full border border-nym-primary/25 bg-nym-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-nym-primary">
+              <span className="inline-flex items-center rounded-full border border-nym-primary/25 bg-nym-primary/10 px-3.5 py-1 text-xs font-medium text-marketing-text-muted">
                 {post.category}
               </span>
             </p>

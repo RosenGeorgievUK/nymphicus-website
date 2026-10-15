@@ -23,7 +23,7 @@ export function Footer() {
 
           {columns.map((column) => (
             <div key={column.title}>
-              <h2 className="text-xs font-semibold uppercase tracking-wider text-marketing-text-muted">
+              <h2 className="text-xs font-medium text-marketing-text-muted">
                 {column.title}
               </h2>
               <ul className="mt-3 space-y-1.5">
@@ -55,7 +55,7 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col gap-3 border-t border-marketing-border pt-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <p className="text-xs text-marketing-text-muted">
-            <span>© Nymphi {year}</span>
+            <span>© nymphi {year}</span>
             <span className="mx-2 text-marketing-border" aria-hidden>
               ·
             </span>

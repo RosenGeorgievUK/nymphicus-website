@@ -29,7 +29,7 @@ export function IntegrationsView() {
 
       <PageSection size="compact" className="!pt-0">
         <ScrollReveal>
-          <ProductInteractivePreview alt={page.screenshotAlt!} glow>
+          <ProductInteractivePreview alt={page.screenshotAlt!}>
             <ProductPreviewContent screenshot="mcpRegistry" alt={page.screenshotAlt!} />
           </ProductInteractivePreview>
         </ScrollReveal>
