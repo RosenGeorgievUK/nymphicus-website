@@ -11,7 +11,7 @@ export function ProductDemoSection() {
       <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-wider text-nym-primary">Product walkthrough</p>
+            <p className="text-sm font-medium text-marketing-text-muted">Product walkthrough</p>
             <h2
               id="demo-heading"
               className="mt-2 text-[clamp(1.5rem,3vw,2rem)] font-semibold leading-tight text-marketing-text"

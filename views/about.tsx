@@ -35,7 +35,7 @@ export function AboutView() {
       <PageSection>
         <ScrollReveal>
           <div className="surface-card mx-auto max-w-3xl p-8 text-center md:p-12">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-nym-primary">
+            <p className="text-xs font-medium text-marketing-text-muted">
               {dict.data.aboutMissionLabel}
             </p>
             <h2 className="mt-4 text-section-title font-semibold text-marketing-text">

@@ -478,7 +478,7 @@ export function UnifiedPipelineDemo() {
 
       <header className="relative z-10 flex h-9 shrink-0 items-center justify-between gap-2 border-b border-slate-200 bg-white/95 px-3">
         <div className="flex min-w-0 items-center gap-2">
-          <div className="h-5 w-5 shrink-0 rounded bg-gradient-nym" />
+          <div className="h-5 w-5 shrink-0 rounded bg-nym-primary" />
           <span className="truncate text-[11px] font-semibold text-slate-800">Nymphi · Support Triage</span>
         </div>
         <PhaseStrip phase={state.phase} />

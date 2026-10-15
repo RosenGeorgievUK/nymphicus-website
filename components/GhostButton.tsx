@@ -8,9 +8,9 @@ type GhostButtonProps = Omit<ComponentPropsWithoutRef<"a">, "href"> & {
 };
 
 const sizeClasses = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-6 py-3 text-base",
+  sm: "rounded-nym-sm px-2 py-[0.26rem] text-xs",
+  md: "px-[1.375rem] py-2 text-button",
+  lg: "px-4 py-[0.45rem] text-[0.95rem]",
 };
 
 function isExternal(href: string) {
@@ -24,7 +24,7 @@ export function GhostButton({
   size = "md",
   ...props
 }: GhostButtonProps) {
-  const classes = `inline-flex items-center justify-center rounded-nym border border-marketing-border bg-transparent font-medium text-marketing-text transition-colors hover:border-nym-primary/40 hover:bg-nym-primary-50 hover:text-marketing-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nym-primary ${sizeClasses[size]} ${className}`;
+  const classes = `inline-flex items-center justify-center rounded-nym border border-marketing-border bg-marketing-surface font-normal text-marketing-text shadow-none transition-colors hover:bg-nym-list focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nym-primary ${sizeClasses[size]} ${className}`;
 
   if (isExternal(href)) {
     return (

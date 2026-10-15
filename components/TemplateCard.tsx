@@ -37,22 +37,21 @@ export function TemplateCard({
 }: TemplateCardProps) {
   return (
     <article
-      className={`flex h-full flex-col overflow-hidden rounded-nym-lg border border-marketing-border bg-marketing-surface transition-all hover:border-nym-primary/30 hover:shadow-xl hover:shadow-nym-primary/10 ${className}`}
+      className={`flex h-full flex-col overflow-hidden rounded-nym-lg border border-marketing-border bg-marketing-surface transition-all hover:border-nym-primary/30 hover:shadow-nym ${className}`}
     >
       <div className={screenshots.length > 1 ? "grid gap-px sm:grid-cols-2" : ""}>
         {screenshots.map((shot) => (
           <ProductPreviewFrame
             key={shot}
             screenshot={shot}
-            alt={`${title} — Nymphi`}
-            glow={false}
+            alt={`${title} — nymphi`}
             chrome={false}
           />
         ))}
       </div>
 
       <div className="flex flex-1 flex-col p-6 md:p-8">
-        <p className="text-xs font-medium uppercase tracking-wider text-nym-primary">{category}</p>
+        <p className="text-xs font-medium text-marketing-text-muted">{category}</p>
         <h2 className="mt-2 text-xl font-semibold text-marketing-text">
           {detailHref ? (
             <Link href={detailHref} className="hover:text-nym-primary hover:underline">

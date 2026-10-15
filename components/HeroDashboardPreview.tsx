@@ -9,13 +9,11 @@ type HeroDashboardPreviewProps = {
 export function HeroDashboardPreview({ alt, className = "" }: HeroDashboardPreviewProps) {
   return (
     <div
-      className={`group relative browser-glow ${className}`}
+      className={`relative overflow-hidden rounded-nym border border-marketing-border bg-marketing-surface shadow-nym ${className}`}
       role="img"
       aria-label={alt}
     >
-      <div className="relative overflow-hidden rounded-nym-lg border border-marketing-border/80 bg-marketing-surface shadow-2xl transition-transform duration-500 motion-safe:group-hover:scale-[1.01]">
-        <HeroPlatformDashboard />
-      </div>
+      <HeroPlatformDashboard />
     </div>
   );
 }

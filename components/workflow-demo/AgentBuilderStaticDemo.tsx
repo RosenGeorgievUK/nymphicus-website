@@ -267,7 +267,7 @@ export function AgentBuilderStaticDemo() {
       <div className="relative z-10 flex min-h-0 flex-1">
         <aside className="flex w-[min(22%,11rem)] shrink-0 flex-col border-r border-slate-200 bg-white">
           <div className="flex items-center gap-2 border-b border-slate-100 px-3 py-3">
-            <div className="h-6 w-6 shrink-0 rounded bg-gradient-nym" />
+            <div className="h-6 w-6 shrink-0 rounded bg-nym-primary" />
             <span className="text-xs font-semibold text-slate-800">Agent Builder</span>
           </div>
           <nav className="flex-1 space-y-0.5 overflow-hidden px-2 py-3">

@@ -21,7 +21,7 @@
 
 | Token | Hex | RGB | Usage |
 |-------|-----|-----|-------|
-| Primary | `#985FFD` | 152, 95, 253 | Buttons, links, active nav, key accents |
+| Primary | `#9B5FFD` | 155, 95, 253 | Buttons, links, active nav, key accents |
 | Secondary | `#FF49CD` | 255, 73, 205 | Gradients, highlights, marketing hero |
 | Primary gradient | `linear-gradient(to bottom right, #985FFD 0%, #FF49CD 100%)` | — | Hero backgrounds, CTA bands, auth panel |
 
@@ -32,7 +32,7 @@
 | Body background | `#F8F9FD` | Page background |
 | Surface / card | `#FFFFFF` | Cards, header |
 | Alt surface | `#F9F7FC` | Subtle sections |
-| Text primary | `#011A42` | Headlines, body |
+| Text primary | `#011E42` | Headlines, body |
 | Text muted | `#5D6576` | Supporting copy |
 | Border | `#E2E8EE` | Dividers, inputs |
 | Menu / nav text | `#302D36` | Navigation labels |
@@ -44,7 +44,7 @@
 |-------|-----|-------|
 | Success | `#32D484` | Positive states |
 | Warning | `#FDAF22` | Caution |
-| Danger | `#FF6757` | Errors |
+| Danger | `#FE6757` | Errors |
 | Info | `#00C9FF` | Informational |
 
 ### Dark mode (product UI — optional on marketing)
@@ -103,9 +103,9 @@
 
 ### Primary button
 
-- Background: `#985FFD`
+- Background: `#9B5FFD`
 - Text: white
-- Hover: same hue, slight shadow `rgba(152,95,253,0.3)`
+- Hover: lighten the fill; no shadow
 - Full width on mobile forms: `.d-grid` pattern from login
 
 ### Secondary / outline button

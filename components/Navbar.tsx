@@ -53,7 +53,7 @@ export function Navbar() {
         }`}
       >
         <nav
-          className="mx-auto grid h-16 max-w-nym grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8"
+          className="mx-auto grid h-header max-w-nym grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8"
           aria-label={dict.nav.ariaMain}
         >
           <div className="shrink-0">
@@ -130,7 +130,7 @@ export function Navbar() {
           aria-modal="true"
           aria-label={dict.nav.ariaMain}
         >
-          <div className="flex h-16 items-center justify-between border-b border-marketing-border px-4">
+          <div className="flex h-header items-center justify-between border-b border-marketing-border px-4">
             <LogoLink onClick={closeMenu} size="sm" />
             <button
               type="button"

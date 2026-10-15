@@ -1,67 +1,94 @@
 /**
- * Nymphicus design tokens
- * Extracted from Platform/static/assets/scss/_variables.scss
- * Use: @import or <link> in marketing site; mirrors product UI theme
+ * nymphi design tokens
+ * Source: nymphi design system (2026-10)
  */
 
 :root {
   /* Brand */
-  --nym-primary-rgb: 152, 95, 253;
+  --nym-primary: #9b5ffd;
+  --nym-primary-rgb: 155, 95, 253;
+  --nym-secondary: #ff49cd;
   --nym-secondary-rgb: 255, 73, 205;
-  --nym-primary: rgb(var(--nym-primary-rgb));
-  --nym-secondary: rgb(var(--nym-secondary-rgb));
-  --nym-gradient-primary: linear-gradient(
-    to bottom right,
-    var(--nym-primary) 0%,
-    var(--nym-secondary) 100%
-  );
-
-  /* Primary alpha scale */
-  --nym-primary-005: rgba(var(--nym-primary-rgb), 0.05);
-  --nym-primary-01: rgba(var(--nym-primary-rgb), 0.1);
-  --nym-primary-02: rgba(var(--nym-primary-rgb), 0.2);
-  --nym-primary-05: rgba(var(--nym-primary-rgb), 0.5);
-
-  /* Backgrounds */
-  --nym-body-bg: #f8f9fd;
-  --nym-surface: #ffffff;
-  --nym-surface-muted: #f9f7fc;
-
-  /* Text */
-  --nym-text: #011a42;
-  --nym-text-muted: #5d6576;
-  --nym-text-nav: #302d36;
-  --nym-icon-muted: #6c7e96;
-
-  /* Borders */
-  --nym-border: #e2e8ee;
-
-  /* Semantic */
   --nym-success: #32d484;
   --nym-warning: #fdaf22;
-  --nym-danger: #ff6757;
+  --nym-danger: #fe6757;
   --nym-info: #00c9ff;
+
+  /* Primary alpha scale (design-system primary005–primary09) */
+  --nym-primary-005: rgba(152, 95, 253, 0.05);
+  --nym-primary-01: rgba(152, 95, 253, 0.1);
+  --nym-primary-02: rgba(152, 95, 253, 0.2);
+  --nym-primary-03: rgba(152, 95, 253, 0.3);
+  --nym-primary-04: rgba(152, 95, 253, 0.4);
+  --nym-primary-05: rgba(152, 95, 253, 0.5);
+  --nym-primary-06: rgba(152, 95, 253, 0.6);
+  --nym-primary-07: rgba(152, 95, 253, 0.7);
+  --nym-primary-08: rgba(152, 95, 253, 0.8);
+  --nym-primary-09: rgba(152, 95, 253, 0.9);
+
+  /* Surfaces */
+  --nym-body-bg: #f8f9fd;
+  --nym-body-bg-2: #ffffff;
+  --nym-surface: #ffffff;
+  --nym-surface-muted: #f9f7fc;
+  --nym-border: #e2e8ee;
+  --nym-input-border: #8a93a3;
+  --nym-list-hover: #f5f6f7;
+
+  /* Text */
+  --nym-text: #011e42;
+  --nym-text-muted: #5d6576;
+  --nym-text-nav: #302836;
+  --nym-icon-muted: #6c7e96;
+  --nym-on-primary: #ffffff;
+  --nym-on-secondary: #011e42;
+  --nym-on-status: #011e42;
+  --nym-focus-ring: var(--nym-primary);
+
+  /* Accents — charts, node types, and tags */
+  --nym-accent-orange: #fa8128;
+  --nym-accent-pink: #ff69b4;
+  --nym-accent-teal: #35b5aa;
+  --nym-accent-purple: #be2beb;
+  --nym-accent-green: #00c9a7;
+  --nym-accent-red: #d03466;
+  --nym-accent-blue: #0082ff;
+  --nym-accent-cyan: #00d1d1;
+  --nym-accent-indigo: #4d5ddb;
+  --nym-accent-yellow: #fff621;
 
   /* Typography */
   --nym-font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --nym-font-weight-normal: 400;
   --nym-font-weight-medium: 500;
   --nym-font-weight-semibold: 600;
+  --nym-font-weight-bold: 700;
+  --nym-font-size-body: 0.875rem;
+  --nym-font-size-button: 0.8125rem;
+  --nym-font-size-small: 0.75rem;
 
   /* Shape */
+  --nym-radius-sm: 0.25rem;
   --nym-radius: 0.3rem;
-  --nym-radius-lg: 0.5rem;
+  --nym-radius-lg: 0.3rem;
+  --nym-radius-kit: 0.5rem;
+  --nym-radius-pill: 3.125rem;
   --nym-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
-  --nym-shadow-primary: 0 4px 12px rgba(var(--nym-primary-rgb), 0.3);
+
+  /* Gradients — one per view */
+  --nym-gradient-primary: linear-gradient(to bottom right, #9b5ffd 0%, #ff49cd 100%);
+  --nym-gradient-menu: linear-gradient(to right, #9b5ffd 0%, #ff3dbb 100%);
 
   /* Layout */
+  --nym-header-height: 4.25rem;
   --nym-max-width: 1440px;
 }
 
-/* Base document styles (optional — include if not using Tailwind) */
 .nym-body {
   font-family: var(--nym-font-sans);
+  font-size: var(--nym-font-size-body);
   font-weight: var(--nym-font-weight-normal);
+  line-height: 1.5;
   color: var(--nym-text);
   background-color: var(--nym-body-bg);
   -webkit-font-smoothing: antialiased;
@@ -77,52 +104,54 @@
   color: var(--nym-text-muted);
 }
 
-.nym-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.625rem 1.25rem;
-  font-family: var(--nym-font-sans);
-  font-weight: var(--nym-font-weight-medium);
-  font-size: 0.875rem;
-  color: #fff;
-  background-color: var(--nym-primary);
-  border: 1px solid var(--nym-primary);
-  border-radius: var(--nym-radius);
-  cursor: pointer;
-  text-decoration: none;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.nym-btn-primary:hover {
-  box-shadow: var(--nym-shadow-primary);
-  color: #fff;
-}
-
+.nym-btn-primary,
 .nym-btn-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.625rem 1.25rem;
+  padding: 0.5rem 1.375rem;
   font-family: var(--nym-font-sans);
-  font-weight: var(--nym-font-weight-medium);
-  font-size: 0.875rem;
-  color: var(--nym-text);
-  background-color: var(--nym-surface);
-  border: 1px solid var(--nym-border);
+  font-weight: var(--nym-font-weight-normal);
+  font-size: var(--nym-font-size-button);
+  line-height: 1.5;
   border-radius: var(--nym-radius);
   cursor: pointer;
   text-decoration: none;
+  box-shadow: none;
+}
+
+.nym-btn-primary {
+  color: var(--nym-on-primary);
+  background-color: var(--nym-primary);
+  border: 1px solid var(--nym-primary);
+}
+
+.nym-btn-primary:hover {
+  background-color: color-mix(in srgb, var(--nym-primary) 82%, white);
+  border-color: color-mix(in srgb, var(--nym-primary) 82%, white);
+  color: var(--nym-on-primary);
+}
+
+.nym-btn-outline {
+  color: var(--nym-text);
+  background-color: var(--nym-surface);
+  border: 1px solid var(--nym-border);
+}
+
+.nym-btn-outline:hover {
+  background-color: var(--nym-list-hover);
+  color: var(--nym-text);
 }
 
 .nym-link {
-  color: var(--nym-primary);
-  text-decoration: none;
-  font-weight: var(--nym-font-weight-medium);
+  color: var(--nym-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  font-weight: var(--nym-font-weight-normal);
 }
 
 .nym-link:hover {
-  text-decoration: underline;
+  color: var(--nym-primary);
 }
 
 .nym-gradient-text {
@@ -135,15 +164,20 @@
 .nym-card {
   background: var(--nym-surface);
   border: 1px solid var(--nym-border);
-  border-radius: var(--nym-radius-lg);
+  border-radius: var(--nym-radius);
   box-shadow: var(--nym-shadow-sm);
 }
 
 [data-theme="dark"] {
   --nym-body-bg: #161623;
+  --nym-body-bg-2: #262634;
   --nym-surface: #262634;
   --nym-surface-muted: #262634;
   --nym-text: rgba(255, 255, 255, 0.8);
   --nym-text-muted: rgba(255, 255, 255, 0.5);
+  --nym-text-nav: rgba(255, 255, 255, 0.8);
   --nym-border: rgba(255, 255, 255, 0.1);
+  --nym-list-hover: #262634;
+  --nym-focus-ring: #ccaffe;
+  --nym-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.65);
 }

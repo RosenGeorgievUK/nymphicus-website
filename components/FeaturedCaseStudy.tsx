@@ -41,7 +41,7 @@ export function FeaturedCaseStudy({
         <ScrollReveal className="mt-8">
           <article className="rounded-nym-lg border border-nym-primary/30 bg-marketing-surface p-6 md:flex md:items-center md:justify-between md:gap-8 md:p-8">
             <div className="flex-1">
-              <p className="text-xs font-medium uppercase tracking-wider text-nym-primary">
+              <p className="text-xs font-medium text-marketing-text-muted">
                 {featured.industry}
               </p>
               <h3 className="mt-2 text-xl font-semibold text-marketing-text">{featured.title}</h3>

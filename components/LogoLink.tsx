@@ -21,8 +21,8 @@ export function LogoLink({ onClick, size = "md" }: LogoLinkProps) {
       aria-label={dict.nav.ariaHome}
     >
       <Image
-        src="/branding/assets/logo-wordmark-dark.svg"
-        alt="Nymphi"
+        src="/branding/assets/logo-wordmark.svg"
+        alt="nymphi"
         width={160}
         height={36}
         className={`${height} w-auto transition-opacity group-hover:opacity-90`}

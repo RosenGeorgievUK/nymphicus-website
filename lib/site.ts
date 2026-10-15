@@ -53,14 +53,14 @@ export const ctaLabels = {
 };
 
 export const siteConfig = {
-  name: "Nymphi",
-  tagline: "Build AI agents your team can trust.",
-  heroTitle: "Build AI agents your team can trust",
-  heroGradientPhrase: "AI agents",
+  name: "nymphi",
+  tagline: "Build AI agent workflows without wrestling infrastructure",
+  heroTitle: "Build AI agent workflows without wrestling infrastructure",
+  heroGradientPhrase: "without wrestling infrastructure",
   heroSubhead:
-    "Build AI workflows visually, connect the apps you already use, and stay in control of your data and costs.",
+    "Build AI agent workflows without wrestling infrastructure.",
   description:
-    "Build AI workflows visually, connect the apps you already use, and stay in control of your data and costs.",
+    "Build AI agent workflows without wrestling infrastructure.",
   url: marketing.recommendedDomain,
   ogImage: "/og-image.svg",
   demoVideo: marketing.demoVideo ?? "",

@@ -7,9 +7,10 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        hero: ["clamp(3rem, 8vw, 5.5rem)", { lineHeight: "1.05", letterSpacing: "-0.025em" }],
-        "hero-sub": ["clamp(1.125rem, 2.2vw, 1.5rem)", { lineHeight: "1.6" }],
-        "section-title": ["clamp(1.875rem, 4vw, 2.75rem)", { lineHeight: "1.15" }],
+        hero: ["2.5rem", { lineHeight: "1.2" }],
+        "hero-sub": ["0.875rem", { lineHeight: "1.5" }],
+        "section-title": ["2rem", { lineHeight: "1.2" }],
+        button: ["0.8125rem", { lineHeight: "1.5" }],
       },
       colors: {
         marketing: {

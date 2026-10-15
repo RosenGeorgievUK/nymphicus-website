@@ -105,7 +105,7 @@ export function GovernSequenceDemo() {
     <div ref={ref} className={`${DEMO_FRAME} relative flex flex-col overflow-hidden`} style={{ backgroundColor: PLATFORM_BODY_BG }}>
       <header className="relative z-10 flex h-9 shrink-0 items-center justify-between border-b border-slate-200 bg-white/95 px-3">
         <div className="flex items-center gap-2">
-          <div className="h-5 w-5 rounded bg-gradient-nym" />
+          <div className="h-5 w-5 rounded bg-nym-primary" />
           <span className="text-[11px] font-semibold text-slate-800">Nymphi · Execution Logs</span>
         </div>
         <span className="text-[10px] text-slate-500">Immutable audit trail</span>

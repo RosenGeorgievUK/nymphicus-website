@@ -9,12 +9,14 @@ const en: Dictionary = {
   meta: {
     siteTitle: "Visual AI Agent Builder",
     siteDescription:
-      "Build AI assistants visually, connect the apps you already use, and stay in control of your data and costs.",
-    ogAlt: "Nymphi — Visual AI Agent Builder",
+      "Build AI agent workflows without wrestling infrastructure.",
+    ogAlt: "nymphi — Visual AI Agent Builder",
   },
   site: {
-    name: "Nymphi",
-    tagline: "Build AI agents your team can trust.",
+    name: "nymphi",
+    tagline: "Build AI agent workflows without wrestling infrastructure",
+    heroHeadline: "Build AI agent workflows",
+    heroHeadlineAccent: "without wrestling infrastructure",
     heroIntro: "AI assistants for every team — including",
     heroUseCases: [
       { role: "Support teams", action: "draft replies with a human checking before send" },
@@ -44,7 +46,7 @@ const en: Dictionary = {
   },
   nav: {
     ariaMain: "Main navigation",
-    ariaHome: "Nymphi home",
+    ariaHome: "nymphi home",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     menu: "Menu",
@@ -91,7 +93,7 @@ const en: Dictionary = {
     },
     privacy: "Privacy",
     terms: "Terms",
-    copyright: "© Nymphi",
+    copyright: "© nymphi",
   },
   common: {
     skipToContent: "Skip to content",
@@ -237,7 +239,7 @@ const en: Dictionary = {
       description:
         "Compare Nymphi to n8n and Zapier — visual AI builder, native integrations, your own AI account, and built-in approvals.",
       eyebrow: "Compare",
-      heroTitle: "Nymphi vs n8n",
+      heroTitle: "nymphi vs n8n",
       heroTitleHighlight: "and Zapier",
       heroSubtitle:
         "See how an AI-first builder compares to workflow automation tools — on intelligence, connections, human approvals, and pricing.",

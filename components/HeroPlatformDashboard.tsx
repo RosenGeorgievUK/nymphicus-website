@@ -77,7 +77,7 @@ function PlatformHeader() {
         <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
           <path d="M8 4H6a2 2 0 00-2 2v2M16 4h2a2 2 0 012 2v2M8 20H6a2 2 0 01-2-2v-2M16 20h2a2 2 0 002-2v-2" strokeLinecap="round" />
         </svg>
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#985FFD]/15 text-[11px] font-semibold text-[#985FFD]">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#9B5FFD]/15 text-[11px] font-semibold text-[#9B5FFD]">
           R
         </span>
       </div>
@@ -101,17 +101,17 @@ function PlatformSidebar() {
             <circle cx="12" cy="12" r="3" />
             <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
           </svg>
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#985FFD] text-[11px] font-bold text-white">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9B5FFD] text-[11px] font-bold text-white">
             R
           </span>
         </div>
       </div>
 
       <aside className="flex w-48 flex-col border-r border-[#e2e8ee] bg-white px-3 py-4 font-['Space_Grotesk',sans-serif]">
-        <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-[#302d36]/45">
+        <p className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-[#302836]/45">
           Agent Builder
         </p>
-        <p className="mb-2 flex items-center gap-1 text-xs font-semibold text-[#302d36]">
+        <p className="mb-2 flex items-center gap-1 text-xs font-semibold text-[#302836]">
           Agent Builder
           <svg viewBox="0 0 24 24" className="ml-auto h-3.5 w-3.5 text-[#6c7e96]" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
             <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
@@ -122,7 +122,7 @@ function PlatformSidebar() {
             <div
               key={item.label}
               className={`flex items-center justify-between rounded-md px-2.5 py-1.5 text-[11px] font-medium ${
-                item.active ? "bg-[#985FFD] text-white" : "text-[#302d36]/85"
+                item.active ? "bg-[#9B5FFD] text-white" : "text-[#302836]/85"
               }`}
             >
               <span>{item.label}</span>
@@ -135,7 +135,7 @@ function PlatformSidebar() {
           ))}
         </nav>
 
-        <div className="mt-auto rounded-lg bg-gradient-to-br from-[#985FFD] to-[#00C9FF] p-3 text-white">
+        <div className="mt-auto rounded-lg bg-gradient-to-br from-[#9B5FFD] to-[#00C9FF] p-3 text-white">
           <p className="text-[11px] font-semibold leading-snug">Dashboard AI Helper</p>
           <p className="mt-1 text-[10px] leading-snug text-white/85">Get help building agents faster.</p>
           <span className="mt-2 inline-block rounded bg-white/20 px-2 py-0.5 text-[10px] font-semibold">
@@ -193,14 +193,14 @@ function ExecutionsChart({ progress }: { progress: number }) {
       <polyline
         points={line}
         fill="none"
-        stroke="#985FFD"
+        stroke="#9B5FFD"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         style={{ opacity: progress }}
       />
       {last && progress > 0.8 && (
-        <circle cx={last[0]} cy={last[1]} r="3.5" fill="#985FFD" />
+        <circle cx={last[0]} cy={last[1]} r="3.5" fill="#9B5FFD" />
       )}
     </svg>
   );
@@ -368,7 +368,7 @@ export function HeroPlatformDashboard() {
                 <h1 className="text-[18px] font-semibold text-[#011a42]">Agent Builder Dashboard</h1>
                 <button
                   type="button"
-                  className="inline-flex items-center gap-1.5 rounded-[0.3rem] bg-[#985FFD] px-3 py-1.5 text-xs font-medium text-white"
+                  className="inline-flex items-center gap-1.5 rounded-[0.3rem] bg-[#9B5FFD] px-3 py-1.5 text-xs font-medium text-white"
                   tabIndex={-1}
                 >
                   <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden>

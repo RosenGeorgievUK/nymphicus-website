@@ -7,19 +7,19 @@ type ValuePillarProps = {
 
 export function ValuePillar({ icon, title, description, highlight }: ValuePillarProps) {
   return (
-    <article className="group relative overflow-hidden rounded-nym-lg border border-marketing-border bg-marketing-surface p-8 transition-all duration-300 hover:border-nym-primary/40 hover:shadow-lg hover:shadow-nym-primary/10">
+    <article className="group relative overflow-hidden rounded-nym-lg border border-marketing-border bg-marketing-surface p-8 transition-all duration-300 hover:border-nym-primary/40 hover:shadow-nym">
       <div
         className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-nym-primary/10 blur-2xl transition-opacity group-hover:opacity-100 opacity-0"
         aria-hidden
       />
       <div
-        className="mb-5 flex h-12 w-12 items-center justify-center rounded-nym-lg bg-gradient-nym text-on-gradient shadow-nym-primary"
+        className="mb-5 flex h-12 w-12 items-center justify-center rounded-nym bg-nym-primary text-white"
         aria-hidden
       >
         {icon}
       </div>
       {highlight && (
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-nym-primary">
+        <p className="mb-2 text-xs font-medium text-marketing-text-muted">
           {highlight}
         </p>
       )}

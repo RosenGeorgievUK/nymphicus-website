@@ -75,7 +75,7 @@ export function McpBrandTile({ src, alt, slug, size = "md" }: McpBrandTileProps)
 
   return (
     <div
-      className={`flex shrink-0 items-center justify-center rounded-xl border border-marketing-border/80 bg-white/95 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-nym-primary/30 hover:shadow-lg hover:shadow-nym-primary/10 ${box}`}
+      className={`flex shrink-0 items-center justify-center rounded-nym border border-marketing-border bg-marketing-surface shadow-nym transition-colors hover:border-nym-primary/30 ${box}`}
       title={alt}
     >
       <McpServerIcon src={src} alt={alt} slug={slug} className={icon} />

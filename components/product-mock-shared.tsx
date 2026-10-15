@@ -38,7 +38,7 @@ export function MockSidebar({ active = 0 }: { active?: number }) {
   return (
     <aside className="flex w-[min(28%,7.5rem)] shrink-0 flex-col border-r border-slate-200 bg-white p-3 sm:p-4">
       <div className="mb-4 flex items-center gap-2">
-        <div className="h-6 w-6 shrink-0 rounded bg-gradient-nym" />
+        <div className="h-6 w-6 shrink-0 rounded bg-nym-primary" />
         <span className="text-[11px] font-semibold leading-tight text-slate-800 sm:text-xs">
           Agent Builder
         </span>

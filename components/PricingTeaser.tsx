@@ -27,7 +27,7 @@ export function PricingTeaser() {
       <div className="mx-auto max-w-nym px-4 sm:px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center">
-            <p className="text-sm font-medium uppercase tracking-wider text-nym-primary">Pricing</p>
+            <p className="text-sm font-medium text-marketing-text-muted">Pricing</p>
             <h2
               id="pricing-teaser-heading"
               className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-semibold text-marketing-text"
